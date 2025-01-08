@@ -1,7 +1,12 @@
+import { getUrlsWithTagsByUser } from "@/server/queries";
+
 export default async function UrlsPage() {
+  const data = await getUrlsWithTagsByUser();
   return (
     <div>
-      dashboard/urls/page.tsx
+      <pre>
+        {JSON.stringify(data, null, 2)}
+      </pre>
     </div>
   )
 }
