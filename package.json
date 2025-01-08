@@ -12,8 +12,12 @@
     "db:push": "turso db shell slug < ./prisma/migrations/20250108031302_init/migration.sql"
   },
   "dependencies": {
-    "@prisma/client": "6.2.0",
+    "@auth/prisma-adapter": "^2.7.4",
+    "@libsql/client": "^0.14.0",
+    "@prisma/adapter-libsql": "^6.2.0",
+    "@prisma/client": "^6.2.0",
     "next": "15.1.3",
+    "next-auth": "^5.0.0-beta.25",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
