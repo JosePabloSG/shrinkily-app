@@ -35,16 +35,3 @@ export const getUrlsWithTagsByUser = cache(async () => {
   };
 });
 
-export const verifyShortUrlIsAvailable = cache(async (shortUrl: string) => {
-  const response = await db.urls.findUnique({
-    where: {
-      shortUrl: shortUrl,
-    },
-  });
-
-  if (response) {
-    return false;
-  }
-
-  return true;
-});
