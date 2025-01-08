@@ -7,14 +7,12 @@ export default function LandingPageLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body>
-        <Navbar />
-        <main>
-          {children}
-        </main>
-        <Footer />
-      </body>
-    </html>
+    <>
+      <Navbar />
+      <main>
+        {children}
+      </main>
+      <Footer />
+    </>
   )
 }
