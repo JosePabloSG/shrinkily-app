@@ -1,33 +1,41 @@
-import { Button } from "@/components/ui/button";
-import { CreateUrl } from "@/components/urls/create-url";
-import { getUrlsWithTagsByUser } from "@/server/queries";
-import { PlusIcon } from "lucide-react";
+import { Suspense } from 'react'
+import { getUrlsWithTagsByUser } from "@/server/queries"
+import CardUrl from "@/components/urls/card-url"
+import { Toolbar } from "@/components/dashboard/toolbar"
 
-const DashboardUrls = async () => {
-  const data = await getUrlsWithTagsByUser();
-  if (!data) {
-    return <div>Error</div>;
+const DashboardUrls = async ({ searchParams }: { searchParams: { shortUrl?: string; tags?: string } }) => {
+  const data = await getUrlsWithTagsByUser()
+  if (!data || !data.urls) {
+    return <div>Error loading data</div>
   }
 
-  if (!data?.urls) {
-    return <div>Error</div>;
-  }
+  const shortUrlFilter = searchParams.shortUrl?.toLowerCase()
+  const tagFilter = searchParams.tags?.split(',').filter(Boolean)
+
+  const filteredUrls = data.urls.filter((url) => {
+    const matchesShortUrl = !shortUrlFilter || url.shortUrl.toLowerCase().includes(shortUrlFilter)
+    const matchesTags = !tagFilter || tagFilter.length === 0 || tagFilter.every(tagId => url.tags.some(tag => tag.tagId === tagId))
+    return matchesShortUrl && matchesTags
+  })
 
   return (
     <div>
-      <pre>
-        {JSON.stringify(data, null, 2)}
-      </pre>
-      <CreateUrl tags={data?.tags}>
-        <Button>
-          <PlusIcon size={16} />
-          <span>
-            Create URL
-          </span>
-        </Button>
-      </CreateUrl>
+      <Suspense fallback={<div>Loading toolbar...</div>}>
+        <Toolbar tags={data.tags} />
+      </Suspense>
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-1 lg:grid-cols-2">
+        {filteredUrls.map((url) => (
+          <CardUrl
+            key={url.id}
+            urlInfo={url}
+            urlsTags={url.tags}
+            tagsInfo={data.tags}
+          />
+        ))}
+      </div>
     </div>
   )
 }
 
-export default DashboardUrls;
+export default DashboardUrls
+
