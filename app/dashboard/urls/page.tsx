@@ -3,19 +3,39 @@ import { getUrlsWithTagsByUser } from "@/server/queries"
 import CardUrl from "@/components/urls/card-url"
 import { Toolbar } from "@/components/dashboard/toolbar"
 
-const DashboardUrls = async ({ searchParams }: { searchParams: { shortUrl?: string; tags?: string } }) => {
+type Props = {
+  searchParams: Promise<{ [key: string]: string | undefined }>
+}
+
+const DashboardUrls = async ({ searchParams }: Props) => {
   const data = await getUrlsWithTagsByUser()
+
   if (!data || !data.urls) {
     return <div>Error loading data</div>
   }
 
-  const shortUrlFilter = searchParams.shortUrl?.toLowerCase()
-  const tagFilter = searchParams.tags?.split(',').filter(Boolean)
+  // Esperamos a que se resuelvan los searchParams
+  const params = await searchParams
+  const shortUrl = params.shortUrl
+  const tag = params.tag
+
+  // Debug de parámetros recibidos
+  console.log("Search Params received:", { shortUrl, tag })
 
   const filteredUrls = data.urls.filter((url) => {
-    const matchesShortUrl = !shortUrlFilter || url.shortUrl.toLowerCase().includes(shortUrlFilter)
-    const matchesTags = !tagFilter || tagFilter.length === 0 || tagFilter.every(tagId => url.tags.some(tag => tag.tagId === tagId))
+    const matchesShortUrl = !shortUrl || url.shortUrl.includes(shortUrl)
+    const matchesTags = !tag || url.tags.some(urlTag => urlTag.tagId === tag)
     return matchesShortUrl && matchesTags
+  })
+
+  console.log("Filtered URLs:", {
+    filterParams: { shortUrl, tag },
+    count: filteredUrls.length,
+    urls: filteredUrls.map(url => ({
+      id: url.id,
+      shortUrl: url.shortUrl,
+      tags: url.tags.map(t => t.tagId)
+    }))
   })
 
   return (
@@ -38,4 +58,3 @@ const DashboardUrls = async ({ searchParams }: { searchParams: { shortUrl?: stri
 }
 
 export default DashboardUrls
-
