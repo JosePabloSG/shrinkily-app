@@ -5,7 +5,6 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { CreateUrl } from "@/components/urls/create-url"
-import { CreateTag } from "@/components/tags/create-tag"
 import { PlusIcon, SearchIcon, FilterIcon, XIcon } from 'lucide-react'
 import { Tags } from '@prisma/client'
 import { TagFilter } from '../tags/tag-filter'
@@ -39,7 +38,15 @@ export function Toolbar({ tags }: ToolbarProps) {
 
   return (
     <div className="flex flex-col gap-4 mb-6">
-      <div className="flex flex-wrap gap-4">
+      <div className="flex flex-wrap items-center gap-4">
+        <div className="flex justify-end">
+          <CreateUrl tags={tags}>
+            <Button className="bg-blue-violet-600 hover:bg-blue-violet-700">
+              <PlusIcon size={16} className="mr-2" />
+              <span>Create URL</span>
+            </Button>
+          </CreateUrl>
+        </div>
         <div className="relative flex-grow">
           <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
           <Input
@@ -52,30 +59,17 @@ export function Toolbar({ tags }: ToolbarProps) {
         <TagFilter tags={tags} onSelect={handleTagSelect} selectedTag={selectedTag}>
           <Button variant="outline" className="flex items-center gap-2">
             <FilterIcon size={16} />
-            <span>Filter Tags</span>
+            <span className="hidden sm:inline">Filter Tags</span>
           </Button>
         </TagFilter>
         {selectedTag && (
           <Button variant="outline" onClick={handleTagClear} className="flex items-center gap-2">
             <XIcon size={16} />
-            <span>Clear Filter</span>
+            <span className="hidden sm:inline">Clear Filter</span>
           </Button>
         )}
       </div>
-      <div className="flex flex-wrap gap-4">
-        <CreateUrl tags={tags}>
-          <Button className="bg-blue-violet-600 hover:bg-blue-violet-700">
-            <PlusIcon size={16} />
-            <span>Create URL</span>
-          </Button>
-        </CreateUrl>
-        <CreateTag tagsCreated={tags}>
-          <Button className="bg-blue-violet-600 hover:bg-blue-violet-700">
-            <PlusIcon size={16} />
-            <span>Create Tag</span>
-          </Button>
-        </CreateTag>
-      </div>
+
     </div>
   )
 }

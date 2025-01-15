@@ -14,12 +14,10 @@ const DashboardUrls = async ({ searchParams }: Props) => {
     return <div>Error loading data</div>
   }
 
-  // Esperamos a que se resuelvan los searchParams
   const params = await searchParams
   const shortUrl = params.shortUrl
   const tag = params.tag
 
-  // Debug de parámetros recibidos
   console.log("Search Params received:", { shortUrl, tag })
 
   const filteredUrls = data.urls.filter((url) => {
@@ -39,11 +37,11 @@ const DashboardUrls = async ({ searchParams }: Props) => {
   })
 
   return (
-    <div>
+    <div className="container mx-auto px-4 py-8">
       <Suspense fallback={<div>Loading toolbar...</div>}>
         <Toolbar tags={data.tags} />
       </Suspense>
-      <div className="grid grid-cols-1 gap-2 md:grid-cols-1 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {filteredUrls.map((url) => (
           <CardUrl
             key={url.id}
@@ -58,3 +56,4 @@ const DashboardUrls = async ({ searchParams }: Props) => {
 }
 
 export default DashboardUrls
+
