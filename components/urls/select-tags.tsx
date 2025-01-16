@@ -36,7 +36,7 @@ const SelectTagsLink = (props: SelectTagsLinkProps) => {
         </SelectContent>
       </Select>
       {props.selectedTags.length > 0 && (
-        <div className="flex items-center overflow-hidden rounded-md border border-neutral-200 p-2 text-sm tracking-tight shadow-sm dark:border-neutral-800">
+        <div className="flex items-center overflow-hidden border-neutral-200 p-2 text-sm tracking-tight shadow-sm dark:border-neutral-800">
           {props.selectedTags.map((tag) => (
             <div
               key={tag}

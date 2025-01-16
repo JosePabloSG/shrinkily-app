@@ -128,7 +128,7 @@ export function CreateTag({ children, tagsCreated }: CreateTagProps) {
                   Cancel
                 </Button>
               </DialogClose>
-              <Button type="submit" disabled={isLoading}>
+              <Button type="submit" variant={'primary'} disabled={isLoading}>
                 {isLoading ? (
                   <LoaderIcon size={16} className="mr-2 animate-spin" />
                 ) : (

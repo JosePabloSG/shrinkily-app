@@ -41,7 +41,7 @@ export function Toolbar({ tags }: ToolbarProps) {
       <div className="flex flex-wrap items-center gap-4">
         <div className="flex justify-end">
           <CreateUrl tags={tags}>
-            <Button className="bg-blue-violet-600 hover:bg-blue-violet-700">
+            <Button variant={'primary'}>
               <PlusIcon size={16} className="mr-2" />
               <span>Create URL</span>
             </Button>

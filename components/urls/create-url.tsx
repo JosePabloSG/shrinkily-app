@@ -4,7 +4,7 @@ import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTrigger } from "../ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTrigger } from "../ui/dialog";
 import { DialogClose, DialogTitle } from "@radix-ui/react-dialog";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import { Button } from "../ui/button";
@@ -24,6 +24,7 @@ export function CreateUrl({ children, shortUrl: initialShortUrl, tags }: CreateL
   const [isPending, startTransition] = useTransition();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isRandomizing, setIsRandomizing] = useState(false);
   const { selectedTags, toggleTag, removeTag, clearTags } = useTagSelection();
 
   const form = useForm<UrlFormData>({
@@ -83,7 +84,13 @@ export function CreateUrl({ children, shortUrl: initialShortUrl, tags }: CreateL
 
   const handleGenerateRandomShortUrl = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    setIsRandomizing(true);
     form.setValue("shortUrl", generateRandomShortUrl());
+    
+    // Remover la clase de animación después de 500ms
+    setTimeout(() => {
+      setIsRandomizing(false);
+    }, 500);
   };
 
   return (
@@ -92,6 +99,9 @@ export function CreateUrl({ children, shortUrl: initialShortUrl, tags }: CreateL
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader className="mb-4">
           <DialogTitle className="text-2xl font-semibold">Create New Link</DialogTitle>
+          <DialogDescription>
+            Fill in the form below to create a new link.
+          </DialogDescription>
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
@@ -137,9 +147,12 @@ export function CreateUrl({ children, shortUrl: initialShortUrl, tags }: CreateL
                         <Button
                           onClick={handleGenerateRandomShortUrl}
                           variant="outline"
-                          className="absolute right-0 h-full rounded-l-none px-3"
+                          className="absolute right-0 h-full rounded-l-none px-3 transition-transform duration-500"
                         >
-                          <RefreshCwIcon size={16} className="mr-2" />
+                          <RefreshCwIcon 
+                            size={16} 
+                            className={`mr-2 transition-transform duration-500 ${isRandomizing ? 'rotate-180' : ''}`} 
+                          />
                           <span className="text-xs">Randomize</span>
                         </Button>
                       </div>
@@ -169,7 +182,7 @@ export function CreateUrl({ children, shortUrl: initialShortUrl, tags }: CreateL
                   Cancel
                 </Button>
               </DialogClose>
-              <Button type="submit" disabled={isPending} className="min-w-[100px]">
+              <Button type="submit" disabled={isPending} className="min-w-[100px]" variant={'primary'}>
                 {isPending ? (
                   <>
                     <Loader2Icon size={16} className="mr-2 animate-spin" />
@@ -190,3 +203,4 @@ export function CreateUrl({ children, shortUrl: initialShortUrl, tags }: CreateL
   );
 }
 
+export default CreateUrl;
