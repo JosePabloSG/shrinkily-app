@@ -6,13 +6,15 @@ import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { CreateTag } from "@/components/tags/create-tag"
-import { PlusIcon } from 'lucide-react'
+import { Plus } from 'lucide-react'
+import DeleteTagAlert from './delete-tag-alert'
 
 interface TagFilterProps {
   tags: Tags[]
@@ -34,35 +36,46 @@ export function TagFilter({ tags, onSelect, selectedTag, children }: TagFilterPr
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>Filter by Tag</DialogTitle>
+      <DialogContent className="sm:max-w-[400px] p-0">
+        <DialogHeader className="p-6 pb-0">
+          <DialogTitle className="text-xl font-semibold">Filter by Tag</DialogTitle>
+          <DialogDescription>
+            Select a tag to filter the list of items.
+          </DialogDescription>
         </DialogHeader>
-        <div className="py-4">
+        <div className="p-6">
           <CreateTag tagsCreated={tags}>
-            <Button className="w-full mb-4 bg-blue-violet-600 hover:bg-blue-violet-700">
-              <PlusIcon size={16} className="mr-2" />
-              <span>Create New Tag</span>
+            <Button
+              className="w-full mb-6 bg-[#6366F1] hover:bg-[#4F46E5] text-white font-medium"
+              size="lg"
+            >
+              <Plus className="mr-2 h-5 w-5" />
+              Create New Tag
             </Button>
           </CreateTag>
           {tags.length > 0 ? (
             <ScrollArea className="h-[300px] pr-4">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
                 {tags.map((tag) => (
-                  <Button
+                  <div
                     key={tag.id}
-                    onClick={() => handleSelect(tag.id)}
-                    variant={selectedTag === tag.id ? "default" : "outline"}
-                    className="justify-start"
+                    className="flex items-center gap-2 group"
                   >
-                    {tag.name}
-                  </Button>
+                    <Button
+                      onClick={() => handleSelect(tag.id)}
+                      variant={selectedTag === tag.id ? "default" : "outline"}
+                      className="flex-1 justify-start h-10 px-4 font-normal"
+                    >
+                      {tag.name}
+                    </Button>
+                    <DeleteTagAlert TagId={tag.id} />
+                  </div>
                 ))}
               </div>
             </ScrollArea>
           ) : (
-            <div className="text-center py-4">
-              <p>No tags available.</p>
+            <div className="text-center py-8 text-muted-foreground">
+              <p className="mb-1">No tags available.</p>
               <p>Create a tag to start filtering.</p>
             </div>
           )}
