@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { Separator } from "@/components/ui/separator"
+import DeleteUrlAlert from "./delete-url-alert"
 
 interface Props {
   urlInfo: Urls
@@ -89,6 +90,7 @@ const CardUrl = ({ urlInfo, urlsTags, tagsInfo }: Props) => {
             >
               <ExternalLink className="h-4 w-4" />
             </Button>
+            <DeleteUrlAlert UrlId={urlInfo.id} />
           </div>
         </div>
         <Separator className="bg-gravel-100" />
