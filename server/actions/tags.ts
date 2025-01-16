@@ -1,4 +1,4 @@
-"use server"
+"use server";
 
 import { auth } from "@/auth";
 import { CreateTagSchema } from "@/schemas/tag.schema";
@@ -19,7 +19,6 @@ const revalidateDashboardUrls = () => revalidatePath("/dashboard/urls");
 const UNAUTHETICATION_ERROR = "User not found";
 const URL_NOT_FOUND_ERROR = "URL not found";
 const TAG_NOT_FOUND_ERROR = "Tag not found";
-
 
 /**
  * Creates a new tag.
