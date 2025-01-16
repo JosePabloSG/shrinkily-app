@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Tags, Urls, UrlTags } from "@prisma/client"
 import { formatDistanceToNow } from "date-fns"
-import { ExternalLink, Clock, MousePointerClickIcon as Click, Tag, Copy, Check, Edit } from 'lucide-react'
+import { ExternalLink, Clock, MousePointerClickIcon as Click, Tag, Copy, Check, Edit, QrCode } from 'lucide-react'
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -34,8 +34,12 @@ const CardUrl = ({ urlInfo, urlsTags, tagsInfo }: Props) => {
     setTimeout(() => setIsCopied(false), 2000)
   }
 
-  const handleRedirect = () => {
+  const handleRedirectToUrl = () => {
     window.open(urlInfo.url, '_blank')
+  }
+
+  const handleRedirectToShortUrl = () => {
+    window.open(urlInfo.shortUrl, '_blank')
   }
 
   return (
@@ -44,13 +48,13 @@ const CardUrl = ({ urlInfo, urlsTags, tagsInfo }: Props) => {
         <div className="flex items-start justify-between gap-4">
           <div className="min-w-0 flex-1">
             <button
-              onClick={handleRedirect}
+              onClick={handleRedirectToShortUrl}
               className="text-sm font-medium text-blue-violet-600 hover:text-blue-violet-700 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-violet-400 focus-visible:ring-offset-2 w-full text-left transition-colors duration-200"
             >
               {urlInfo.shortUrl}
             </button>
             <button
-              onClick={handleRedirect}
+              onClick={handleRedirectToUrl}
               className="text-sm font-medium mt-1.5 leading-none truncate w-full text-left text-gravel-700 hover:text-gravel-900 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-violet-400 focus-visible:ring-offset-2 transition-colors duration-200"
               title={urlInfo.url}
             >
@@ -86,7 +90,7 @@ const CardUrl = ({ urlInfo, urlsTags, tagsInfo }: Props) => {
               variant="ghost"
               size="icon"
               className="h-8 w-8 text-gravel-500 hover:text-blue-violet-600 hover:bg-blue-violet-50"
-              onClick={handleRedirect}
+              onClick={handleRedirectToUrl}
             >
               <ExternalLink className="h-4 w-4" />
             </Button>
@@ -114,6 +118,14 @@ const CardUrl = ({ urlInfo, urlsTags, tagsInfo }: Props) => {
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
+            <Separator orientation="vertical" className="h-4 bg-gravel-200" />
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-8 w-8 text-gravel-500 hover:text-blue-violet-600 hover:bg-blue-violet-50"
+            >
+              <QrCode className="h-4 w-4" />
+            </Button>
             {relevantTags.length > 0 && (
               <>
                 <Separator orientation="vertical" className="h-4 bg-gravel-200" />
