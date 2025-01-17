@@ -78,7 +78,7 @@ const CardUrl = ({ urlInfo, urlsTags, tagsInfo }: Props) => {
                     {isCopied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent>
+                <TooltipContent className="bg-blue-violet-600 text-white">
                   <p>{isCopied ? 'Copied!' : 'Copy URL'}</p>
                 </TooltipContent>
               </Tooltip>
@@ -117,7 +117,7 @@ const CardUrl = ({ urlInfo, urlsTags, tagsInfo }: Props) => {
                     <ExternalLink className="h-4 w-4" />
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent>
+                <TooltipContent className="bg-blue-violet-600 text-white">
                   <p>Open URL</p>
                 </TooltipContent>
               </Tooltip>
@@ -137,7 +137,7 @@ const CardUrl = ({ urlInfo, urlsTags, tagsInfo }: Props) => {
                     </Button>
                   </QRCodeDialog>
                 </TooltipTrigger>
-                <TooltipContent>
+                <TooltipContent className="bg-blue-violet-600 text-white">
                   <p>Generate QR Code</p>
                 </TooltipContent>
               </Tooltip>
@@ -148,7 +148,7 @@ const CardUrl = ({ urlInfo, urlsTags, tagsInfo }: Props) => {
                 <TooltipTrigger asChild>
                   <DeleteUrlAlert UrlId={urlInfo.id} />
                 </TooltipTrigger>
-                <TooltipContent>
+                <TooltipContent className="bg-blue-violet-600 text-white">
                   <p>Delete URL</p>
                 </TooltipContent>
               </Tooltip>
