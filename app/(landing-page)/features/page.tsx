@@ -1,5 +1,5 @@
 import FeatureCard from "@/components/landing-page/features/feature-card";
-import { Link, ArrowRightLeft, Clock, BarChart2, QrCode, Eye, UserCheck, Pencil } from "lucide-react";
+import { Link, ArrowRightLeft, BarChart2, QrCode, Eye, Pencil } from "lucide-react";
 
 const features = [
   {
@@ -13,11 +13,6 @@ const features = [
     icon: ArrowRightLeft
   },
   {
-    title: "Expirable Links",
-    description: "Set an expiration date for your short URLs, ensuring they're only active for as long as needed.",
-    icon: Clock
-  },
-  {
     title: "Link Preview",
     description: "Allow users to preview the destination of a short link before clicking, improving trust and transparency.",
     icon: Eye
@@ -26,11 +21,6 @@ const features = [
     title: "Custom Aliases",
     description: "Create custom aliases for your short links, making them more memorable and brand-friendly.",
     icon: Pencil
-  },
-  {
-    title: "Auth0 Integration",
-    description: "Login quickly using your Google or GitHub account, simplifying the process of managing your links.",
-    icon: UserCheck
   },
   {
     title: "QR Code Generation",
