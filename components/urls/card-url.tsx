@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { Separator } from "@/components/ui/separator"
 import DeleteUrlAlert from "./delete-url-alert"
+import { UpdateUrl } from "./update-url"
 
 interface Props {
   urlInfo: Urls
@@ -45,23 +46,24 @@ const CardUrl = ({ urlInfo, urlsTags, tagsInfo }: Props) => {
   return (
     <Card className="w-full h-full flex flex-col bg-white border-gravel-100 shadow-sm hover:shadow-md transition-all duration-300">
       <CardHeader className="space-y-4 flex-grow p-4 sm:p-6">
-        <div className="flex flex-col items-center sm:flex-row sm:items-start sm:justify-between gap-4">
-          <div className="min-w-0 flex-1 text-center sm:text-left">
+        <div className="flex flex-col items-start sm:flex-row sm:items-start sm:justify-between gap-4">
+          <div className="min-w-0 flex-1 w-full sm:max-w-[60%] overflow-hidden">
             <button
               onClick={handleRedirectToShortUrl}
-              className="text-sm font-medium text-blue-violet-600 hover:text-blue-violet-700 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-violet-400 focus-visible:ring-offset-2 w-full text-center sm:text-left transition-colors duration-200"
+              className="text-sm font-medium mt-1.5 leading-none w-full text-left text-blue-violet-600 hover:text-blue-violet-700 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-violet-400 focus-visible:ring-offset-2 transition-colors duration-200 truncate block overflow-hidden text-ellipsis"
+              title={urlInfo.shortUrl}
             >
               {urlInfo.shortUrl}
             </button>
             <button
               onClick={handleRedirectToUrl}
-              className="text-sm font-medium mt-1.5 leading-none truncate w-full text-center sm:text-left text-gravel-700 hover:text-gravel-900 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-violet-400 focus-visible:ring-offset-2 transition-colors duration-200"
+              className="text-sm font-medium mt-1.5 leading-none w-full text-left text-gravel-700 hover:text-gravel-900 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-violet-400 focus-visible:ring-offset-2 transition-colors duration-200 truncate block overflow-hidden text-ellipsis"
               title={urlInfo.url}
             >
               {urlInfo.url}
             </button>
           </div>
-          <div className="flex flex-wrap gap-1.5 justify-center sm:justify-end">
+          <div className="flex flex-wrap gap-1.5 justify-start sm:justify-end">
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -80,32 +82,74 @@ const CardUrl = ({ urlInfo, urlsTags, tagsInfo }: Props) => {
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-8 w-8 text-gravel-500 hover:text-blue-violet-600 hover:bg-blue-violet-50"
-              aria-label="Edit URL"
-            >
-              <Edit className="h-4 w-4" />
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-8 w-8 text-gravel-500 hover:text-blue-violet-600 hover:bg-blue-violet-50"
-              onClick={handleRedirectToUrl}
-              aria-label="Open URL"
-            >
-              <ExternalLink className="h-4 w-4" />
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-8 w-8 text-gravel-500 hover:text-blue-violet-600 hover:bg-blue-violet-50"
-              aria-label="Generate QR Code"
-            >
-              <QrCode className="h-4 w-4" />
-            </Button>
-            <DeleteUrlAlert UrlId={urlInfo.id} />
+
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <UpdateUrl url={urlInfo}>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-8 w-8 text-gravel-500 hover:text-blue-violet-600 hover:bg-blue-violet-50"
+                      aria-label="Edit URL"
+                    >
+                      <Edit className="h-4 w-4" />
+                    </Button>
+                  </UpdateUrl>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Edit URL</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-8 w-8 text-gravel-500 hover:text-blue-violet-600 hover:bg-blue-violet-50"
+                    onClick={handleRedirectToUrl}
+                    aria-label="Open URL"
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Open URL</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-8 w-8 text-gravel-500 hover:text-blue-violet-600 hover:bg-blue-violet-50"
+                    aria-label="Generate QR Code"
+                  >
+                    <QrCode className="h-4 w-4" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Generate QR Code</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <DeleteUrlAlert UrlId={urlInfo.id} />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Delete URL</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </div>
         </div>
         <Separator className="bg-gravel-100" />
