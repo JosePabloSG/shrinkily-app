@@ -11,6 +11,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { Separator } from "@/components/ui/separator"
 import DeleteUrlAlert from "./delete-url-alert"
 import { UpdateUrl } from "./update-url"
+import QRCodeDialog from "./qr-code"
 
 interface Props {
   urlInfo: Urls
@@ -125,14 +126,16 @@ const CardUrl = ({ urlInfo, urlsTags, tagsInfo }: Props) => {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="h-8 w-8 text-gravel-500 hover:text-blue-violet-600 hover:bg-blue-violet-50"
-                    aria-label="Generate QR Code"
-                  >
-                    <QrCode className="h-4 w-4" />
-                  </Button>
+                  <QRCodeDialog urlInfo={urlInfo} >
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-8 w-8 text-gravel-500 hover:text-blue-violet-600 hover:bg-blue-violet-50"
+                      aria-label="Generate QR Code"
+                    >
+                      <QrCode className="h-4 w-4" />
+                    </Button>
+                  </QRCodeDialog>
                 </TooltipTrigger>
                 <TooltipContent>
                   <p>Generate QR Code</p>
