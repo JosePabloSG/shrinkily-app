@@ -21,18 +21,18 @@ export async function middleware(req: NextRequest) {
       const result = await urlFromServer(shortUrl);
 
       if (result.redirect404) {
-        return NextResponse.redirect(new URL("/404", req.url));
+        return NextResponse.rewrite(new URL("/not-found", req.url));
       }
 
       if (result.error) {
-        return NextResponse.redirect(new URL("/404", req.url));
+        return NextResponse.rewrite(new URL("/not-found", req.url));
       }
 
       if (result.url) {
         return NextResponse.redirect(new URL(result.url));
       }
     } catch {
-      return NextResponse.redirect(new URL("/404", req.url));
+      return NextResponse.rewrite(new URL("/not-found", req.url));
     }
   }
 
