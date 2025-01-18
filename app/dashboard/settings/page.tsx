@@ -40,7 +40,7 @@ export default async function Page() {
 
           <ExportURLsCard />
 
-          <DeleteAccountCard />
+          <DeleteAccountCard email={userData.email ?? ''} />
 
         </div>
       </div>
