@@ -35,10 +35,10 @@ const Sidebar = () => {
         </h1>
 
         <div className="w-10 h-10 rounded-full bg-blue-violet-200 flex items-center justify-center overflow-hidden">
-          <Image 
-            src={session?.user?.image || "/placeholder.svg"} 
-            alt="Profile" 
-            width={40} 
+          <Image
+            src={session?.user?.image || "/placeholder.svg"}
+            alt="Profile"
+            width={40}
             height={40}
             className="rounded-full"
           />
@@ -68,11 +68,11 @@ const Sidebar = () => {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`flex items-center px-4 py-2 text-sm font-medium rounded-md transition-colors duration-150 ease-in-out ${
-                    isActive
+                  onClick={() => setIsOpen(false)}
+                  className={`flex items-center px-4 py-2 text-sm font-medium rounded-md transition-colors duration-150 ease-in-out ${isActive
                       ? "bg-blue-violet-100 text-blue-violet-900"
                       : "text-gravel-600 hover:bg-blue-violet-100 hover:text-blue-violet-900"
-                  }`}
+                    }`}
                 >
                   <item.icon className="h-5 w-5 mr-3" />
                   {item.label}
