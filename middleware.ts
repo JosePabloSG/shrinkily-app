@@ -61,7 +61,16 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  matcher: [
+    // Rutas protegidas que requieren autenticación
+    "/dashboard/:path*",
+    
+    // Rutas de autenticación
+    "/auth/:path*",
+    
+    // URLs cortas (excluye rutas específicas)
+    "/((?!api|_next/static|_next/image|favicon.ico|about|contact|features|docs|auth|dashboard).*)",
+  ],
 };
 
 export default middleware;
