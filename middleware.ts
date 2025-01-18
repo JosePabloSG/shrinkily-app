@@ -67,6 +67,12 @@ export const config = {
     
     // Rutas de autenticación
     "/auth/:path*",
+
+    //terms of servie
+    "/terms-of-service",
+
+    //privacy policy
+    "/privacy-policy",
     
     // URLs cortas (excluye rutas específicas)
     "/((?!api|_next/static|_next/image|favicon.ico|about|contact|features|docs|auth|dashboard).*)",
