@@ -8,7 +8,7 @@ const PUBLIC_ROUTES = [
   "/contact",
   "/features",
   "/docs",
-  "/terms-of-service",
+  "/terms",
   "/privacy-policy",
 ];
 
