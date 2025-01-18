@@ -1,89 +1,91 @@
-import { NextRequest, NextResponse } from "next/server";
-import { getToken } from "next-auth/jwt";
+import NextAuth from "next-auth";
+
+import { NextResponse } from "next/server";
+
+import {
+  DEFAULT_LOGIN_REDIRECT_URL,
+  apiAuthPrefix,
+  checkRoutesPrefix,
+  authRoutes,
+  protectedRoutes,
+  publicRoutes,
+} from "@/route";
+
 import { urlFromServer } from "./server/middleware/redirect";
+import authConfig from "./auth.config";
 
-// Array de rutas públicas permitidas
-const PUBLIC_ROUTES = [
-  "/about",
-  "/contact",
-  "/features",
-  "/docs",
-  "/terms",
-  "/privacy-policy",
-];
+const { auth } = NextAuth(authConfig);
 
-export async function middleware(req: NextRequest) {
-  const { pathname } = req.nextUrl;
+export default auth(async (req) => {
+  const { nextUrl } = req;
 
-  // Allow access to static files and assets
-  if (pathname.startsWith("/_next") || pathname.startsWith("/static")) {
-    return NextResponse.next();
+  const isLoggedIn = !!req.auth;
+
+  const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
+  const isCheckRoute = nextUrl.pathname.startsWith(checkRoutesPrefix);
+  const isProtectedRoute = protectedRoutes.includes(nextUrl.pathname);
+  const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
+  const isAuthRoute = authRoutes.includes(nextUrl.pathname);
+
+  const shortUrl = req.nextUrl.pathname.split("/").pop();
+
+  // ⚙️ Is Api Route:
+  if (isApiAuthRoute) {
+    return;
   }
 
-  // Skip middleware for public routes
-  if (PUBLIC_ROUTES.includes(pathname)) {
-    return NextResponse.next();
+  // ⚙️ Is Auth Route. First, check is authenticated:
+  if (isAuthRoute) {
+    if (isLoggedIn) {
+      return NextResponse.redirect(
+        new URL(DEFAULT_LOGIN_REDIRECT_URL, nextUrl)
+      );
+    }
+    return;
   }
 
-  // Handle URL shortener redirects
-  if (
-    pathname.length > 1 &&
-    !pathname.startsWith("/auth") &&
-    !pathname.startsWith("/dashboard")
-  ) {
-    try {
-      const shortUrl = pathname.slice(1);
-      const result = await urlFromServer(shortUrl);
+  // ⚙️ If shortUrl contains ``c``, redirect to /check/:shortUrl:
+  if (shortUrl?.endsWith("&c")) {
+    return NextResponse.redirect(
+      new URL(`/check/${shortUrl.replace("&c", "")}`, nextUrl)
+    );
+  }
 
-      if (result.redirect404) {
-        return NextResponse.rewrite(new URL("/not-found", req.url));
-      }
+  // ⚙️ Protected routes. If not authenticated, redirect to /auth:
+  if (!isLoggedIn && isProtectedRoute) {
+    let callbackUrl = nextUrl.pathname;
+    if (nextUrl.search) {
+      callbackUrl += nextUrl.search;
+    }
+    const encodedCallbackUrl = encodeURIComponent(callbackUrl);
+    return NextResponse.redirect(
+      new URL(`/auth?callbackUrl=${encodedCallbackUrl}`, nextUrl)
+    );
+  }
 
-      if (result.error) {
-        return NextResponse.rewrite(new URL("/not-found", req.url));
-      }
+  // ⚙️ Redirect using shortUrl:
+  // If not public route and not protected route:
+  if (!isPublicRoute && !isProtectedRoute && !isCheckRoute) {
+    const getDataApi = await urlFromServer(shortUrl!);
 
-      if (result.url) {
-        return NextResponse.redirect(new URL(result.url));
-      }
-    } catch {
-      return NextResponse.rewrite(new URL("/not-found", req.url));
+    if (getDataApi.redirect404) {
+      console.log("🚧 Error - Redirect 404: ", shortUrl);
+    }
+
+    if (getDataApi.error) {
+      return NextResponse.json({ error: getDataApi.message }, { status: 500 });
+    }
+
+    if (getDataApi.url) {
+      return NextResponse.redirect(new URL(getDataApi.url).toString());
     }
   }
-
-  // Handle auth routes
-  if (pathname.startsWith("/auth")) {
-    return NextResponse.next();
-  }
-
-  // Protect dashboard routes
-  if (pathname.startsWith("/dashboard")) {
-    try {
-      const session = await getToken({
-        req,
-        secret: process.env.AUTH_SECRET,
-      });
-
-      if (!session) {
-        return NextResponse.redirect(new URL("/auth/signin", req.url));
-      }
-    } catch {
-      return NextResponse.redirect(new URL("/auth/signin", req.url));
-    }
-  }
-
-  return NextResponse.next();
-}
+  return;
+});
 
 export const config = {
   matcher: [
-    // Rutas protegidas que requieren autenticación
-    "/dashboard/:path*",
-
-    // Rutas de autenticación
-    "/auth/:path*",
-
-    // URLs cortas (excluye rutas específicas)
-    "/((?!api|_next/static|_next/image|favicon.ico|about|contact|features|docs|auth|dashboard).*)",
+    "/((?!api/|_next/|images/|docs/|_proxy/|_static|_vercel|[\\w-]+\\.\\w+).*)",
+    "/s/:shortUrl*",
   ],
 };

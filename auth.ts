@@ -6,6 +6,7 @@ import Google from "next-auth/providers/google";
 import { db } from "./server/data-source";
 import { getAccountByUserId } from "./server/utils/account";
 import { getUserById } from "./server/utils/user";
+import authConfig from "./auth.config";
 
 export const {
   handlers: { GET, POST },
@@ -35,16 +36,6 @@ export const {
       });
     },
   },
-  providers: [
-    Google({
-      clientId: process.env.AUTH_GOOGLE_ID,
-      clientSecret: process.env.AUTH_GOOGLE_SECRET,
-    }),
-    Github({
-      clientId: process.env.AUTH_GITHUB_ID,
-      clientSecret: process.env.AUTH_GITHUB_SECRET,
-    }),
-  ],
   callbacks: {
     /**
      * Callback triggered when a user signs in.
@@ -106,4 +97,5 @@ export const {
       return token;
     },
   },
+  ...authConfig,
 });
