@@ -3,14 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
+    "postinstall": "prisma generate",
+    "build": "prisma generate && next build",
+    "dev": "next dev",
     "start": "next start",
     "lint": "next lint",
     "db:migrate": "prisma migrate dev --name init",
     "db:studio": "prisma studio",
-    "db:push": "turso db shell quickshrink < ./prisma/migrations/20250115205605_init/migration.sql"
+    "db:push": "turso db shell quickshrink < ./prisma/migrations/20250115205605_init/migration.sql",
+    "vercel-build": "prisma generate && next build"
   },
+  "builds": [
+    {
+      "src": "next.config.js",
+      "use": "@vercel/next"
+    }
+  ],
   "dependencies": {
     "@auth/prisma-adapter": "^2.7.4",
     "@hookform/resolvers": "^3.10.0",
