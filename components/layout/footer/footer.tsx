@@ -9,7 +9,7 @@ const QUICK_LINKS = [
 
 // Legal Links
 const LEGAL_LINKS = [
-  { name: "Terms of Service", href: "/terms-of-service" },
+  { name: "Terms of Service", href: "/terms" },
   { name: "Privacy Policy", href: "/privacy-policy" },
 ];
 
