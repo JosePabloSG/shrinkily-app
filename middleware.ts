@@ -2,11 +2,26 @@ import { NextRequest, NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 import { urlFromServer } from "./server/middleware/redirect";
 
+// Array de rutas públicas permitidas
+const PUBLIC_ROUTES = [
+  "/about",
+  "/contact",
+  "/features",
+  "/docs",
+  "/terms-of-service",
+  "/privacy-policy",
+];
+
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   // Allow access to static files and assets
   if (pathname.startsWith("/_next") || pathname.startsWith("/static")) {
+    return NextResponse.next();
+  }
+
+  // Skip middleware for public routes
+  if (PUBLIC_ROUTES.includes(pathname)) {
     return NextResponse.next();
   }
 
@@ -64,19 +79,11 @@ export const config = {
   matcher: [
     // Rutas protegidas que requieren autenticación
     "/dashboard/:path*",
-    
+
     // Rutas de autenticación
     "/auth/:path*",
 
-    //terms of servie
-    "/terms-of-service",
-
-    //privacy policy
-    "/privacy-policy",
-    
     // URLs cortas (excluye rutas específicas)
     "/((?!api|_next/static|_next/image|favicon.ico|about|contact|features|docs|auth|dashboard).*)",
   ],
 };
-
-export default middleware;
