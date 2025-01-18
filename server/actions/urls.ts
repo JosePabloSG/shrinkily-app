@@ -130,7 +130,7 @@ export const exportUrlsByUser = async () => {
   });
 
   return urls.map((url) => ({
-    shortUrl: url.shortUrl,
+    url: url.url,
   }));
 };
 
