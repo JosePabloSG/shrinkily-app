@@ -41,7 +41,7 @@ const CardUrl = ({ urlInfo, urlsTags, tagsInfo }: Props) => {
   }
 
   const handleRedirectToShortUrl = () => {
-    window.open(urlInfo.shortUrl, '_blank')
+    window.open(`${process.env.NEXT_PUBLIC_APP_URL}/${urlInfo.shortUrl}`, '_blank')
   }
 
   return (
