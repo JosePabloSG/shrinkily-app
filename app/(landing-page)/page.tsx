@@ -38,12 +38,13 @@ export default function Home() {
               placeholder="Enter your long URL here..."
               className="flex-grow px-4 py-3 md:py-4 bg-white text-gravel-900 focus:outline-none focus:ring-2 focus:ring-blue-violet-400 transition-all duration-300 ease-in-out"
               required
+              disabled
             />
             <button
               type="submit"
               className="bg-blue-violet-500 text-white px-6 py-3 md:py-4 font-semibold hover:bg-blue-violet-600 focus:outline-none focus:ring-2 focus:ring-blue-violet-400 focus:ring-offset-2 transition-all duration-300 ease-in-out"
             >
-              <Link href="/dashboard/urls">
+              <Link href="/auth/signin">
                 Shorten URL
               </Link>
             </button>

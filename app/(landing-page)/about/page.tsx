@@ -32,7 +32,7 @@ export default function AboutPage() {
               QuickShrink is an open-source project, and we welcome contributions from developers around the world. If you're passionate about improving URL management, check out the repository, contribute, or report issues. Together, we can make QuickShrink even better!
             </p>
             <Link
-              href="https://github.com/JosePabloSG/quickshrink"
+              href="https://github.com/JosePabloSG/quickshrink-app"
               className="inline-flex items-center px-4 py-2 bg-black text-white rounded hover:bg-black transition-colors duration-300"
             >
               <FaGithub className="mr-2" />
