@@ -177,13 +177,22 @@ export function CreateUrl({ children, shortUrl: initialShortUrl, tags }: CreateL
                 </div>
               )}
             </div>
-            <DialogFooter className="mt-6 flex justify-end space-x-2">
+            <DialogFooter className="sm:space-x-2">
               <DialogClose asChild>
-                <Button variant="outline" disabled={isPending}>
+                <Button
+                  variant="outline"
+                  disabled={isPending}
+                  className="mt-2 sm:mt-0"
+                >
                   Cancel
                 </Button>
               </DialogClose>
-              <Button type="submit" disabled={isPending} className="min-w-[100px]" variant={'primary'}>
+
+              <Button
+                type="submit"
+                disabled={isPending}
+                variant="primary"
+              >
                 {isPending ? (
                   <>
                     <Loader2Icon size={16} className="mr-2 animate-spin" />
