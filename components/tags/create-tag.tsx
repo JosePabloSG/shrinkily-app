@@ -38,7 +38,7 @@ import { CreateTagProps, TagFormData } from "@/types/tags/tag.types";
  * @param props - Component properties including children and existing tags
  */
 export function CreateTag({ children, tagsCreated }: CreateTagProps) {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isPending, setIsPending] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -55,7 +55,7 @@ export function CreateTag({ children, tagsCreated }: CreateTagProps) {
    */
   const handleSubmit = async (values: TagFormData) => {
     try {
-      setIsLoading(true);
+      setIsPending(true);
 
       // Check if tag already exists
       if (tagsCreated.some((tag: Tags) => tag.name === values.name)) {
@@ -77,7 +77,7 @@ export function CreateTag({ children, tagsCreated }: CreateTagProps) {
       toast.error("An unexpected error occurred. Please try again later.");
     } finally {
       setError(null);
-      setIsLoading(false);
+      setIsPending(false);
     }
   };
 
@@ -111,7 +111,7 @@ export function CreateTag({ children, tagsCreated }: CreateTagProps) {
                     <FormControl>
                       <Input
                         {...field}
-                        disabled={isLoading}
+                        disabled={isPending}
                         autoComplete="off"
                         placeholder="Enter tag name"
                       />
@@ -122,19 +122,28 @@ export function CreateTag({ children, tagsCreated }: CreateTagProps) {
               />
               {error && <Alert>{error}</Alert>}
             </div>
-            <DialogFooter>
+            <DialogFooter className="sm:space-x-2">
               <DialogClose asChild>
-                <Button variant="ghost" disabled={isLoading}>
+                <Button
+                  variant="outline"
+                  disabled={isPending}
+                  className="mt-2 sm:mt-0"
+                >
                   Cancel
                 </Button>
               </DialogClose>
-              <Button type="submit" variant={'primary'} disabled={isLoading}>
-                {isLoading ? (
+
+              <Button
+                type="submit"
+                disabled={isPending}
+                variant="primary"
+              >
+                {isPending ? (
                   <LoaderIcon size={16} className="mr-2 animate-spin" />
                 ) : (
                   <Tag size={16} className="mr-2" />
                 )}
-                <span>{isLoading ? "Creating..." : "Create Tag"}</span>
+                <span>{isPending ? "Creating..." : "Create Tag"}</span>
               </Button>
             </DialogFooter>
           </form>

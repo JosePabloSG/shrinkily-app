@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { X } from 'lucide-react';
 import { SignOut } from "./signout";
-import { User } from "./user";
 
 interface MobileSidebarProps {
   isOpen: boolean;
@@ -27,7 +26,12 @@ const MobileSidebar: React.FC<MobileSidebarProps> = ({ isOpen, onClose, navItems
           } md:hidden`}
       >
         <div className="h-full flex flex-col">
-          <div className="flex justify-end p-2">
+          <div className="flex justify-between p-4">
+            <div className="flex-shrink-0 flex items-center">
+              <Link href="/" className="text-2xl font-bold text-blue-violet-500">
+                QuickShrink
+              </Link>
+            </div>
             <button
               onClick={onClose}
               className="p-2 hover:bg-blue-violet-100 rounded-lg transition-colors"
@@ -36,7 +40,6 @@ const MobileSidebar: React.FC<MobileSidebarProps> = ({ isOpen, onClose, navItems
               <X className="h-6 w-6 text-blue-violet-600" />
             </button>
           </div>
-          <User />
           <nav className="flex-1 px-3 py-4 space-y-1">
             {navItems.map((item) => {
               const isActive = pathname === item.href;
