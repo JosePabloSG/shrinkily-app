@@ -53,12 +53,14 @@ const ProvidersLogin = () => {
             onClick={() => handleProviderLogin(sp.provider)}
             className={`w-full rounded-lg py-3 px-4 flex items-center justify-center space-x-2 transition duration-200 ${sp.className}`}
           >
-            {provider === sp.provider ? (
-              <Loader className="animate-spin h-5 w-5" />
-            ) : (
-              sp.icon
-            )}
-            <span>{sp.name}</span>
+            <div className="flex items-center justify-center w-5 h-5 flex-shrink-0">
+              {provider === sp.provider ? (
+                <Loader className="animate-spin h-5 w-5" />
+              ) : (
+                sp.icon
+              )}
+            </div>
+            <span className="flex-grow text-center">{sp.name}</span>
           </button>
         ))}
       </div>
