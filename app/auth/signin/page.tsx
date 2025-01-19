@@ -5,10 +5,10 @@ import { Suspense } from "react";
 export default function SigninPage() {
   return (
     <>
-      <h1 className="text-4xl md:text-5xl font-bold text-gravel-900 mb-4">
+      <h1 className="text-center text-4xl md:text-5xl font-bold text-gravel-900 mb-4 ">
         Welcome to QuickShrink
       </h1>
-      <p className="text-xl text-gravel-700 mb-8 max-w-2xl">
+      <p className="text-center text-xl text-gravel-700 mb-8 max-w-2xl">
         Log in securely and start simplifying your links.
       </p>
       <Suspense fallback={<div>Loading...</div>}>
