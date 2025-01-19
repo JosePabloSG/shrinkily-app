@@ -1,5 +1,7 @@
+"use client"
 import FeatureCard from "@/components/landing-page/features/feature-card";
 import { Link, ArrowRightLeft, BarChart2, QrCode, Eye, Pencil } from "lucide-react";
+import { motion } from 'framer-motion';
 
 const features = [
   {
@@ -46,12 +48,14 @@ export default function Features() {
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <div
+            <motion.div
               key={index}
-              className={`animate-fall-down delay-[${index * 100}ms]`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.1 }}
             >
               <FeatureCard {...feature} />
-            </div>
+            </motion.div>
           ))}
         </div>
       </main>
