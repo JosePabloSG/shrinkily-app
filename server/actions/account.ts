@@ -3,13 +3,13 @@
 import { auth } from "@/auth";
 import { db } from "../data-source";
 import { revalidatePath } from "next/cache";
+import { UNAUTHETICATION_ERROR } from "./actions.config";
 
 interface DeleteAccountResponse {
   success: boolean;
   message: string;
 }
 
-const UNAUTHETICATION_ERROR = "You must be logged in to perform this action.";
 
 export const DeletAccount = async (): Promise<DeleteAccountResponse> => {
   try {

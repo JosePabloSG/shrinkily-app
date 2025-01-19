@@ -4,17 +4,7 @@ import { auth } from "@/auth";
 import { CreateUrlSchema, EditUrlSchema } from "@/schemas/url.schema";
 import { z } from "zod";
 import { db } from "../data-source";
-import { revalidatePath } from "next/cache";
-
-/**
- * Revalidates the dashboard URLs cache.
- */
-const revalidateDashboardUrls = () => revalidatePath("/dashboard/urls");
-
-/**
- * Error message when user is not authenticated.
- */
-const UNAUTHETICATION_ERROR = "User not found";
+import { revalidateDashboardUrls, UNAUTHETICATION_ERROR } from "./actions.config";
 
 /**
  * Response for URL actions.

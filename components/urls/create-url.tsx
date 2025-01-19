@@ -11,7 +11,7 @@ import { Button } from "../ui/button";
 import { Loader2Icon, LinkIcon, RefreshCwIcon, TagIcon } from 'lucide-react';
 import { Input } from "../ui/input";
 import { Alert } from "../ui/alert";
-import { createUrl, verifyShortUrlIsAvailable } from "@/server/actions/urls";
+import { createUrl } from "@/server/actions/urls";
 import { AddTagToUrl } from "@/server/actions/tags";
 import { CreateUrlSchema } from "@/schemas/url.schema";
 import { useTagSelection } from "@/hooks/useTagSelection";
@@ -19,6 +19,7 @@ import { useState } from "react";
 import { CreateLinkProps, UrlFormData } from "@/types/urls/url.types";
 import { generateRandomShortUrl, validateUrlDifference } from "@/server/utils/url-utilis";
 import SelectTagsLink from "./select-tags";
+import { isShortUrlAvailable } from "@/server/queries";
 
 export function CreateUrl({ children, shortUrl: initialShortUrl, tags }: CreateLinkProps) {
   const [isPending, startTransition] = useTransition();
@@ -43,7 +44,7 @@ export function CreateUrl({ children, shortUrl: initialShortUrl, tags }: CreateL
 
     const performSubmission = async () => {
       try {
-        const shortUrlExists = await verifyShortUrlIsAvailable(values.shortUrl);
+        const shortUrlExists = await isShortUrlAvailable(values.shortUrl);
         if (!shortUrlExists) {
           toast.error("The shortUrl already exists. Write another or generate a random shortUrl.");
           return;
@@ -86,7 +87,7 @@ export function CreateUrl({ children, shortUrl: initialShortUrl, tags }: CreateL
     e.preventDefault();
     setIsRandomizing(true);
     form.setValue("shortUrl", generateRandomShortUrl());
-    
+
     // Remover la clase de animación después de 500ms
     setTimeout(() => {
       setIsRandomizing(false);
@@ -149,9 +150,9 @@ export function CreateUrl({ children, shortUrl: initialShortUrl, tags }: CreateL
                           variant="outline"
                           className="absolute right-0 h-full rounded-l-none px-3 transition-transform duration-500"
                         >
-                          <RefreshCwIcon 
-                            size={16} 
-                            className={`mr-2 transition-transform duration-500 ${isRandomizing ? 'rotate-180' : ''}`} 
+                          <RefreshCwIcon
+                            size={16}
+                            className={`mr-2 transition-transform duration-500 ${isRandomizing ? 'rotate-180' : ''}`}
                           />
                           <span className="text-xs">Randomize</span>
                         </Button>

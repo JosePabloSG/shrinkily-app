@@ -4,21 +4,12 @@ import { auth } from "@/auth";
 import { CreateTagSchema } from "@/schemas/tag.schema";
 import { z } from "zod";
 import { db } from "../data-source";
-import { revalidatePath } from "next/cache";
-
-/**
- * Revalidates the dashboard URLs cache.
- */
-const revalidateDashboardUrls = () => revalidatePath("/dashboard/urls");
-
-/**
- * Error message when user is not authenticated.
- * Error message when URL is not found.
- * Error message when tag is not found.
- */
-const UNAUTHETICATION_ERROR = "User not found";
-const URL_NOT_FOUND_ERROR = "URL not found";
-const TAG_NOT_FOUND_ERROR = "Tag not found";
+import {
+  revalidateDashboardUrls,
+  TAG_NOT_FOUND_ERROR,
+  UNAUTHETICATION_ERROR,
+  URL_NOT_FOUND_ERROR,
+} from "./actions.config";
 
 /**
  * Creates a new tag.

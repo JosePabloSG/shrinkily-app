@@ -1,10 +1,13 @@
-/**
- * Get all urls with all tags by authenticated user
- */
+"use server"
 
 import { auth } from "@/auth";
 import { cache } from "react";
 import { db } from "../data-source";
+
+/**
+ * Gets all URLs with their tags by the user.
+ * @returns {Promise<null | { urls: any; tags: any; limit: number }>} The URLs with their tags and the limit.
+ */
 
 export const getUrlsWithTagsByUser = cache(async () => {
   const user = await auth();
@@ -34,4 +37,25 @@ export const getUrlsWithTagsByUser = cache(async () => {
     limit: user.user.limitUrl,
   };
 });
+
+/**
+ * Gets a URL by its ID.
+ * @param {string} urlId - The URL ID.
+ * @returns {Promise<any>} The URL data.
+ */
+
+export const isShortUrlAvailable  = async (shortUrl: string) => {
+  const response = await db.urls.findUnique({
+    where: {
+      shortUrl: shortUrl,
+    },
+  });
+
+  if (response) {
+    return false;
+  }
+
+  return true;
+};
+
 
