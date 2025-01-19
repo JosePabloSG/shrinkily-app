@@ -7,6 +7,7 @@ import { Tags, Urls, UrlTags } from "@prisma/client"
 import CardUrlSkeleton from '../skeletons/card-url-skeleton'
 import { LinkIcon, PlusIcon } from 'lucide-react'
 import CreateUrl from './create-url'
+import { motion } from 'framer-motion';
 import { Button } from '../ui/button'
 
 interface UrlGridProps {
@@ -72,13 +73,19 @@ export function UrlGrid({ urls, tags }: UrlGridProps) {
 
   return (
     <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {filteredUrls.map((url) => (
-        <CardUrl
+      {filteredUrls.map((url, index) => (
+        <motion.div
           key={url.id}
-          urlInfo={url}
-          urlsTags={url.tags}
-          tagsInfo={tags}
-        />
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: index * 0.1 }}
+        >
+          <CardUrl
+            urlInfo={url}
+            urlsTags={url.tags}
+            tagsInfo={tags}
+          />
+        </motion.div>
       ))}
     </div>
   )
