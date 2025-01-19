@@ -31,7 +31,7 @@ const CardUrl = ({ urlInfo, urlsTags, tagsInfo }: Props) => {
   )
 
   const handleCopy = async () => {
-    await navigator.clipboard.writeText(urlInfo.url)
+    await navigator.clipboard.writeText(`${process.env.NEXT_PUBLIC_APP_URL}/${urlInfo.shortUrl}`)
     setIsCopied(true)
     setTimeout(() => setIsCopied(false), 2000)
   }
