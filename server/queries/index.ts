@@ -1,4 +1,4 @@
-"use server"
+"use server";
 
 import { auth } from "@/auth";
 import { cache } from "react";
@@ -23,6 +23,9 @@ export const getUrlsWithTagsByUser = cache(async () => {
     include: {
       tags: true,
     },
+    orderBy: {
+      createdAt: "desc",
+    },
   });
 
   const tagsData = await db.tags.findMany({
@@ -44,7 +47,7 @@ export const getUrlsWithTagsByUser = cache(async () => {
  * @returns {Promise<any>} The URL data.
  */
 
-export const isShortUrlAvailable  = async (shortUrl: string) => {
+export const isShortUrlAvailable = async (shortUrl: string) => {
   const response = await db.urls.findUnique({
     where: {
       shortUrl: shortUrl,
@@ -57,5 +60,3 @@ export const isShortUrlAvailable  = async (shortUrl: string) => {
 
   return true;
 };
-
-
