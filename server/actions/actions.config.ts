@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 
-export const revalidateDashboardUrls = () => revalidatePath("/dashboard/urls");
+export const revalidateDashboardUrls = async () => revalidatePath("/dashboard/urls");
 
 export const UNAUTHETICATION_ERROR =
   "You must be logged in to perform this action.";
