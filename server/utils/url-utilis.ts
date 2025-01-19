@@ -1,11 +1,22 @@
+import crypto from 'crypto';
+
 /**
- * Generates a random string for use as a short URL
- * @returns A random string of 7 characters
+ * Generates a cryptographically secure random string for use as a short URL
+ * The length is fixed to 9 characters.
+ * @returns A random string of 9 characters
  */
 export const generateRandomShortUrl = (): string => {
-  return Math.random().toString(36).substring(7);
-};
+  const length = 9; // Length is fixed to 9 characters
+  const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  const bytes = crypto.randomBytes(length);
+  const result = new Array(length);
 
+  for (let i = 0; i < length; i++) {
+    result[i] = charset[bytes[i] % charset.length];
+  }
+
+  return result.join('');
+};
 /**
  * Validates that the short URL is different from the destination URL
  * @param shortUrl - The proposed short URL
