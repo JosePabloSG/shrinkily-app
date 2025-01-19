@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
-import { Loader } from "lucide-react";
+import { Loader } from 'lucide-react';
 import toast from "react-hot-toast";
 import { GithubIcon, GoogleIcon } from "../icons";
 
@@ -51,16 +51,16 @@ const ProvidersLogin = () => {
             key={sp.provider}
             disabled={loading}
             onClick={() => handleProviderLogin(sp.provider)}
-            className={`w-full rounded-lg py-3 px-4 flex items-center justify-center space-x-2 transition duration-200 ${sp.className}`}
+            className={`w-full h-11 rounded-lg flex items-center justify-center gap-3 transition duration-200 ${sp.className}`}
           >
-            <div className="flex items-center justify-center w-5 h-5 flex-shrink-0">
+            <div className="w-5 h-5 flex items-center justify-center flex-shrink-0">
               {provider === sp.provider ? (
                 <Loader className="animate-spin h-5 w-5" />
               ) : (
                 sp.icon
               )}
             </div>
-            <span className="flex-grow text-center">{sp.name}</span>
+            <span className="text-base">{sp.name}</span>
           </button>
         ))}
       </div>
@@ -69,3 +69,4 @@ const ProvidersLogin = () => {
 };
 
 export default ProvidersLogin;
+
