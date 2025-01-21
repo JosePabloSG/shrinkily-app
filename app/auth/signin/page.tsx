@@ -1,8 +1,16 @@
+import { auth } from "@/auth";
 import ProvidersLogin from "@/components/auth/providers-login";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { Suspense } from "react";
 
-export default function SigninPage() {
+export default async function SigninPage() {
+  const session = await auth()
+
+  if (session) {
+    redirect("/dashboard/urls")
+  }
+
   return (
     <>
       <h1 className="text-center text-4xl md:text-5xl font-bold text-gravel-900 mb-4 ">

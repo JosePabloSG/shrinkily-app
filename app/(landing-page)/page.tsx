@@ -1,9 +1,30 @@
-"use client";
+"use client"
 
-import { calistoga } from "@/lib/fonts";
-import { motion } from "framer-motion";
-import Link from "next/link";
+import { calistoga } from "@/lib/fonts"
+import { motion } from "framer-motion"
+import { useState } from "react"
+import { z } from "zod"
+import { useRouter } from "next/navigation"
+
+const urlSchema = z.string().url("Please enter a valid URL")
+
 export default function Home() {
+  const [url, setUrl] = useState("")
+  const [error, setError] = useState("")
+  const router = useRouter()
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    try {
+      urlSchema.parse(url)
+      // If validation passes, redirect to signin page
+      router.push("/auth/signin")
+    } catch (err) {
+      if (err instanceof z.ZodError) {
+        setError(err.errors[0].message)
+      }
+    }
+  }
 
   return (
     <div className="min-h-screen flex flex-col bg-dull-lavender-50">
@@ -31,30 +52,32 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
           className="w-full max-w-md md:max-w-lg"
+          onSubmit={handleSubmit}
         >
           <div className="flex flex-col md:flex-row shadow-lg rounded-lg overflow-hidden">
             <input
-              type="url"
               placeholder="Enter your long URL here..."
               className="flex-grow px-4 py-3 md:py-4 bg-white text-gravel-900 focus:outline-none focus:ring-2 focus:ring-blue-violet-400 transition-all duration-300 ease-in-out"
-              required
-              disabled
+              value={url}
+              onChange={(e) => {
+                setUrl(e.target.value)
+                setError("")
+              }}
             />
             <button
               type="submit"
               className="bg-blue-violet-500 text-white px-6 py-3 md:py-4 font-semibold hover:bg-blue-violet-600 focus:outline-none focus:ring-2 focus:ring-blue-violet-400 focus:ring-offset-2 transition-all duration-300 ease-in-out"
             >
-              <Link href="/auth/signin">
-                Shorten URL
-              </Link>
+              Get your link
             </button>
           </div>
+          {error && <p className="text-red-500 mt-2 text-sm">{error}</p>}
         </motion.form>
       </main>
 
       {/* Bottom crescent */}
       <div className="h-32 md:h-48 bg-dull-lavender-300 rounded-t-[100%] w-full mt-auto" />
     </div>
-  );
+  )
 }
 

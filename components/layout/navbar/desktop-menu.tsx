@@ -2,12 +2,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-
+import { User } from "next-auth";
 interface DesktopMenuProps {
   navItems: { name: string; href: string }[];
+  user: User | null;
 }
 
-export function DesktopMenu({ navItems }: DesktopMenuProps) {
+export function DesktopMenu({ navItems, user }: DesktopMenuProps) {
   const pathname = usePathname();
 
   return (
@@ -24,14 +25,25 @@ export function DesktopMenu({ navItems }: DesktopMenuProps) {
           {item.name}
         </Link>
       ))}
-      <Link href="/auth/signin">
-        <Button
-          size="sm"
-          className="bg-blue-violet-500 hover:bg-blue-violet-600 text-white"
-        >
-          Sign In
-        </Button>
-      </Link>
+      {user ? (
+        <Link href="/dashboard/urls">
+          <Button
+            size="sm"
+            variant={'primary'}
+          >
+            Go to Dashboard
+          </Button>
+        </Link>
+      ) : (
+        <Link href="/auth/signin">
+          <Button
+            size="sm"
+            variant={'primary'}
+          >
+            Sign In
+          </Button>
+        </Link>
+      )}
     </div>
   );
 }
