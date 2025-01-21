@@ -1,5 +1,5 @@
 {
-  "name": "quickshrink-app",
+  "name": "shrinkily-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,7 +10,6 @@
     "lint": "next lint",
     "db:migrate": "prisma migrate dev --name init",
     "db:studio": "prisma studio",
-    "db:push": "turso db shell quickshrink < ./prisma/migrations/20250115205605_init/migration.sql",
     "vercel-build": "prisma generate && next build"
   },
   "builds": [
