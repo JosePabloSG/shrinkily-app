@@ -35,6 +35,7 @@ export default function Home() {
           src="/images/blob-scene-desktop.svg"
           alt="Background"
           layout="fill"
+          priority
           objectFit="cover"
           className="hidden md:block"
         />
@@ -42,6 +43,7 @@ export default function Home() {
           src="/images/blob-scene-mobile.svg"
           alt="Background"
           layout="fill"
+          priority
           objectFit="cover"
           className="block md:hidden"
         />
