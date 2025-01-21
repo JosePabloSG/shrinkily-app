@@ -29,7 +29,7 @@ const MobileSidebar: React.FC<MobileSidebarProps> = ({ isOpen, onClose, navItems
           <div className="flex justify-between p-4">
             <div className="flex-shrink-0 flex items-center">
               <Link href="/" className="text-2xl font-bold text-blue-violet-500">
-                QuickShrink
+                Shrinkily
               </Link>
             </div>
             <button

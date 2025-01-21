@@ -14,7 +14,7 @@ export default async function SigninPage() {
   return (
     <>
       <h1 className="text-center text-4xl md:text-5xl font-bold text-gravel-900 mb-4 ">
-        Welcome to QuickShrink
+        Welcome to Shrinkily
       </h1>
       <p className="text-center text-xl text-gravel-700 mb-8 max-w-2xl">
         Log in securely and start simplifying your links.
@@ -27,7 +27,7 @@ export default async function SigninPage() {
         </div>
 
         <p className="mt-8 text-center text-sm text-gravel-600">
-          By continuing, you agree to QuickShrink's{" "}
+          By continuing, you agree to Shrinkily's{" "}
           <Link
             href="/terms"
             className="font-medium text-blue-violet-600 hover:text-blue-violet-500"

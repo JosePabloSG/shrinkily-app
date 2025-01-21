@@ -19,9 +19,9 @@ const MobileNavbar: React.FC<{ onMenuClick: () => void }> = ({ onMenuClick }) =>
         >
           <Menu className="h-6 w-6 text-blue-violet-600" />
         </button>
-        
+
         <h1 className="text-xl font-semibold text-blue-violet-900">
-          QuickShrink
+          Shrinkily
         </h1>
 
         <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-blue-violet-100">

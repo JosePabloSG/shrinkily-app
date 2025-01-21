@@ -6,8 +6,8 @@ import { cn } from "@/lib/utils";
 import { calistoga, poppins } from "@/lib/fonts";
 
 export const metadata: Metadata = {
-  title: "QuickShrink - Simplify Your Links",
-  description: "QuickShrink makes sharing easy with instant, reliable, and customized short URLs.",
+  title: "Shrinkily - Simplify Your Links",
+  description: "Shrinkily makes sharing easy with instant, reliable, and customized short URLs.",
 };
 
 export default function RootLayout({

@@ -41,7 +41,7 @@ export default function Features() {
     <div className="min-h-screen bg-dull-lavender-50">
       <main className="container mx-auto px-4 py-12">
         <h1 className="text-4xl md:text-5xl font-bold text-blue-violet-800 text-center mb-4">
-          Discover QuickShrink's Features
+          Discover Shrinkily's Features
         </h1>
         <p className="text-xl text-gravel-600 text-center mb-12">
           Simplify your links, amplify your reach

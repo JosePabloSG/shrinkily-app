@@ -43,7 +43,7 @@ export default function Home() {
             <span className={`${calistoga.className} text-blue-violet-500`}> Links </span>
           </h1>
           <p className="text-xl text-gravel-700 mb-8 max-w-2xl">
-            QuickShrink makes sharing easy with instant, reliable, and customized short URLs.
+            Shrinkily makes sharing easy with instant, reliable, and customized short URLs.
           </p>
         </motion.div>
 
