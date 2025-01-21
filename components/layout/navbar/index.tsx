@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { DesktopMenu } from "./desktop-menu";
 import { MobileMenu } from "./mobile-menu";
+import { useSession } from "next-auth/react";
 
 const navItems = [
   { name: "Home", href: "/" },
@@ -16,6 +17,8 @@ const navItems = [
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const session = useSession();
+  const user = session.data?.user;
 
   return (
     <nav className="sticky top-0 z-50 bg-dull-lavender-50 backdrop-blur-sm shadow-sm">
@@ -29,7 +32,7 @@ export function Navbar() {
           </div>
 
           {/* Desktop menu */}
-          <DesktopMenu navItems={navItems} />
+          <DesktopMenu navItems={navItems} user={user ?? null} />
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
@@ -50,7 +53,7 @@ export function Navbar() {
       </div>
 
       {/* Mobile menu */}
-      <MobileMenu navItems={navItems} mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
+      <MobileMenu navItems={navItems} mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} user={user ?? null} />
     </nav>
   );
 }

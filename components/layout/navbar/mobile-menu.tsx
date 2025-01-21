@@ -2,14 +2,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { User } from "next-auth";
 
 interface MobileMenuProps {
   navItems: { name: string; href: string }[];
   mobileMenuOpen: boolean;
   setMobileMenuOpen: (open: boolean) => void;
+  user: User | null;
 }
 
-export function MobileMenu({ navItems, mobileMenuOpen, setMobileMenuOpen }: MobileMenuProps) {
+export function MobileMenu({ navItems, mobileMenuOpen, setMobileMenuOpen, user }: MobileMenuProps) {
   const pathname = usePathname();
 
   return (
@@ -29,11 +31,25 @@ export function MobileMenu({ navItems, mobileMenuOpen, setMobileMenuOpen }: Mobi
           </Link>
         ))}
         <div className="mt-4 px-3">
-          <Link href="/auth/signin">
-            <Button className="w-full bg-blue-violet-500 hover:bg-blue-violet-600 text-white">
-              Sign In
-            </Button>
-          </Link>
+          {user ? (
+            <Link href="/dashboard/urls">
+              <Button
+                size="sm"
+                variant={'primary'}
+              >
+                Go to Dashboard
+              </Button>
+            </Link>
+          ) : (
+            <Link href="/auth/signin">
+              <Button
+                size="sm"
+                variant={'primary'}
+              >
+                Sign In
+              </Button>
+            </Link>
+          )}
         </div>
       </div>
     </div>
