@@ -21,10 +21,10 @@ const Footer = () => {
           {/* Logo and description */}
           <div className="col-span-1 md:col-span-2">
             <Link href="/" className="text-xl font-bold text-blue-violet-600">
-              QuickShrink
+              Shrinkily
             </Link>
             <p className="mt-1 text-sm">
-              Simplify your links, amplify your reach. QuickShrink makes sharing easy with instant, reliable, and customized short URLs.
+              Simplify your links, amplify your reach. Shrinkily makes sharing easy with instant, reliable, and customized short URLs.
             </p>
           </div>
 
@@ -61,7 +61,7 @@ const Footer = () => {
         <div className="mt-6 pt-6 border-t border-dull-lavender-200 flex flex-col md:flex-row justify-between items-center">
 
           <div className="text-sm text-gravel-600">
-            © {new Date().getFullYear()} QuickShrink. All rights reserved.
+            © {new Date().getFullYear()} Shrinkily. All rights reserved.
           </div>
         </div>
       </div>

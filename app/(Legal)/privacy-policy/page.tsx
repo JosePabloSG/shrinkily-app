@@ -95,7 +95,7 @@ const PrivacyPolicy: React.FC = () => {
     {
       title: "1. Basic Project Information",
       content: [
-        "Project Name: QuickShrink",
+        "Project Name: Shrinkily",
         "Contact Email: suarezgomezjosepablo03@gmail.com",
         "If you have any questions or wish to exercise your rights regarding your personal data, you can contact us at this email address.",
       ],
@@ -164,7 +164,7 @@ const PrivacyPolicy: React.FC = () => {
     {
       title: "10. Use by Minors",
       content: [
-        "QuickShrink is not designed for or directed at individuals under 18 years of age. We do not knowingly collect data from minors. If you are a parent or guardian and believe your child has provided us with personal information, please contact us so we can delete it.",
+        "Shrinkily is not designed for or directed at individuals under 18 years of age. We do not knowingly collect data from minors. If you are a parent or guardian and believe your child has provided us with personal information, please contact us so we can delete it.",
       ],
     },
     {
@@ -217,10 +217,10 @@ const PrivacyPolicy: React.FC = () => {
               </div>
             </div>
 
-            <h1 className="text-4xl font-bold text-blue-violet-800 text-center mb-8">QuickShrink Privacy Policy</h1>
+            <h1 className="text-4xl font-bold text-blue-violet-800 text-center mb-8">Shrinkily Privacy Policy</h1>
 
             <p className="text-gravel-700 mb-8 text-center">
-              At QuickShrink, we value and respect your privacy. This Privacy Policy describes how we collect, use, and protect your personal information when you use our service. By using our platform, you agree to the practices described in this policy.
+              At Shrinkily, we value and respect your privacy. This Privacy Policy describes how we collect, use, and protect your personal information when you use our service. By using our platform, you agree to the practices described in this policy.
             </p>
 
             {sections.map((section, index) => (
@@ -240,7 +240,7 @@ const PrivacyPolicy: React.FC = () => {
 
       <footer className="bg-dull-lavender-300 py-6">
         <div className="container mx-auto px-4 text-center text-gravel-700">
-          © 2025 QuickShrink. All rights reserved.
+          © 2025 Shrinkily. All rights reserved.
         </div>
       </footer>
 

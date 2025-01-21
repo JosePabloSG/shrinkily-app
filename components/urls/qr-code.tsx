@@ -25,7 +25,7 @@ interface QRCodeDialogProps {
 
 const QRCodeDialog = ({ urlInfo, children }: QRCodeDialogProps) => {
   const [isDownloading, setIsDownloading] = useState(false);
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://quickshrink.app';
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://shrinkily.vercel.app';
   const fullUrl = `${baseUrl}/${urlInfo.shortUrl}`;
 
   const handleDownloadQR = async () => {
@@ -52,7 +52,7 @@ const QRCodeDialog = ({ urlInfo, children }: QRCodeDialogProps) => {
 
       const pngFile = canvas.toDataURL("image/png");
       const downloadLink = document.createElement("a");
-      downloadLink.download = `quickshrink-${urlInfo.shortUrl}.png`;
+      downloadLink.download = `Shrinkily-${urlInfo.shortUrl}.png`;
       downloadLink.href = pngFile;
       downloadLink.click();
 
@@ -71,7 +71,7 @@ const QRCodeDialog = ({ urlInfo, children }: QRCodeDialogProps) => {
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-blue-violet-500">
-            QuickShrink QR Code
+            Shrinkily QR Code
           </DialogTitle>
           <DialogDescription className="text-blue-violet-500">
             Scan this QR code to access your shortened URL
@@ -87,7 +87,7 @@ const QRCodeDialog = ({ urlInfo, children }: QRCodeDialogProps) => {
               value={fullUrl}
               viewBox={`0 0 256 256`}
               className="h-auto w-full"
-              fgColor="#000000" 
+              fgColor="#000000"
               bgColor="transparent"
               level="Q"
             />
