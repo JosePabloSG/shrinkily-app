@@ -19,6 +19,7 @@ import DeleteTagAlert from './delete-tag-alert'
 interface TagFilterProps {
   tags: Tags[]
   onSelect: (tagId: string) => void
+  onTagClear?: () => void
   selectedTag: string
   children: React.ReactNode
 }
@@ -30,6 +31,8 @@ export function TagFilter({ tags, onSelect, selectedTag, children }: TagFilterPr
     onSelect(tagId)
     setOpen(false)
   }
+
+  
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
