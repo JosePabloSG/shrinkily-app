@@ -4,7 +4,6 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { X } from 'lucide-react';
-import { SignOut } from "./signout";
 
 interface MobileSidebarProps {
   isOpen: boolean;
@@ -59,10 +58,6 @@ const MobileSidebar: React.FC<MobileSidebarProps> = ({ isOpen, onClose, navItems
               );
             })}
           </nav>
-
-          <div className="px-3 py-4 border-t border-blue-violet-200">
-            <SignOut />
-          </div>
         </div>
       </aside>
 
