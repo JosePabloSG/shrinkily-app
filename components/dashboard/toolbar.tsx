@@ -1,35 +1,41 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { CreateUrl } from "@/components/urls/create-url"
 import { PlusIcon, SearchIcon, FilterIcon, XIcon } from 'lucide-react'
 import { Tags } from '@prisma/client'
 import { TagFilter } from '../tags/tag-filter'
+import { useDebounce } from '@/hooks/useDebounce'
+import { useUrlParams } from '@/hooks/useUrlParams'
 
 interface ToolbarProps {
   tags: Tags[]
 }
 
 export function Toolbar({ tags }: ToolbarProps) {
-  const router = useRouter()
-  const searchParams = useSearchParams()
-  const [shortUrl, setShortUrl] = useState(searchParams.get('shortUrl') || '')
-  const [selectedTag, setSelectedTag] = useState(searchParams.get('tag') || '')
+  const { setParam, getParam } = useUrlParams()
+  const [shortUrl, setShortUrl] = useState(getParam('shortUrl'))
+  const [selectedTag, setSelectedTag] = useState(getParam('tag'))
+
+  const debouncedShortUrl = useDebounce(shortUrl, 300)
+  const debouncedTag = useDebounce(selectedTag, 300)
 
   useEffect(() => {
-    const params = new URLSearchParams(searchParams)
-    if (shortUrl) params.set('shortUrl', shortUrl)
-    else params.delete('shortUrl')
-    if (selectedTag) params.set('tag', selectedTag)
-    else params.delete('tag')
-    router.push(`?${params.toString()}`)
-  }, [shortUrl, selectedTag, router, searchParams])
+    if (debouncedShortUrl !== getParam('shortUrl')) {
+      setParam('shortUrl', debouncedShortUrl)
+    }
+  }, [debouncedShortUrl, getParam, setParam])
 
-  const handleTagSelect = (tagId: string) => {
-    setSelectedTag(tagId)
+  useEffect(() => {
+    if (debouncedTag !== getParam('tag')) {
+      setParam('tag', debouncedTag)
+    }
+  }, [debouncedTag, getParam, setParam])
+
+  const handleTagSelect = (tag: string) => {
+    setSelectedTag(tag)
   }
 
   const handleTagClear = () => {
@@ -56,7 +62,7 @@ export function Toolbar({ tags }: ToolbarProps) {
             className="pl-10 w-full"
           />
         </div>
-        <TagFilter tags={tags} onSelect={handleTagSelect} selectedTag={selectedTag}>
+        <TagFilter tags={tags} onSelect={handleTagSelect} selectedTag={selectedTag} onTagClear={handleTagClear}>
           <Button variant="outline" className="flex items-center gap-2">
             <FilterIcon size={16} />
             <span className="hidden sm:inline">Filter Tags</span>

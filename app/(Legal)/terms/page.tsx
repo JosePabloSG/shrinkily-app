@@ -95,9 +95,9 @@ const TermsAndConditions: React.FC = () => {
     {
       title: "1. General Information",
       content: [
-        "Service Provider: QuickShrink",
+        "Service Provider: Shrinkily",
         "Contact Email: suarezgomezjosepablo03@gmail.com",
-        "QuickShrink provides a URL shortening service with advanced features such as QR code generation and customizable creator pages. Use of this service is subject to these Terms and Conditions.",
+        "Shrinkily provides a URL shortening service with advanced features such as QR code generation and customizable creator pages. Use of this service is subject to these Terms and Conditions.",
       ],
     },
     {
@@ -112,17 +112,17 @@ const TermsAndConditions: React.FC = () => {
     {
       title: "3. User Responsibilities",
       content: [
-        "As a user of QuickShrink, you agree to:",
+        "As a user of Shrinkily, you agree to:",
         "• Provide accurate and up-to-date information during registration.",
         "• Use the service only for lawful purposes.",
         "• Refrain from creating or sharing malicious, harmful, or illegal content through shortened URLs.",
-        "QuickShrink reserves the right to suspend or terminate accounts that violate these terms.",
+        "Shrinkily reserves the right to suspend or terminate accounts that violate these terms.",
       ],
     },
     {
       title: "4. Prohibited Uses",
       content: [
-        "You must not use QuickShrink for any of the following purposes:",
+        "You must not use Shrinkily for any of the following purposes:",
         "• Distributing malware, phishing attempts, or harmful software.",
         "• Sharing copyrighted content without proper authorization.",
         "• Engaging in activities that violate the rights of others or applicable laws.",
@@ -132,24 +132,24 @@ const TermsAndConditions: React.FC = () => {
     {
       title: "5. Service Availability",
       content: [
-        "QuickShrink strives to provide uninterrupted access to the platform but does not guarantee:",
+        "Shrinkily strives to provide uninterrupted access to the platform but does not guarantee:",
         "• Continuous, error-free operation.",
         "• The accuracy or reliability of generated URLs.",
-        "QuickShrink may temporarily suspend services for maintenance, updates, or unforeseen issues without prior notice.",
+        "Shrinkily may temporarily suspend services for maintenance, updates, or unforeseen issues without prior notice.",
       ],
     },
     {
       title: "6. Intellectual Property",
       content: [
-        "All content, logos, and trademarks associated with QuickShrink are the exclusive property of the service provider. Users may not:",
+        "All content, logos, and trademarks associated with Shrinkily are the exclusive property of the service provider. Users may not:",
         "• Copy, modify, or distribute any part of the platform.",
-        "• Use QuickShrink's branding for personal or commercial purposes without prior consent.",
+        "• Use Shrinkily's branding for personal or commercial purposes without prior consent.",
       ],
     },
     {
       title: "7. Limitation of Liability",
       content: [
-        "QuickShrink is not responsible for:",
+        "Shrinkily is not responsible for:",
         "• Damages arising from the misuse of shortened URLs.",
         "• Losses due to service interruptions, errors, or unauthorized access.",
         "Use the platform at your own risk.",
@@ -158,7 +158,7 @@ const TermsAndConditions: React.FC = () => {
     {
       title: "8. Modifications to the Terms",
       content: [
-        "QuickShrink reserves the right to update these Terms and Conditions at any time. Changes will be communicated via email or posted on the platform. Continued use of the service after updates signifies acceptance of the revised terms.",
+        "Shrinkily reserves the right to update these Terms and Conditions at any time. Changes will be communicated via email or posted on the platform. Continued use of the service after updates signifies acceptance of the revised terms.",
       ],
     },
     {
@@ -214,10 +214,10 @@ const TermsAndConditions: React.FC = () => {
               </div>
             </div>
 
-            <h1 className="text-4xl font-bold text-blue-violet-800 text-center mb-8">QuickShrink Terms and Conditions</h1>
+            <h1 className="text-4xl font-bold text-blue-violet-800 text-center mb-8">Shrinkily Terms and Conditions</h1>
 
             <p className="text-gravel-700 mb-8 text-center">
-              Welcome to QuickShrink! By accessing or using our platform, you agree to be bound by the following terms and conditions. Please read them carefully before using our services.
+              Welcome to Shrinkily! By accessing or using our platform, you agree to be bound by the following terms and conditions. Please read them carefully before using our services.
             </p>
 
             {sections.map((section, index) => (
@@ -232,7 +232,7 @@ const TermsAndConditions: React.FC = () => {
 
             <div className="mt-8 text-center">
               <p className="text-gravel-700">
-                By using QuickShrink, you acknowledge that you have read, understood, and agreed to these Terms and Conditions.
+                By using Shrinkily, you acknowledge that you have read, understood, and agreed to these Terms and Conditions.
               </p>
               <p className="text-gravel-700 mt-4">
                 <strong>Last Updated:</strong> January 4, 2025
@@ -246,7 +246,7 @@ const TermsAndConditions: React.FC = () => {
 
       <footer className="bg-dull-lavender-300 py-6">
         <div className="container mx-auto px-4 text-center text-gravel-700">
-          © 2025 QuickShrink. All rights reserved.
+          © 2025 Shrinkily. All rights reserved.
         </div>
       </footer>
 

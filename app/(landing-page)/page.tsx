@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { useState } from "react"
 import { z } from "zod"
 import { useRouter } from "next/navigation"
+import Image from "next/image"
 
 const urlSchema = z.string().url("Please enter a valid URL")
 
@@ -27,11 +28,28 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-dull-lavender-50">
-      {/* Top crescent */}
-      <div className="h-32 md:h-48 bg-dull-lavender-300 rounded-b-[100%] w-full" />
+    <div className="min-h-screen flex flex-col bg-dull-lavender-50 relative">
+      {/* Background images */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/blob-scene-desktop.svg"
+          alt="Background"
+          layout="fill"
+          priority
+          objectFit="cover"
+          className="hidden md:block"
+        />
+        <Image
+          src="/images/blob-scene-mobile.svg"
+          alt="Background"
+          layout="fill"
+          priority
+          objectFit="cover"
+          className="block md:hidden"
+        />
+      </div>
 
-      <main className="flex-grow flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 -mt-16 md:-mt-24 relative z-10">
+      <main className="flex-grow flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -40,10 +58,10 @@ export default function Home() {
         >
           <h1 className="text-4xl md:text-5xl font-bold text-gravel-900 mb-4">
             Simplify Your
-            <span className={`${calistoga.className} text-blue-violet-500`}> Links </span>
+            <span className={`${calistoga.className} text-4xl md:text-5xl font-bold mb-4 text-blue-violet-500`}> Links </span>
           </h1>
           <p className="text-xl text-gravel-700 mb-8 max-w-2xl">
-            QuickShrink makes sharing easy with instant, reliable, and customized short URLs.
+            Shrinkily makes sharing easy with instant, reliable, and customized short URLs.
           </p>
         </motion.div>
 
@@ -74,9 +92,6 @@ export default function Home() {
           {error && <p className="text-red-500 mt-2 text-sm">{error}</p>}
         </motion.form>
       </main>
-
-      {/* Bottom crescent */}
-      <div className="h-32 md:h-48 bg-dull-lavender-300 rounded-t-[100%] w-full mt-auto" />
     </div>
   )
 }
