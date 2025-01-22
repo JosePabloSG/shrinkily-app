@@ -58,7 +58,7 @@ export default function Home() {
         >
           <h1 className="text-4xl md:text-5xl font-bold text-gravel-900 mb-4">
             Simplify Your
-            <span className={`${calistoga.className} text-blue-violet-500`}> Links </span>
+            <span className={`${calistoga.className} text-4xl md:text-5xl font-bold mb-4 text-blue-violet-500`}> Links </span>
           </h1>
           <p className="text-xl text-gravel-700 mb-8 max-w-2xl">
             Shrinkily makes sharing easy with instant, reliable, and customized short URLs.

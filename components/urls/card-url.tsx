@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Tags, Urls, UrlTags } from "@prisma/client"
 import { formatDistanceToNow } from "date-fns"
-import { ExternalLink, Clock, MousePointerClickIcon as Click, Tag, Copy, Check, Edit, QrCode } from 'lucide-react'
+import { Clock, MousePointerClickIcon as Click, Tag, Copy, Check, Edit, QrCode } from 'lucide-react'
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -91,7 +91,7 @@ const CardUrl = ({ urlInfo, urlsTags, tagsInfo }: Props) => {
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="h-8 w-8 text-gravel-500 hover:text-blue-violet-600 hover:bg-blue-violet-50"
+                      className="h-8 w-8 text-gravel-500 hover:text-yellow-600 hover:bg-blue-violet-50"
                       aria-label="Edit URL"
                     >
                       <Edit className="h-4 w-4" />
@@ -107,30 +107,11 @@ const CardUrl = ({ urlInfo, urlsTags, tagsInfo }: Props) => {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="h-8 w-8 text-gravel-500 hover:text-blue-violet-600 hover:bg-blue-violet-50"
-                    onClick={handleRedirectToUrl}
-                    aria-label="Open URL"
-                  >
-                    <ExternalLink className="h-4 w-4" />
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent className="bg-blue-violet-600 text-white">
-                  <p>Open URL</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
                   <QRCodeDialog urlInfo={urlInfo} >
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="h-8 w-8 text-gravel-500 hover:text-blue-violet-600 hover:bg-blue-violet-50"
+                      className="h-8 w-8 text-gravel-500 hover:text-gravel-900 hover:bg-blue-violet-50"
                       aria-label="Generate QR Code"
                     >
                       <QrCode className="h-4 w-4" />
