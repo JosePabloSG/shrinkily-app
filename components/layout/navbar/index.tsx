@@ -30,7 +30,7 @@ export function Navbar() {
     if (user) {
       return (
         <Link href="/dashboard/urls">
-          <Button size="sm" variant={"primary"}>
+          <Button size="sm" variant={"primary"} className="w-full sm:w-auto">
             Go to Dashboard
           </Button>
         </Link>
@@ -39,7 +39,7 @@ export function Navbar() {
 
     return (
       <Link href="/auth/signin">
-        <Button size="sm" variant={"primary"}>
+        <Button size="sm" variant={"primary"} className="w-full sm:w-auto">
           Sign In
         </Button>
       </Link>
