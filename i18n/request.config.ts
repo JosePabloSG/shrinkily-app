@@ -1,4 +1,10 @@
-export const sections = ["home", "layout", "feature-page"] as const;
+export const sections = [
+  "home",
+  "layout",
+  "feature-page",
+  "docs-page",
+  "about-page",
+] as const;
 
 export type MessageSection = (typeof sections)[number];
 
