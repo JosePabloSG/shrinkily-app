@@ -1,4 +1,8 @@
 import type { Metadata } from "next";
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
+import { notFound } from 'next/navigation';
+import { routing } from '@/i18n/routing';
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import SessionAuthProvider from "@/providers/session-auth.provider";
@@ -10,11 +14,21 @@ export const metadata: Metadata = {
   description: "Shrinkily makes sharing easy with instant, reliable, and customized short URLs.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: any
 }>) {
+  const { locale } = params;
+
+  if (!routing.locales.includes(locale as any)) {
+    notFound();
+  }
+
+  const messages = await getMessages();
+
   return (
     <html lang="en">
       <body
@@ -23,13 +37,15 @@ export default function RootLayout({
           calistoga.variable,
           ' antialiased'
         )}>
-        <SessionAuthProvider>
-          <Toaster
-            position="top-center"
-            reverseOrder={false}
-          />
-          {children}
-        </SessionAuthProvider>
+        <NextIntlClientProvider messages={messages}>
+          <SessionAuthProvider>
+            <Toaster
+              position="top-center"
+              reverseOrder={false}
+            />
+            {children}
+          </SessionAuthProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

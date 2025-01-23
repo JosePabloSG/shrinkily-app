@@ -1,0 +1,13 @@
+{
+  "header": {
+    "title": {
+      "firstPart": "Simplifica tus",
+      "highlightedPart": "Links"
+    },
+    "description": "Shrinkily hace compartir fácil con URLs cortas instantáneas, confiables y personalizadas."
+  },
+  "form": {
+    "inputPlaceholder": "Introduce tu URL larga aquí...",
+    "buttonText": "Obtén tu enlace"
+  }
+}

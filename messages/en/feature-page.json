@@ -1,0 +1,30 @@
+{
+  "pageTitle": "Discover Shrinkily's Features",
+  "pageSubtitle": "Simplify your links, amplify your reach",
+  "featuresList": {
+    "urlShortening": {
+      "title": "URL Shortening",
+      "description": "Quickly turn long URLs into short, manageable links, making them easier to share and remember."
+    },
+    "redirection": {
+      "title": "Redirection",
+      "description": "Automatically redirect users from your short links to the original, long URL with a single click."
+    },
+    "linkPreview": {
+      "title": "Link Preview",
+      "description": "Allow users to preview the destination of a short link before clicking, improving trust and transparency."
+    },
+    "customAliases": {
+      "title": "Custom Aliases",
+      "description": "Create custom aliases for your short links, making them more memorable and brand-friendly."
+    },
+    "qrCodeGeneration": {
+      "title": "QR Code Generation",
+      "description": "Generate QR codes for your short links, making it easier for users to access them on mobile devices."
+    },
+    "clickTracking": {
+      "title": "Click Tracking",
+      "description": "Monitor how many times your short link has been clicked, helping you track its popularity."
+    }
+  }
+}

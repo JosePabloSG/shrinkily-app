@@ -1,19 +1,20 @@
 import Link from "next/link";
-
-// Quick Links Navigation
-const QUICK_LINKS = [
-  { name: "Home", href: "/" },
-  { name: "Features", href: "/features" },
-  { name: "Contact", href: "/contact" },
-];
-
-// Legal Links
-const LEGAL_LINKS = [
-  { name: "Terms of Service", href: "/terms" },
-  { name: "Privacy Policy", href: "/privacy-policy" },
-];
+import { useTranslations } from "next-intl";
 
 const Footer = () => {
+  const t = useTranslations('layout.footer');
+
+  const QUICK_LINKS = [
+    { name: t('quickLinks.home'), href: "/" },
+    { name: t('quickLinks.features'), href: "/features" },
+    { name: t('quickLinks.contact'), href: "/contact" },
+  ];
+
+  const LEGAL_LINKS = [
+    { name: t('legalLinks.termsOfService'), href: "/terms" },
+    { name: t('legalLinks.privacyPolicy'), href: "/privacy-policy" },
+  ];
+
   return (
     <footer className="bg-dull-lavender-100 text-gravel-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -24,13 +25,15 @@ const Footer = () => {
               Shrinkily
             </Link>
             <p className="mt-1 text-sm">
-              Simplify your links, amplify your reach. Shrinkily makes sharing easy with instant, reliable, and customized short URLs.
+              {t('description')}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-3 text-blue-violet-800">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-3 text-blue-violet-800">
+              {t('quickLinksTitle')}
+            </h3>
             <ul className="space-y-2">
               {QUICK_LINKS.map((link) => (
                 <li key={link.name}>
@@ -44,7 +47,9 @@ const Footer = () => {
 
           {/* Legal */}
           <div>
-            <h3 className="text-lg font-semibold mb-3 text-blue-violet-800">Legal</h3>
+            <h3 className="text-lg font-semibold mb-3 text-blue-violet-800">
+              {t('legalTitle')}
+            </h3>
             <ul className="space-y-2">
               {LEGAL_LINKS.map((link) => (
                 <li key={link.name}>
@@ -59,9 +64,8 @@ const Footer = () => {
 
         {/* Bottom section with social icons and copyright */}
         <div className="mt-6 pt-6 border-t border-dull-lavender-200 flex flex-col md:flex-row justify-between items-center">
-
           <div className="text-sm text-gravel-600">
-            © {new Date().getFullYear()} Shrinkily. All rights reserved.
+            {t('copyright', { year: new Date().getFullYear() })}
           </div>
         </div>
       </div>
@@ -70,4 +74,3 @@ const Footer = () => {
 };
 
 export default Footer;
-

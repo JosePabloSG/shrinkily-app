@@ -1,0 +1,27 @@
+{
+  "navbar": {
+    "home": "Inicio",
+    "features": "Características",
+    "docs": "Documentación",
+    "about": "Sobre Nosotros",
+    "contact": "Contacto",
+    "goDashboard": "Ir al Panel",
+    "signIn": "Iniciar Sesión",
+    "openMainMenu": "Abrir menú principal"
+  },
+  "footer": {
+    "description": "Simplifica tus enlaces, amplifica tu alcance. Shrinkily hace compartir fácil con URLs cortas instantáneas, confiables y personalizadas.",
+    "quickLinksTitle": "Accesos Rápidos",
+    "legalTitle": "Legal",
+    "quickLinks": {
+      "home": "Inicio",
+      "features": "Características",
+      "contact": "Contacto"
+    },
+    "legalLinks": {
+      "termsOfService": "Términos de Servicio",
+      "privacyPolicy": "Política de Privacidad"
+    },
+    "copyright": "© {year} Shrinkily. Todos los derechos reservados."
+  }
+}

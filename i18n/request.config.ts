@@ -1,0 +1,14 @@
+export const sections = ["home", "layout", "feature-page"] as const;
+
+export type MessageSection = (typeof sections)[number];
+
+export async function loadMessages(locale: string) {
+  const messagesArray = await Promise.all(
+    sections.map(async (section) => [
+      section,
+      (await import(`../messages/${locale}/${section}.json`)).default,
+    ])
+  );
+
+  return Object.fromEntries(messagesArray);
+}
