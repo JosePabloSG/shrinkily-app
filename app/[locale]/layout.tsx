@@ -3,7 +3,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
-import "./globals.css";
+import "@/styles/globals.css";
 import { Toaster } from "react-hot-toast";
 import SessionAuthProvider from "@/providers/session-auth.provider";
 import { cn } from "@/lib/utils";
