@@ -66,10 +66,6 @@ export default auth(async (req) => {
   if (!isPublicRoute && !isProtectedRoute && !isCheckRoute) {
     const getDataApi = await urlFromServer(shortUrl!);
 
-    if (getDataApi.redirect404) {
-      console.log("🚧 Error - Redirect 404: ", shortUrl);
-    }
-
     if (getDataApi.error) {
       return NextResponse.json({ error: getDataApi.message }, { status: 500 });
     }
