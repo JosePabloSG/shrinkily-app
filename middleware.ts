@@ -1,7 +1,7 @@
-import NextAuth from "next-auth";
-
+import createIntlMiddleware from "next-intl/middleware";
+import { routing } from "./i18n/routing";
 import { NextResponse } from "next/server";
-
+import { urlFromServer } from "./server/middleware/redirect";
 import {
   DEFAULT_LOGIN_REDIRECT_URL,
   apiAuthPrefix,
@@ -10,48 +10,47 @@ import {
   protectedRoutes,
   publicRoutes,
 } from "@/route";
-
-import { urlFromServer } from "./server/middleware/redirect";
-import authConfig from "./auth.config";
+import NextAuth from "next-auth";
+import authConfig from "./config/auth.config";
 
 const { auth } = NextAuth(authConfig);
 
 export default auth(async (req) => {
   const { nextUrl } = req;
-
   const isLoggedIn = !!req.auth;
-
   const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
   const isCheckRoute = nextUrl.pathname.startsWith(checkRoutesPrefix);
   const isProtectedRoute = protectedRoutes.includes(nextUrl.pathname);
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
-
   const shortUrl = req.nextUrl.pathname.split("/").pop();
 
-  // ⚙️ Is Api Route:
+  // Internationalization middleware
+  const intlMiddleware = createIntlMiddleware(routing);
+
+  // API Auth Route Handling
   if (isApiAuthRoute) {
-    return;
+    return intlMiddleware(req);
   }
 
-  // ⚙️ Is Auth Route. First, check is authenticated:
+  // Authentication Route Handling
   if (isAuthRoute) {
     if (isLoggedIn) {
       return NextResponse.redirect(
         new URL(DEFAULT_LOGIN_REDIRECT_URL, nextUrl)
       );
     }
-    return;
+    return intlMiddleware(req);
   }
 
-  // ⚙️ If shortUrl contains ``c``, redirect to /check/:shortUrl:
+  // Companion Code Redirect
   if (shortUrl?.endsWith("&c")) {
     return NextResponse.redirect(
       new URL(`/check/${shortUrl.replace("&c", "")}`, nextUrl)
     );
   }
 
-  // ⚙️ Protected routes. If not authenticated, redirect to /auth:
+  // Protected Routes Authentication
   if (!isLoggedIn && isProtectedRoute) {
     let callbackUrl = nextUrl.pathname;
     if (nextUrl.search) {
@@ -63,14 +62,9 @@ export default auth(async (req) => {
     );
   }
 
-  // ⚙️ Redirect using shortUrl:
-  // If not public route and not protected route:
+  // Short URL Redirection
   if (!isPublicRoute && !isProtectedRoute && !isCheckRoute) {
     const getDataApi = await urlFromServer(shortUrl!);
-
-    if (getDataApi.redirect404) {
-      console.log("🚧 Error - Redirect 404: ", shortUrl);
-    }
 
     if (getDataApi.error) {
       return NextResponse.json({ error: getDataApi.message }, { status: 500 });
@@ -80,7 +74,8 @@ export default auth(async (req) => {
       return NextResponse.redirect(new URL(getDataApi.url).toString());
     }
   }
-  return;
+
+  return intlMiddleware(req);
 });
 
 export const config = {

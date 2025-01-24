@@ -1,0 +1,30 @@
+{
+  "pageTitle": "Descubre las Características de Shrinkily",
+  "pageSubtitle": "Simplifica tus enlaces, amplía tu alcance",
+  "featuresList": {
+    "urlShortening": {
+      "title": "Acortamiento de URLs",
+      "description": "Convierte rápidamente URLs largas en enlaces cortos y manejables, facilitando su uso compartido y recordación."
+    },
+    "redirection": {
+      "title": "Redirección",
+      "description": "Redirecciona automáticamente a los usuarios desde tus enlaces cortos a la URL original con un solo clic."
+    },
+    "linkPreview": {
+      "title": "Vista Previa de Enlace",
+      "description": "Permite a los usuarios previsualizar el destino de un enlace corto antes de hacer clic, mejorando la confianza y transparencia."
+    },
+    "customAliases": {
+      "title": "Alias Personalizados",
+      "description": "Crea alias personalizados para tus enlaces cortos, haciéndolos más memorables y amigables con tu marca."
+    },
+    "qrCodeGeneration": {
+      "title": "Generación de Códigos QR",
+      "description": "Genera códigos QR para tus enlaces cortos, facilitando el acceso a los usuarios en dispositivos móviles."
+    },
+    "clickTracking": {
+      "title": "Seguimiento de Clics",
+      "description": "Monitorea cuántas veces se ha hecho clic en tu enlace corto, ayudándote a rastrear su popularidad."
+    }
+  }
+}

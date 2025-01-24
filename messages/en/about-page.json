@@ -1,0 +1,21 @@
+{
+  "pageTitle": "About Shrinkily",
+  "projectDescription": {
+    "title": "Project Description",
+    "paragraphs": [
+      "Shrinkily is a powerful and easy-to-use URL shortener that enables users to convert long URLs into short, shareable links. Whether you're a business, developer, or content creator, Shrinkily simplifies your URL management with additional features such as custom links, click tracking, and expiration dates.",
+      "URL shortening is essential for simplifying and tracking online links. Shrinkily makes it simple to manage URLs efficiently, benefiting businesses, marketers, and developers by streamlining their workflow.",
+      "As a developer, Shrinkily offers an open-source platform to easily integrate URL shortening into your applications or websites. The project is designed to be flexible, efficient, and customizable, making it ideal for personal and professional use."
+    ]
+  },
+  "openSource": {
+    "title": "Open Source & Contribution",
+    "description": "Shrinkily is an open-source project, and we welcome contributions from developers around the world. If you're passionate about improving URL management, check out the repository, contribute, or report issues. Together, we can make Shrinkily even better!",
+    "repositoryButton": "View Repository"
+  },
+  "developer": {
+    "title": "About the Developer",
+    "name": "José Pablo Suárez Gómez",
+    "description": "Hi, I'm José Pablo Suárez Gómez, a passionate Frontend Developer. I've spent several years working with modern web technologies, and I created Shrinkily as a tool to help others simplify URL management. Through this project, I've enhanced my skills in backend development with NestJS, frontend with Next.js, and working with MySQL databases. I'm always learning and eager to contribute to the development community."
+  }
+}

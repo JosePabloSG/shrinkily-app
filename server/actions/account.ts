@@ -3,13 +3,12 @@
 import { auth } from "@/auth";
 import { db } from "../data-source";
 import { revalidatePath } from "next/cache";
-import { UNAUTHETICATION_ERROR } from "./actions.config";
+import { UNAUTHETICATION_ERROR } from "@/config/actions.config";
 
 interface DeleteAccountResponse {
   success: boolean;
   message: string;
 }
-
 
 export const DeletAccount = async (): Promise<DeleteAccountResponse> => {
   try {
@@ -62,7 +61,8 @@ export const DeletAccount = async (): Promise<DeleteAccountResponse> => {
     console.error("Delete account error:", error);
     return {
       success: false,
-      message: error instanceof Error ? error.message : "Failed to delete account",
+      message:
+        error instanceof Error ? error.message : "Failed to delete account",
     };
   }
 };

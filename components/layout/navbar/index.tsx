@@ -8,16 +8,18 @@ import { MobileMenu } from "./mobile-menu"
 import { useSession } from "next-auth/react"
 import { Button } from "@/components/ui/button"
 import { Skeleton } from "@/components/ui/skeleton"
+import { useTranslations } from "next-intl"
 
-const navItems = [
-  { name: "Home", href: "/" },
-  { name: "Features", href: "/features" },
-  { name: "Docs", href: "/docs" },
-  { name: "About", href: "/about" },
-  { name: "Contact", href: "/contact" },
+const getNavItems = (t: any) => [
+  { name: t('home'), href: "/" },
+  { name: t('features'), href: "/features" },
+  { name: t('docs'), href: "/docs" },
+  { name: t('about'), href: "/about" },
+  { name: t('contact'), href: "/contact" },
 ]
 
 export function Navbar() {
+  const t = useTranslations('layout.navbar')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { data: session, status } = useSession()
   const user = session?.user
@@ -31,7 +33,7 @@ export function Navbar() {
       return (
         <Link href="/dashboard/urls">
           <Button size="sm" variant={"primary"} className="w-full sm:w-auto">
-            Go to Dashboard
+            {t('goDashboard')}
           </Button>
         </Link>
       )
@@ -40,11 +42,13 @@ export function Navbar() {
     return (
       <Link href="/auth/signin">
         <Button size="sm" variant={"primary"} className="w-full sm:w-auto">
-          Sign In
+          {t('signIn')}
         </Button>
       </Link>
     )
   }
+
+  const navItems = getNavItems(t)
 
   return (
     <nav className="sticky top-0 z-50 bg-dull-lavender-50 backdrop-blur-sm shadow-sm">
@@ -67,7 +71,7 @@ export function Navbar() {
               className="text-gravel-700 hover:text-blue-violet-600"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
-              <span className="sr-only">Open main menu</span>
+              <span className="sr-only">{t('openMainMenu')}</span>
               {mobileMenuOpen ? (
                 <X className="block h-6 w-6" aria-hidden="true" />
               ) : (
@@ -88,4 +92,3 @@ export function Navbar() {
     </nav>
   )
 }
-

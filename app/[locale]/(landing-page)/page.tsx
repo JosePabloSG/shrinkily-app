@@ -6,10 +6,12 @@ import { useState } from "react"
 import { z } from "zod"
 import { useRouter } from "next/navigation"
 import Image from "next/image"
+import { useTranslations } from "next-intl"
 
 const urlSchema = z.string().url("Please enter a valid URL")
 
 export default function Home() {
+  const t = useTranslations("home")
   const [url, setUrl] = useState("")
   const [error, setError] = useState("")
   const router = useRouter()
@@ -57,11 +59,13 @@ export default function Home() {
           className="text-center"
         >
           <h1 className="text-4xl md:text-5xl font-bold text-gravel-900 mb-4">
-            Simplify Your
-            <span className={`${calistoga.className} text-4xl md:text-5xl font-bold mb-4 text-blue-violet-500`}> Links </span>
+            {t("header.title.firstPart")}{" "}
+            <span className={`${calistoga.className} text-4xl md:text-5xl font-bold mb-4 text-blue-violet-500`}>
+              {t("header.title.highlightedPart")}
+            </span>
           </h1>
           <p className="text-xl text-gravel-700 mb-8 max-w-2xl">
-            Shrinkily makes sharing easy with instant, reliable, and customized short URLs.
+            {t("header.description")}
           </p>
         </motion.div>
 
@@ -74,7 +78,7 @@ export default function Home() {
         >
           <div className="flex flex-col md:flex-row shadow-lg rounded-lg overflow-hidden">
             <input
-              placeholder="Enter your long URL here..."
+              placeholder={t("form.inputPlaceholder")}
               className="flex-grow px-4 py-3 md:py-4 bg-white text-gravel-900 focus:outline-none focus:ring-2 focus:ring-blue-violet-400 transition-all duration-300 ease-in-out"
               value={url}
               onChange={(e) => {
@@ -86,7 +90,7 @@ export default function Home() {
               type="submit"
               className="bg-blue-violet-500 text-white px-6 py-3 md:py-4 font-semibold hover:bg-blue-violet-600 focus:outline-none focus:ring-2 focus:ring-blue-violet-400 focus:ring-offset-2 transition-all duration-300 ease-in-out"
             >
-              Get your link
+              {t("form.buttonText")}
             </button>
           </div>
           {error && <p className="text-red-500 mt-2 text-sm">{error}</p>}
@@ -95,4 +99,3 @@ export default function Home() {
     </div>
   )
 }
-

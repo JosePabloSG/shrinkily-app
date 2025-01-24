@@ -9,8 +9,7 @@ import {
   TAG_NOT_FOUND_ERROR,
   UNAUTHETICATION_ERROR,
   URL_NOT_FOUND_ERROR,
-} from "./actions.config";
-
+} from "@/config/actions.config";
 /**
  * Creates a new tag.
  * @param {z.infer<typeof CreateTagSchema>} values - The values for the new tag.

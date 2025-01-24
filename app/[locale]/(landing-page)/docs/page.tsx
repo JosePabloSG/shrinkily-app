@@ -1,11 +1,13 @@
 "use client";
-
 import { Send } from "lucide-react";
 import React, { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 
 const ComingSoonPage = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [email, setEmail] = useState("");
+
+  const t = useTranslations('docs-page');
 
   useEffect(() => {
     setIsLoaded(true);
@@ -26,11 +28,11 @@ const ComingSoonPage = () => {
       <main className={`max-w-4xl mx-auto text-center transition-all duration-1000 transform ${isLoaded ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}>
         {/* Title Section */}
         <h1 className="text-5xl md:text-7xl font-bold text-blue-violet-700 mb-8 animate-fade-in">
-          Coming Soon
+          {t('pageTitle')}
         </h1>
         {/* Description */}
         <p className="text-dull-lavender-900 text-xl md:text-2xl mb-12 animate-fade-in delay-200">
-          We're working hard on something amazing. Stay tuned!
+          {t('description')}
         </p>
 
         {/* Email Subscription Form */}
@@ -40,7 +42,7 @@ const ComingSoonPage = () => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email for updates"
+              placeholder={t('emailPlaceholder')}
               className="flex-1 px-6 py-3 rounded-lg bg-blue-violet-800/50 border border-dull-lavender-400 text-white placeholder-dull-lavender-300 focus:outline-none focus:ring-2 focus:ring-water-leaf-400 transition-all"
               required
             />
@@ -48,7 +50,7 @@ const ComingSoonPage = () => {
               type="submit"
               className="px-6 py-3 rounded-lg bg-beauty-bush-500 hover:bg-beauty-bush-600 text-white font-semibold flex items-center justify-center gap-2 transition-colors group"
             >
-              <span>Notify Me</span>
+              <span>{t('notifyButton')}</span>
               <Send className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </button>
           </div>

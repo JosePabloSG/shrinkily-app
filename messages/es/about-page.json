@@ -1,0 +1,21 @@
+{
+  "pageTitle": "Acerca de Shrinkily",
+  "projectDescription": {
+    "title": "Descripción del Proyecto",
+    "paragraphs": [
+      "Shrinkily es un acortador de URLs potente y fácil de usar que permite a los usuarios convertir URLs largas en enlaces cortos y compartibles. Ya seas un negocio, desarrollador o creador de contenido, Shrinkily simplifica la gestión de tus URLs con características adicionales como enlaces personalizados, seguimiento de clics y fechas de caducidad.",
+      "El acortamiento de URLs es esencial para simplificar y rastrear enlaces en línea. Shrinkily hace que sea sencillo administrar URLs de manera eficiente, beneficiando a empresas, marketing y desarrolladores al optimizar su flujo de trabajo.",
+      "Como desarrollador, Shrinkily ofrece una plataforma de código abierto para integrar fácilmente el acortamiento de URLs en tus aplicaciones o sitios web. El proyecto está diseñado para ser flexible, eficiente y personalizable, ideal para uso personal y profesional."
+    ]
+  },
+  "openSource": {
+    "title": "Código Abierto y Contribución",
+    "description": "Shrinkily es un proyecto de código abierto, y damos la bienvenida a contribuciones de desarrolladores de todo el mundo. Si te apasiona mejorar la gestión de URLs, revisa el repositorio, contribuye o reporta problemas. ¡Juntos podemos hacer Shrinkily aún mejor!",
+    "repositoryButton": "Ver Repositorio"
+  },
+  "developer": {
+    "title": "Sobre el Desarrollador",
+    "name": "José Pablo Suárez Gómez",
+    "description": "Hola, soy José Pablo Suárez Gómez, un apasionado desarrollador Frontend. He pasado varios años trabajando con tecnologías web modernas, y creé Shrinkily como una herramienta para ayudar a otros a simplificar la gestión de URLs. A través de este proyecto, he mejorado mis habilidades en desarrollo backend con NestJS, frontend con Next.js y trabajo con bases de datos MySQL. Siempre estoy aprendiendo y ansioso por contribuir a la comunidad de desarrollo."
+  }
+}

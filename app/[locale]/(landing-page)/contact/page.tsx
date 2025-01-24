@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { FaGithub, FaInstagram, FaDiscord, FaLinkedinIn } from "react-icons/fa";
 
 const socialLinks = [
@@ -11,6 +12,7 @@ const socialLinks = [
 ];
 
 export default function ContactPage() {
+  const t = useTranslations("contact-page");
   return (
     <div className="min-h-screen bg-dull-lavender-50 text-dull-lavender-900">
       <main className="container mx-auto px-4 py-8">
@@ -20,7 +22,7 @@ export default function ContactPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          Contact Me
+          {t("title")}
         </motion.h1>
 
         <motion.p
@@ -29,7 +31,7 @@ export default function ContactPage() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.5 }}
         >
-          Feel free to connect with me on any of my social platforms. I'm always open to collaboration, questions, or just chatting about tech!
+          {t("description")}
         </motion.p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
