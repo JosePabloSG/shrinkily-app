@@ -23,5 +23,11 @@
       "privacyPolicy": "Política de Privacidad"
     },
     "copyright": "© {year} Shrinkily. Todos los derechos reservados."
+  },
+  "sidebar": {
+    "navItems": {
+      "urlManagement": "Gestión de URLs",
+      "settings": "Configuraciones"
+    }
   }
 }
