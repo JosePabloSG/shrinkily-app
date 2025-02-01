@@ -2,6 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { AlertCircle } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 interface UserFormProps {
   name: string
@@ -10,6 +11,7 @@ interface UserFormProps {
 }
 
 export function UserForm({ name, email, image }: UserFormProps) {
+  const t = useTranslations('user-form')
 
   return (
     <div className="space-y-6">
@@ -19,15 +21,15 @@ export function UserForm({ name, email, image }: UserFormProps) {
           <AvatarFallback>{name.charAt(0)}</AvatarFallback>
         </Avatar>
         <div>
-        <h3 className="text-lg font-medium text-gravel-900 break-words">{name}</h3>
-        <p className="text-sm text-gravel-700 break-all">{email}</p>
+          <h3 className="text-lg font-medium text-gravel-900 break-words">{name}</h3>
+          <p className="text-sm text-gravel-700 break-all">{email}</p>
         </div>
       </div>
 
       <div className="space-y-4">
         <div className="space-y-2">
           <Label htmlFor="name" className="text-sm font-medium text-gravel-700">
-            Your name
+            {t('yourName')}
           </Label>
           <Input
             id="name"
@@ -37,13 +39,13 @@ export function UserForm({ name, email, image }: UserFormProps) {
           />
           <p className="flex items-center text-xs text-gravel-500">
             <AlertCircle className="mr-1 h-4 w-4" />
-            Name is managed by your OAuth provider.
+            {t('nameManaged')}
           </p>
         </div>
 
         <div className="space-y-2">
           <Label htmlFor="email" className="text-sm font-medium text-gravel-700">
-            Your email
+            {t('yourEmail')}
           </Label>
           <Input
             id="email"
@@ -54,11 +56,10 @@ export function UserForm({ name, email, image }: UserFormProps) {
           />
           <p className="flex items-center text-xs text-gravel-500">
             <AlertCircle className="mr-1 h-4 w-4" />
-            Email address is managed by your OAuth provider.
+            {t('emailManaged')}
           </p>
         </div>
       </div>
     </div>
   )
 }
-
