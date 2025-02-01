@@ -36,18 +36,16 @@ export default function Home() {
         <Image
           src="/images/blob-scene-desktop.svg"
           alt="Background"
-          layout="fill"
+          fill
           priority
-          objectFit="cover"
-          className="hidden md:block"
+          className="hidden md:block object-cover"
         />
         <Image
           src="/images/blob-scene-mobile.svg"
           alt="Background"
-          layout="fill"
+          fill
           priority
-          objectFit="cover"
-          className="block md:hidden"
+          className="md:hidden object-cover"
         />
       </div>
 
