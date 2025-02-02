@@ -17,6 +17,7 @@ import {
 import toast from "react-hot-toast"
 import { handleSignOut } from "@/server/actions/auth"
 import { DeletAccount } from "@/server/actions/account"
+import { useTranslations } from "next-intl"
 
 interface Props {
   email: string
@@ -26,6 +27,7 @@ export default function DeleteAccountCard({ email }: Props) {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [confirmEmail, setConfirmEmail] = useState("")
   const [isPending, startTransition] = useTransition()
+  const t = useTranslations('delete-account-card')
 
   const handleDelete = () => {
     if (confirmEmail !== email) return;
@@ -51,7 +53,7 @@ export default function DeleteAccountCard({ email }: Props) {
         }
       } catch (error) {
         console.error("Delete account error:", error);
-        toast.error("An error occurred while deleting your account");
+        toast.error(t("toast.error"));
       }
     });
   };
@@ -61,30 +63,24 @@ export default function DeleteAccountCard({ email }: Props) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-lg font-medium text-gravel-900">Delete account</CardTitle>
-        <CardDescription>
-          Permanently delete your account
-        </CardDescription>
+        <CardTitle className="text-lg font-medium text-gravel-900">{t("title")}</CardTitle>
+        <CardDescription>{t("description")}</CardDescription>
       </CardHeader>
       <CardContent>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
             <Button variant="destructive" className="bg-beauty-bush-100 text-beauty-bush-700 hover:bg-beauty-bush-200">
               <Trash2 className="mr-2 h-4 w-4" />
-              Delete Account
+              {t("buttons.delete")}
             </Button>
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Are you sure you want to delete your account?</DialogTitle>
-              <DialogDescription>
-                This action cannot be undone. This will permanently delete your account and remove your data from our servers.
-              </DialogDescription>
+              <DialogTitle>{t("dialog.title")}</DialogTitle>
+              <DialogDescription>{t("dialog.description")}</DialogDescription>
             </DialogHeader>
             <div className="py-4">
-              <p className="text-sm text-gray-500 mb-2">
-                Please type your email address to confirm:
-              </p>
+              <p className="text-sm text-gray-500 mb-2">{t("input.label")}</p>
               <Input
                 type="email"
                 placeholder={email}
@@ -101,7 +97,7 @@ export default function DeleteAccountCard({ email }: Props) {
                 }}
                 disabled={isPending}
               >
-                Cancel
+                {t("buttons.cancel")}
               </Button>
               <Button
                 variant="destructive"
@@ -111,12 +107,12 @@ export default function DeleteAccountCard({ email }: Props) {
                 {isPending ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    <span>Deleting account...</span>
+                    <span>{t("buttons.deleting")}</span>
                   </>
                 ) : (
                   <>
                     <Trash2 className="mr-2 h-4 w-4" />
-                    <span>Delete account</span>
+                    <span>{t("buttons.delete")}</span>
                   </>
                 )}
               </Button>

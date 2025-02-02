@@ -1,0 +1,14 @@
+{
+  "signin": {
+    "title": "Bienvenido a Shrinkily",
+    "description": "Inicia sesión de forma segura y comienza a simplificar tus enlaces.",
+    "loading": "Cargando...",
+    "terms": "Al continuar, aceptas los",
+    "terms_link": "Términos de servicio de Shrinkily"
+  },
+  "providers-login": {
+    "google": "Continuar con Google",
+    "github": "Continuar con GitHub",
+    "error": "Ocurrió un error al intentar iniciar sesión"
+  }
+}
