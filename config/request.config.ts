@@ -6,6 +6,8 @@ export const sections = [
   "about-page",
   "contact-page",
   "user-form",
+  "export-urls-card",
+  "delete-account-card",
 ] as const;
 
 export type MessageSection = (typeof sections)[number];

@@ -5,9 +5,11 @@ import { Button } from "../ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { exportUrlsByUser } from "@/server/actions/urls";
 import { useTransition } from "react";
+import { useTranslations } from "next-intl";
 
 export default function ExportURLsCard() {
   const [isPending, startTransition] = useTransition()
+  const t = useTranslations('export-urls-card')
 
   const handleExport = async () => {
     startTransition(async () => {
@@ -31,9 +33,11 @@ export default function ExportURLsCard() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-lg font-medium text-gravel-900">Export URLs</CardTitle>
+        <CardTitle className="text-lg font-medium text-gravel-900">
+          {t('title')}
+        </CardTitle>
         <CardDescription>
-          Export all your shortened URLs
+          {t('description')}
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -45,12 +49,14 @@ export default function ExportURLsCard() {
           {isPending ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              <span>Exporting...</span>
+              <span>
+                {t('button.pending')}
+              </span>
             </>
           ) : (
             <>
               <Download className="mr-2 h-4 w-4" />
-              <span>Export all URLs</span>
+              <span>{t('button.default')}</span>
             </>
           )}
         </Button>

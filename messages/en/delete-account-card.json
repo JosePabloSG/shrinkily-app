@@ -1,0 +1,20 @@
+{
+  "title": "Delete account",
+  "description": "Permanently delete your account",
+  "dialog": {
+    "title": "Are you sure you want to delete your account?",
+    "description": "This action cannot be undone. This will permanently delete your account and remove your data from our servers."
+  },
+  "input": {
+    "label": "Please type your email address to confirm:",
+    "placeholder": "Enter your email"
+  },
+  "buttons": {
+    "cancel": "Cancel",
+    "delete": "Delete account",
+    "deleting": "Deleting account..."
+  },
+  "toast": {
+    "error": "An error occurred while deleting your account"
+  }
+}

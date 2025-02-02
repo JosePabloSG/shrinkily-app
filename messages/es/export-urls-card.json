@@ -1,0 +1,8 @@
+{
+  "title": "Exportar URLs",
+  "description": "Exporta todas tus URLs acortadas",
+  "button": {
+    "default": "Exportar todas las URLs",
+    "pending": "Exportando..."
+  }
+}

@@ -27,7 +27,8 @@
   "sidebar": {
     "navItems": {
       "urlManagement": "Gestión de URLs",
-      "settings": "Configuraciones"
+      "settings": "Configuraciones",
+      "signOut": "Cerrar Sesión"
     }
   }
 }
