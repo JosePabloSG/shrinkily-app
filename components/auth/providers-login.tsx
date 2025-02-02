@@ -3,32 +3,34 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
-import { Loader } from 'lucide-react';
+import { Loader } from "lucide-react";
 import toast from "react-hot-toast";
+import { useTranslations } from "next-intl";
 import { GithubIcon, GoogleIcon } from "../icons";
 
 const DEFAULT_LOGIN_REDIRECT_URL = "/dashboard/urls";
 
-const socialProviders = [
-  {
-    name: "Continue with Google",
-    icon: <GoogleIcon className="w-5 h-5" />,
-    provider: "google",
-    className: "bg-white text-black border border-gray-300 hover:bg-gray-50"
-  },
-  {
-    name: "Continue with GitHub",
-    icon: <GithubIcon className="w-5 h-5" />,
-    provider: "github",
-    className: "bg-[#24292e] text-white hover:bg-opacity-90"
-  },
-];
-
 const ProvidersLogin = () => {
+  const t = useTranslations("signin-page.providers-login");
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl");
   const [loading, setLoading] = useState<boolean>(false);
   const [provider, setProvider] = useState<string | null>();
+
+  const socialProviders = [
+    {
+      name: t("google"),
+      icon: <GoogleIcon className="w-5 h-5" />,
+      provider: "google",
+      className: "bg-white text-black border border-gray-300 hover:bg-gray-50",
+    },
+    {
+      name: t("github"),
+      icon: <GithubIcon className="w-5 h-5" />,
+      provider: "github",
+      className: "bg-[#24292e] text-white hover:bg-opacity-90",
+    },
+  ];
 
   const handleProviderLogin = async (provider: string) => {
     try {
@@ -39,7 +41,7 @@ const ProvidersLogin = () => {
       });
     } catch (error) {
       console.error(error);
-      toast.error("An error occurred while trying to sign in");
+      toast.error(t("error"));
     }
   };
 
@@ -69,4 +71,3 @@ const ProvidersLogin = () => {
 };
 
 export default ProvidersLogin;
-

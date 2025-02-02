@@ -14,18 +14,16 @@ export default function AuthLayout({
           <Image
             src="/images/blob-scene-desktop.svg"
             alt="Background"
-            layout="fill"
-            objectFit="cover"
-            className="hidden md:block"
+            fill
             priority
+            className="hidden md:block object-cover"
           />
           <Image
             src="/images/blob-scene-mobile.svg"
             alt="Background"
-            layout="fill"
-            objectFit="cover"
-            className="block md:hidden"
+            fill
             priority
+            className="md:hidden object-cover"
           />
         </div>
       </Suspense>
