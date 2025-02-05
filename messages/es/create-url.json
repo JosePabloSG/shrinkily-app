@@ -1,0 +1,19 @@
+{
+  "mainButton": "Crear Enlace",
+  "DialogTitle": "Crear Nuevo Enlace",
+  "DialogDescription": "Completa el formulario a continuación para crear un nuevo enlace.",
+  "DestinationUrlLabel": "URL de Destino",
+  "DestinationUrlPlaceholder": "https://",
+  "ShortLinkLabel": "Enlace Corto",
+  "ShortLinkPlaceholder": "mi enlace",
+  "RandomizeButton": "Aleatorio",
+  "NoTagsMessage": "No tienes ninguna etiqueta creada.",
+  "CancelButton": "Cancelar",
+  "CreateButton": "Crear Enlace",
+  "CreatingButton": "Creando...",
+  "UrlErrorMessage": "La URL y el enlace corto no pueden ser iguales.",
+  "ShortUrlExistsError": "El enlace corto ya existe. Escribe otro o genera uno aleatorio.",
+  "LimitReachedError": "Has alcanzado el límite de enlaces que puedes crear. Elimina algunos enlaces para crear nuevos.",
+  "UnexpectedError": "Ha ocurrido un error inesperado. Por favor, inténtalo de nuevo más tarde.",
+  "SuccessMessage": "Enlace creado exitosamente."
+}

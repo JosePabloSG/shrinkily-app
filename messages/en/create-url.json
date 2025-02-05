@@ -1,0 +1,19 @@
+{
+  "mainButton": "Create New Link",
+  "DialogTitle": "Create New Link",
+  "DialogDescription": "Fill in the form below to create a new link.",
+  "DestinationUrlLabel": "Destination URL",
+  "DestinationUrlPlaceholder": "https://",
+  "ShortLinkLabel": "Short Link",
+  "ShortLinkPlaceholder": "mylink",
+  "RandomizeButton": "Randomize",
+  "NoTagsMessage": "You don't have any tags created.",
+  "CancelButton": "Cancel",
+  "CreateButton": "Create Link",
+  "CreatingButton": "Creating...",
+  "UrlErrorMessage": "The URL and the shortUrl cannot be the same.",
+  "ShortUrlExistsError": "The shortUrl already exists. Write another or generate a random shortUrl.",
+  "LimitReachedError": "You have reached the limit of links you can create. Please delete some links to create new ones.",
+  "UnexpectedError": "An unexpected error has occurred. Please try again later.",
+  "SuccessMessage": "Link created successfully."
+}

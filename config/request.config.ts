@@ -9,6 +9,7 @@ export const sections = [
   "export-urls-card",
   "delete-account-card",
   "signin-page",
+  "create-url",
 ] as const;
 
 export type MessageSection = (typeof sections)[number];
