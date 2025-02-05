@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 const Footer = () => {
   const t = useTranslations('layout.footer');
@@ -64,8 +65,17 @@ const Footer = () => {
 
         {/* Bottom section with social icons and copyright */}
         <div className="mt-6 pt-6 border-t border-dull-lavender-200 flex flex-col md:flex-row justify-between items-center">
-          <div className="text-sm text-gravel-600">
-            {t('copyright', { year: new Date().getFullYear() })}
+          <div className="text-sm text-gravel-600">{t("copyright", { year: new Date().getFullYear() })}</div>
+          <div className="flex items-center mt-4 md:mt-0">
+            <span className="text-sm text-gravel-600 mr-2">Design by José Pablo</span>
+            <Link
+              href="https://github.com/JosePabloSG"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block"
+            >
+              <Image src="/Logo.svg" alt="José Pablo SG Logo" width={30} height={30} className="rounded-full" />
+            </Link>
           </div>
         </div>
       </div>
