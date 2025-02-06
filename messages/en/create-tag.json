@@ -1,0 +1,12 @@
+{
+  "createTagTitle": "Create new tag",
+  "createTagDescription": "Create a new tag to organize your links.",
+  "tagName": "Tag name:",
+  "tagPlaceholder": "Enter tag name",
+  "cancel": "Cancel",
+  "creating": "Creating...",
+  "createTagButton": "Create Tag",
+  "tagExistsError": "The tag already exists. Please use a different name.",
+  "unexpectedError": "An unexpected error occurred. Please try again later.",
+  "successMessage": "Tag created successfully"
+}

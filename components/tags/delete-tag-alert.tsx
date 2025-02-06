@@ -1,4 +1,6 @@
-'use client'
+"use client";
+
+import { useTranslations } from "next-intl";
 
 import {
   AlertDialog,
@@ -10,26 +12,28 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
-import { Button } from "@/components/ui/button"
-import { Trash2 } from 'lucide-react'
-import { toast } from "react-hot-toast"
-import { deleteTag } from "@/server/actions/tags"
+} from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
+import { Trash2 } from "lucide-react";
+import { toast } from "react-hot-toast";
+import { deleteTag } from "@/server/actions/tags";
 
 interface DeleteTagAlertProps {
-  TagId: string
+  TagId: string;
 }
 
 export default function DeleteTagAlert({ TagId }: DeleteTagAlertProps) {
+  const t = useTranslations('delete-tag');
+
   const handleDelete = async () => {
     try {
-      await deleteTag(TagId)
-      toast.success('Tag deleted successfully')
+      await deleteTag(TagId);
+      toast.success(t("deleteSuccess"));
     } catch (error) {
-      console.error(error)
-      toast.error('An error occurred while deleting the tag')
+      console.error(error);
+      toast.error(t("deleteError"));
     }
-  }
+  };
 
   return (
     <AlertDialog>
@@ -44,22 +48,21 @@ export default function DeleteTagAlert({ TagId }: DeleteTagAlertProps) {
       </AlertDialogTrigger>
       <AlertDialogContent className="sm:max-w-[400px]">
         <AlertDialogHeader>
-          <AlertDialogTitle>Delete this tag?</AlertDialogTitle>
+          <AlertDialogTitle>{t("deleteTagTitle")}</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. The tag will be permanently deleted, but any associated URLs will remain intact.
+            {t("deleteTagDescription")}
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel className="font-medium">Cancel</AlertDialogCancel>
+          <AlertDialogCancel className="font-medium">{t("cancel")}</AlertDialogCancel>
           <AlertDialogAction
             onClick={handleDelete}
             className="bg-destructive hover:bg-destructive/90 font-medium"
           >
-            Delete Tag
+            {t("deleteTagButton")}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
-  )
+  );
 }
-
