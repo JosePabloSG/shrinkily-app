@@ -14,7 +14,9 @@ export const sections = [
   "tag-filter",
   "create-tag",
   "delete-tag",
+  "update-url",
   "qr-code",
+  "delete-url-alert",
 ] as const;
 
 export type MessageSection = (typeof sections)[number];
