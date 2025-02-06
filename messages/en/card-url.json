@@ -1,0 +1,17 @@
+{
+  "copyUrl": "Copy URL",
+  "copied": "Copied!",
+  "editUrl": "Edit URL",
+  "generateQrCode": "Generate QR Code",
+  "deleteUrl": "Delete URL",
+  "clicks": "clicks",
+  "lastClicked": "Last clicked",
+  "never": "Never",
+  "timeAgo": "ago",
+  "urlControls": {
+    "copy": "Copy URL",
+    "edit": "Edit URL",
+    "qr": "Generate QR Code",
+    "delete": "Delete URL"
+  }
+}

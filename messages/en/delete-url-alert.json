@@ -1,0 +1,8 @@
+{
+  "deleteConfirmationTitle": "Are you absolutely sure?",
+  "deleteConfirmationDescription": "This action cannot be undone. This will permanently delete the URL.",
+  "cancel": "Cancel",
+  "delete": "Delete",
+  "deleteSuccess": "URL deleted successfully",
+  "deleteError": "An error occurred while deleting the URL"
+}
