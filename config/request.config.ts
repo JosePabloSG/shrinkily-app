@@ -17,6 +17,7 @@ export const sections = [
   "update-url",
   "qr-code",
   "delete-url-alert",
+  "card-url",
 ] as const;
 
 export type MessageSection = (typeof sections)[number];

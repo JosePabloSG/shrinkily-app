@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Tags, Urls, UrlTags } from "@prisma/client"
 import { formatDistanceToNow } from "date-fns"
+import { es, enUS } from "date-fns/locale"
 import { Clock, MousePointerClickIcon as Click, Tag, Copy, Check, Edit, QrCode } from 'lucide-react'
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -12,6 +13,8 @@ import { Separator } from "@/components/ui/separator"
 import DeleteUrlAlert from "./delete-url-alert"
 import { UpdateUrl } from "./update-url"
 import QRCodeDialog from "./qr-code"
+import { useTranslations } from "next-intl"
+import { useLocale } from "next-intl"
 
 interface Props {
   urlInfo: Urls
@@ -21,10 +24,22 @@ interface Props {
 
 const CardUrl = ({ urlInfo, urlsTags, tagsInfo }: Props) => {
   const [isCopied, setIsCopied] = useState(false)
-  const formattedDate = formatDistanceToNow(new Date(urlInfo.createdAt), { addSuffix: true })
+  const t = useTranslations('card-url')
+  const locale = useLocale()
+
+  const dateLocale = locale === 'es' ? es : enUS
+
+  const formattedDate = formatDistanceToNow(new Date(urlInfo.createdAt), {
+    addSuffix: true,
+    locale: dateLocale
+  })
+
   const formattedLastClicked = urlInfo.lastClicked
-    ? formatDistanceToNow(new Date(urlInfo.lastClicked), { addSuffix: true })
-    : 'Never'
+    ? formatDistanceToNow(new Date(urlInfo.lastClicked), {
+      addSuffix: true,
+      locale: dateLocale
+    })
+    : t('never')
 
   const relevantTags = tagsInfo.filter(tag =>
     urlsTags.some(urlTag => urlTag.tagId === tag.id)
@@ -73,13 +88,13 @@ const CardUrl = ({ urlInfo, urlsTags, tagsInfo }: Props) => {
                     size="icon"
                     className="h-8 w-8 text-gravel-500 hover:text-blue-violet-600 hover:bg-blue-violet-50"
                     onClick={handleCopy}
-                    aria-label={isCopied ? "Copied" : "Copy URL"}
+                    aria-label={isCopied ? t('copied') : t('urlControls.copy')}
                   >
                     {isCopied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent className="bg-blue-violet-600 text-white">
-                  <p>{isCopied ? 'Copied!' : 'Copy URL'}</p>
+                  <p>{isCopied ? t('copied') : t('urlControls.copy')}</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
@@ -92,14 +107,14 @@ const CardUrl = ({ urlInfo, urlsTags, tagsInfo }: Props) => {
                       variant="ghost"
                       size="icon"
                       className="h-8 w-8 text-gravel-500 hover:text-yellow-600 hover:bg-blue-violet-50"
-                      aria-label="Edit URL"
+                      aria-label={t('urlControls.edit')}
                     >
                       <Edit className="h-4 w-4" />
                     </Button>
                   </UpdateUrl>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>Edit URL</p>
+                  <p>{t('urlControls.edit')}</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
@@ -107,19 +122,19 @@ const CardUrl = ({ urlInfo, urlsTags, tagsInfo }: Props) => {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <QRCodeDialog urlInfo={urlInfo} >
+                  <QRCodeDialog urlInfo={urlInfo}>
                     <Button
                       variant="ghost"
                       size="icon"
                       className="h-8 w-8 text-gravel-500 hover:text-gravel-900 hover:bg-blue-violet-50"
-                      aria-label="Generate QR Code"
+                      aria-label={t('urlControls.qr')}
                     >
                       <QrCode className="h-4 w-4" />
                     </Button>
                   </QRCodeDialog>
                 </TooltipTrigger>
                 <TooltipContent className="bg-blue-violet-600 text-white">
-                  <p>Generate QR Code</p>
+                  <p>{t('urlControls.qr')}</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
@@ -130,7 +145,7 @@ const CardUrl = ({ urlInfo, urlsTags, tagsInfo }: Props) => {
                   <DeleteUrlAlert UrlId={urlInfo.id} />
                 </TooltipTrigger>
                 <TooltipContent className="bg-blue-violet-600 text-white">
-                  <p>Delete URL</p>
+                  <p>{t('urlControls.delete')}</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
@@ -149,11 +164,11 @@ const CardUrl = ({ urlInfo, urlsTags, tagsInfo }: Props) => {
                 <TooltipTrigger asChild>
                   <div className="flex items-center justify-center cursor-help">
                     <Click className="mr-1.5 h-4 w-4" />
-                    {urlInfo.clicks} clicks
+                    {urlInfo.clicks} {t('clicks')}
                   </div>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>Last clicked: {formattedLastClicked}</p>
+                  <p>{t('lastClicked')}: {formattedLastClicked}</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
@@ -182,4 +197,3 @@ const CardUrl = ({ urlInfo, urlsTags, tagsInfo }: Props) => {
 }
 
 export default CardUrl
-
