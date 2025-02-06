@@ -1,0 +1,8 @@
+{
+  "deleteTagTitle": "¿Eliminar esta etiqueta?",
+  "deleteTagDescription": "Esta acción no se puede deshacer. La etiqueta se eliminará permanentemente, pero cualquier URL asociada permanecerá intacta.",
+  "cancel": "Cancelar",
+  "deleteTagButton": "Eliminar etiqueta",
+  "deleteSuccess": "Etiqueta eliminada con éxito",
+  "deleteError": "Ocurrió un error al eliminar la etiqueta"
+}

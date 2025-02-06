@@ -1,0 +1,12 @@
+{
+  "createTagTitle": "Crear nueva etiqueta",
+  "createTagDescription": "Crea una nueva etiqueta para organizar tus enlaces.",
+  "tagName": "Nombre de la etiqueta:",
+  "tagPlaceholder": "Ingrese el nombre de la etiqueta",
+  "cancel": "Cancelar",
+  "creating": "Creando...",
+  "createTagButton": "Crear etiqueta",
+  "tagExistsError": "La etiqueta ya existe. Por favor, use un nombre diferente.",
+  "unexpectedError": "Ocurrió un error inesperado. Por favor, inténtelo de nuevo más tarde.",
+  "successMessage": "Etiqueta creada con éxito"
+}
