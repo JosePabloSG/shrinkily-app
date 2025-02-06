@@ -13,7 +13,8 @@ export const sections = [
   "toolbar",
   "tag-filter",
   "create-tag",
-  "delete-tag"
+  "delete-tag",
+  "qr-code",
 ] as const;
 
 export type MessageSection = (typeof sections)[number];

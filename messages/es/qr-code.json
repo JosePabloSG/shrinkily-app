@@ -1,0 +1,9 @@
+{
+  "qrTitle": "Código QR de Shrinkily",
+  "qrDescription": "Escanea este código QR para acceder a tu URL acortada",
+  "yourShortenedUrl": "Tu URL acortada",
+  "close": "Cerrar",
+  "downloadPng": "Descargar PNG",
+  "downloadSuccess": "¡Código QR descargado con éxito!",
+  "downloadError": "Error al descargar el código QR"
+}

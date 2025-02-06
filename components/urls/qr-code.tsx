@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import type { Urls } from "@prisma/client";
 import QRCode from "react-qr-code";
 import { DownloadIcon, Loader2 } from "lucide-react";
@@ -25,7 +26,9 @@ interface QRCodeDialogProps {
 
 const QRCodeDialog = ({ urlInfo, children }: QRCodeDialogProps) => {
   const [isDownloading, setIsDownloading] = useState(false);
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://shrinkily.vercel.app';
+  const t = useTranslations('qr-code');
+
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://shrinkily.vercel.app";
   const fullUrl = `${baseUrl}/${urlInfo.shortUrl}`;
 
   const handleDownloadQR = async () => {
@@ -56,9 +59,9 @@ const QRCodeDialog = ({ urlInfo, children }: QRCodeDialogProps) => {
       downloadLink.href = pngFile;
       downloadLink.click();
 
-      toast.success("QR Code downloaded successfully!");
+      toast.success(t("downloadSuccess"));
     } catch (error) {
-      toast.error("Failed to download QR Code");
+      toast.error(t("downloadError"));
       console.error(error);
     } finally {
       setIsDownloading(false);
@@ -71,10 +74,10 @@ const QRCodeDialog = ({ urlInfo, children }: QRCodeDialogProps) => {
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-blue-violet-500">
-            Shrinkily QR Code
+            {t("qrTitle")}
           </DialogTitle>
           <DialogDescription className="text-blue-violet-500">
-            Scan this QR code to access your shortened URL
+            {t("qrDescription")}
           </DialogDescription>
         </DialogHeader>
 
@@ -94,7 +97,7 @@ const QRCodeDialog = ({ urlInfo, children }: QRCodeDialogProps) => {
           </div>
 
           <div className="w-full space-y-2 text-center">
-            <p className="text-sm text-blue-violet-500">Your shortened URL</p>
+            <p className="text-sm text-blue-violet-500">{t("yourShortenedUrl")}</p>
             <p className="select-all rounded-lg bg-blue-violet-50 px-4 py-2 font-mono text-sm text-blue-violet-500 shadow-inner">
               {urlInfo.shortUrl}
             </p>
@@ -107,7 +110,7 @@ const QRCodeDialog = ({ urlInfo, children }: QRCodeDialogProps) => {
               variant="outline"
               className="border-2 border-gravel-200 text-gravel-700 hover:bg-gravel-50"
             >
-              Close
+              {t("close")}
             </Button>
           </DialogClose>
           <Button
@@ -124,7 +127,7 @@ const QRCodeDialog = ({ urlInfo, children }: QRCodeDialogProps) => {
             ) : (
               <DownloadIcon className="mr-2 h-4 w-4" />
             )}
-            Download PNG
+            {t("downloadPng")}
           </Button>
         </DialogFooter>
       </DialogContent>

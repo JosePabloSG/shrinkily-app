@@ -1,0 +1,9 @@
+{
+  "qrTitle": "Shrinkily QR Code",
+  "qrDescription": "Scan this QR code to access your shortened URL",
+  "yourShortenedUrl": "Your shortened URL",
+  "close": "Close",
+  "downloadPng": "Download PNG",
+  "downloadSuccess": "QR Code downloaded successfully!",
+  "downloadError": "Failed to download QR Code"
+}
