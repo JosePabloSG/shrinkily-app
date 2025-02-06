@@ -10,6 +10,8 @@ export const sections = [
   "delete-account-card",
   "signin-page",
   "create-url",
+  "toolbar",
+  "tag-filter",
 ] as const;
 
 export type MessageSection = (typeof sections)[number];
