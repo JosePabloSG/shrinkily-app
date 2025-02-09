@@ -18,6 +18,7 @@ export const sections = [
   "qr-code",
   "delete-url-alert",
   "card-url",
+  "popover-content-mobile",
 ] as const;
 
 export type MessageSection = (typeof sections)[number];

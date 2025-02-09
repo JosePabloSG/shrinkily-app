@@ -8,11 +8,13 @@ import Image from "next/image"
 import Link from "next/link"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Button } from "@/components/ui/button"
+import { useTranslations } from "next-intl"
 
 const MobileNavbar: React.FC<{ onMenuClick: () => void }> = ({ onMenuClick }) => {
   const { data: session } = useSession()
   const user = session?.user
   const [isOpen, setIsOpen] = useState(false)
+  const t = useTranslations('popover-content-mobile')
 
   const handleSignOut = () => {
     signOut()
@@ -48,7 +50,7 @@ const MobileNavbar: React.FC<{ onMenuClick: () => void }> = ({ onMenuClick }) =>
               <Link href="/dashboard/settings" passHref>
                 <Button variant="ghost" className="w-full justify-start" onClick={() => setIsOpen(false)}>
                   <Settings className="mr-2 h-4 w-4" />
-                  Settings
+                  {t("settings")}
                 </Button>
               </Link>
               <Button
@@ -57,7 +59,7 @@ const MobileNavbar: React.FC<{ onMenuClick: () => void }> = ({ onMenuClick }) =>
                 onClick={handleSignOut}
               >
                 <LogOut className="mr-2 h-4 w-4" />
-                Sign Out
+                {t("Signout")}
               </Button>
             </div>
           </PopoverContent>
