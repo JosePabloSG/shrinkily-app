@@ -55,9 +55,13 @@ export default function Features() {
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: index * 0.1 }}
+              initial={{ opacity: 0, x: 20, y: 20 }}
+              animate={{ opacity: 1, x: 0, y: 0 }}
+              transition={{
+                duration: 0.25,
+                delay: index * 0.03,
+                ease: [0.2, 0, 0.3, 1]
+              }}
             >
               <FeatureCard {...feature} />
             </motion.div>
