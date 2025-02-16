@@ -7,7 +7,7 @@ import { Tags, Urls, UrlTags } from "@prisma/client"
 import CardUrlSkeleton from '../skeletons/card-url-skeleton'
 import { LinkIcon, PlusIcon } from 'lucide-react'
 import CreateUrl from './create-url'
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '../ui/button'
 
 interface UrlGridProps {
@@ -55,9 +55,7 @@ export function UrlGrid({ urls, tags }: UrlGridProps) {
         <div className="rounded-full bg-gray-50 p-4 mb-4">
           <LinkIcon className="h-12 w-12 text-gray-400" />
         </div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-1">
-          No URLs yet
-        </h3>
+        <h3 className="text-lg font-semibold text-gray-900 mb-1">No URLs yet</h3>
         <p className="text-sm text-gray-500 mb-6 max-w-sm">
           Create your first shortened URL to start tracking clicks and managing your links.
         </p>
@@ -73,20 +71,29 @@ export function UrlGrid({ urls, tags }: UrlGridProps) {
 
   return (
     <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {filteredUrls.map((url, index) => (
-        <motion.div
-          key={url.id}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: index * 0.1 }}
-        >
-          <CardUrl
-            urlInfo={url}
-            urlsTags={url.tags}
-            tagsInfo={tags}
-          />
-        </motion.div>
-      ))}
+      <AnimatePresence mode="wait">
+        {filteredUrls.map((url, index) => (
+          <motion.div
+            key={url.id}
+            layout
+            initial={{ opacity: 0, x: 30, y: 30, scale: 1.1, filter: 'blur(4px)' }}
+            animate={{ opacity: 1, x: 0, y: 0, scale: 1, filter: 'blur(0px)' }}
+            exit={{ opacity: 0, x: -30, y: -30, scale: 0.9, filter: 'blur(4px)' }}
+            transition={{ 
+              type: "spring",
+              duration: 0.5,
+              bounce: 0.2,
+              delay: index * 0.1
+            }}
+          >
+            <CardUrl
+              urlInfo={url}
+              urlsTags={url.tags}
+              tagsInfo={tags}
+            />
+          </motion.div>
+        ))}
+      </AnimatePresence>
     </div>
   )
 }
