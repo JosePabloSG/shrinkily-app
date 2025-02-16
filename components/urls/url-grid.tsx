@@ -76,14 +76,13 @@ export function UrlGrid({ urls, tags }: UrlGridProps) {
           <motion.div
             key={url.id}
             layout
-            initial={{ opacity: 0, x: 30, y: 30, scale: 1.1, filter: 'blur(4px)' }}
-            animate={{ opacity: 1, x: 0, y: 0, scale: 1, filter: 'blur(0px)' }}
-            exit={{ opacity: 0, x: -30, y: -30, scale: 0.9, filter: 'blur(4px)' }}
+            initial={{ opacity: 0, x: 40, y: 40, scale: 1.1 }}
+            animate={{ opacity: 1, x: 0, y: 0, scale: 1 }}
+            exit={{ opacity: 0, x: -40, y: -40, scale: 0.95 }}
             transition={{ 
-              type: "spring",
-              duration: 0.5,
-              bounce: 0.2,
-              delay: index * 0.1
+              duration: 0.4,
+              ease: [0.2, 0, 0.3, 1],
+              delay: index * 0.05
             }}
           >
             <CardUrl
