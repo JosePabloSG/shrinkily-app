@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -8,24 +9,25 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
+} from "@/components/ui/alert-dialog";
 import { Trash } from "lucide-react";
 import { Button } from "../ui/button";
 import { deleteUrl } from "@/server/actions/urls";
 import toast from "react-hot-toast";
 
-const DeleteUrlAlert = ({ UrlId }: {
-  UrlId: string
-}) => {
+const DeleteUrlAlert = ({ UrlId }: { UrlId: string }) => {
+  const t = useTranslations('delete-url-alert');
+
   const handleDelete = async () => {
     try {
-      toast.success('URL deleted successfully')
-      await deleteUrl(UrlId)
+      await deleteUrl(UrlId);
+      toast.success(t("deleteSuccess"));
     } catch (error) {
-      console.error(error)
-      toast.error('An error occurred while deleting the URL')
+      console.error(error);
+      toast.error(t("deleteError"));
     }
-  }
+  };
+
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
@@ -41,19 +43,20 @@ const DeleteUrlAlert = ({ UrlId }: {
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogTitle>{t("deleteConfirmationTitle")}</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete the URL.
+            {t("deleteConfirmationDescription")}
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction className="bg-red-500 hover:bg-red-600" onClick={handleDelete}>Delete</AlertDialogAction>
+          <AlertDialogCancel>{t("cancel")}</AlertDialogCancel>
+          <AlertDialogAction className="bg-red-500 hover:bg-red-600" onClick={handleDelete}>
+            {t("delete")}
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
-
-  )
-}
+  );
+};
 
 export default DeleteUrlAlert;

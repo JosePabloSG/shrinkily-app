@@ -1,0 +1,34 @@
+{
+  "navbar": {
+    "home": "Home",
+    "features": "Features",
+    "docs": "Docs",
+    "about": "About",
+    "contact": "Contact",
+    "goDashboard": "Go to Dashboard",
+    "signIn": "Sign In",
+    "openMainMenu": "Open main menu"
+  },
+  "footer": {
+    "description": "Simplify your links, amplify your reach. Shrinkily makes sharing easy with instant, reliable, and customized short URLs.",
+    "quickLinksTitle": "Quick Links",
+    "legalTitle": "Legal",
+    "quickLinks": {
+      "home": "Home",
+      "features": "Features",
+      "contact": "Contact"
+    },
+    "legalLinks": {
+      "termsOfService": "Terms of Service",
+      "privacyPolicy": "Privacy Policy"
+    },
+    "copyright": "© {year} Shrinkily. All rights reserved."
+  },
+  "sidebar": {
+    "navItems": {
+      "urlManagement": "URL Management",
+      "settings": "Settings",
+      "signOut": "Sign Out"
+    }
+  }
+}

@@ -32,12 +32,10 @@ import { Alert } from "@/components/ui/alert";
 import { LoaderIcon, Tag } from "lucide-react";
 import { Tags } from "@prisma/client";
 import { CreateTagProps, TagFormData } from "@/types/tags/tag.types";
+import { useTranslations } from "next-intl";
 
-/**
- * CreateTag component for creating and managing tags
- * @param props - Component properties including children and existing tags
- */
 export function CreateTag({ children, tagsCreated }: CreateTagProps) {
+  const t = useTranslations('create-tag');
   const [isPending, setIsPending] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -49,41 +47,33 @@ export function CreateTag({ children, tagsCreated }: CreateTagProps) {
     },
   });
 
-  /**
-   * Handles the form submission process
-   * @param values - Form values containing the tag name
-   */
   const handleSubmit = async (values: TagFormData) => {
     try {
       setIsPending(true);
 
-      // Check if tag already exists
       if (tagsCreated.some((tag: Tags) => tag.name === values.name)) {
-        toast.error("The tag already exists. Please use a different name.");
+        toast.error(t("tagExistsError"));
         return;
       }
 
       const result = await createTag(values);
 
       if (!result) {
-        toast.error("An unexpected error occurred. Please try again later.");
+        toast.error(t("unexpectedError"));
         return;
       }
 
-      toast.success("Tag created successfully");
+      toast.success(t("successMessage"));
       handleReset();
     } catch (error) {
       console.error("Error creating tag:", error);
-      toast.error("An unexpected error occurred. Please try again later.");
+      toast.error(t("unexpectedError"));
     } finally {
       setError(null);
       setIsPending(false);
     }
   };
 
-  /**
-   * Resets the form and dialog state
-   */
   const handleReset = () => {
     form.reset();
     setIsDialogOpen(false);
@@ -94,10 +84,8 @@ export function CreateTag({ children, tagsCreated }: CreateTagProps) {
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent>
         <DialogHeader className="mb-2">
-          <DialogTitle>Create new tag</DialogTitle>
-          <DialogDescription>
-            Create a new tag to organize your links.
-          </DialogDescription>
+          <DialogTitle>{t("createTagTitle")}</DialogTitle>
+          <DialogDescription>{t("createTagDescription")}</DialogDescription>
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
@@ -107,13 +95,13 @@ export function CreateTag({ children, tagsCreated }: CreateTagProps) {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Tag name:</FormLabel>
+                    <FormLabel>{t("tagName")}</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
                         disabled={isPending}
                         autoComplete="off"
-                        placeholder="Enter tag name"
+                        placeholder={t("tagPlaceholder")}
                       />
                     </FormControl>
                     <FormMessage />
@@ -129,21 +117,17 @@ export function CreateTag({ children, tagsCreated }: CreateTagProps) {
                   disabled={isPending}
                   className="mt-2 sm:mt-0"
                 >
-                  Cancel
+                  {t("cancel")}
                 </Button>
               </DialogClose>
 
-              <Button
-                type="submit"
-                disabled={isPending}
-                variant="primary"
-              >
+              <Button type="submit" disabled={isPending} variant="primary">
                 {isPending ? (
                   <LoaderIcon size={16} className="mr-2 animate-spin" />
                 ) : (
                   <Tag size={16} className="mr-2" />
                 )}
-                <span>{isPending ? "Creating..." : "Create Tag"}</span>
+                <span>{isPending ? t("creating") : t("createTagButton")}</span>
               </Button>
             </DialogFooter>
           </form>

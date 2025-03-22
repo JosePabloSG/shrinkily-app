@@ -15,6 +15,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { CreateTag } from "@/components/tags/create-tag"
 import { Plus } from 'lucide-react'
 import DeleteTagAlert from './delete-tag-alert'
+import { useTranslations } from 'next-intl'
 
 interface TagFilterProps {
   tags: Tags[]
@@ -26,13 +27,12 @@ interface TagFilterProps {
 
 export function TagFilter({ tags, onSelect, selectedTag, children }: TagFilterProps) {
   const [open, setOpen] = useState(false)
+  const t = useTranslations('tag-filter')
 
   const handleSelect = (tagId: string) => {
     onSelect(tagId)
     setOpen(false)
   }
-
-  
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -41,9 +41,9 @@ export function TagFilter({ tags, onSelect, selectedTag, children }: TagFilterPr
       </DialogTrigger>
       <DialogContent className="sm:max-w-[400px] p-0">
         <DialogHeader className="p-6 pb-0">
-          <DialogTitle className="text-xl font-semibold">Filter by Tag</DialogTitle>
+          <DialogTitle className="text-xl font-semibold">{t('filterByTag')}</DialogTitle>
           <DialogDescription>
-            Select a tag to filter the list of items.
+            {t('selectTag')}
           </DialogDescription>
         </DialogHeader>
         <div className="p-6">
@@ -53,7 +53,7 @@ export function TagFilter({ tags, onSelect, selectedTag, children }: TagFilterPr
               size="lg"
             >
               <Plus className="mr-2 h-5 w-5" />
-              Create New Tag
+              {t('createNewTag')}
             </Button>
           </CreateTag>
           {tags.length > 0 ? (
@@ -78,8 +78,8 @@ export function TagFilter({ tags, onSelect, selectedTag, children }: TagFilterPr
             </ScrollArea>
           ) : (
             <div className="text-center py-8 text-muted-foreground">
-              <p className="mb-1">No tags available.</p>
-              <p>Create a tag to start filtering.</p>
+              <p className="mb-1">{t('noTagsAvailable')}</p>
+              <p>{t('createTagToFilter')}</p>
             </div>
           )}
         </div>
@@ -87,4 +87,3 @@ export function TagFilter({ tags, onSelect, selectedTag, children }: TagFilterPr
     </Dialog>
   )
 }
-

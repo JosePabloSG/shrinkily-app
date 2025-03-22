@@ -1,0 +1,10 @@
+{
+  "editUrlTitle": "Editar URL",
+  "editUrlDescription": "Realiza cambios en tu URL aquí. Haz clic en guardar cuando termines.",
+  "destinationUrl": "URL de destino",
+  "shortUrl": "URL corta",
+  "cancel": "Cancelar",
+  "saveChanges": "Guardar cambios",
+  "updateSuccess": "¡URL actualizada con éxito!",
+  "updateError": "Algo salió mal"
+}

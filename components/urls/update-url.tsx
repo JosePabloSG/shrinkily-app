@@ -4,6 +4,7 @@ import { ReactNode, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { useTranslations } from "next-intl";
 import toast from "react-hot-toast";
 import { Button } from "@/components/ui/button";
 import {
@@ -37,6 +38,7 @@ interface Props {
 export function UpdateUrl({ children, url }: Props) {
   const [open, setOpen] = useState(false);
   const [isPending, setIsPending] = useState(false);
+  const t = useTranslations('update-url');
 
   const form = useForm<z.infer<typeof EditUrlSchema>>({
     resolver: zodResolver(EditUrlSchema),
@@ -57,11 +59,11 @@ export function UpdateUrl({ children, url }: Props) {
         return;
       }
 
-      toast.success("URL updated successfully!");
+      toast.success(t("updateSuccess"));
       setOpen(false);
     } catch (error) {
       console.error(error);
-      toast.error("Something went wrong");
+      toast.error(t("updateError"));
     } finally {
       setIsPending(false);
     }
@@ -72,10 +74,8 @@ export function UpdateUrl({ children, url }: Props) {
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Edit URL</DialogTitle>
-          <DialogDescription>
-            Make changes to your URL here. Click save when you're done.
-          </DialogDescription>
+          <DialogTitle>{t("editUrlTitle")}</DialogTitle>
+          <DialogDescription>{t("editUrlDescription")}</DialogDescription>
         </DialogHeader>
 
         <Form {...form}>
@@ -85,7 +85,7 @@ export function UpdateUrl({ children, url }: Props) {
               name="url"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Destination URL</FormLabel>
+                  <FormLabel>{t("destinationUrl")}</FormLabel>
                   <FormControl>
                     <Input
                       {...field}
@@ -103,7 +103,7 @@ export function UpdateUrl({ children, url }: Props) {
               name="shortUrl"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Short URL</FormLabel>
+                  <FormLabel>{t("shortUrl")}</FormLabel>
                   <FormControl>
                     <Input
                       {...field}
@@ -123,11 +123,11 @@ export function UpdateUrl({ children, url }: Props) {
                 onClick={() => setOpen(false)}
                 disabled={isPending}
               >
-                Cancel
+                {t("cancel")}
               </Button>
               <Button type="submit" disabled={isPending} variant="primary">
                 {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                Save changes
+                {t("saveChanges")}
               </Button>
             </DialogFooter>
           </form>

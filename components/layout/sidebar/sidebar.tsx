@@ -8,15 +8,18 @@ import { User } from "./user";
 import { SignOut } from "./signout";
 import MobileSidebar from "./mobile-sidebar";
 import MobileNavbar from "./mobile-navbar";
+import { useTranslations } from 'next-intl';
 
-const navItems = [
-  { icon: LinkIcon, label: "URL Management", href: "/dashboard/urls" },
-  { icon: Settings, label: "Settings", href: "/dashboard/settings" },
-];
 
 const Sidebar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const t = useTranslations('layout.sidebar');
   const pathname = usePathname();
+
+  const navItems = [
+    { icon: LinkIcon, label: t('navItems.urlManagement'), href: "/dashboard/urls" },
+    { icon: Settings, label: t('navItems.settings'), href: "/dashboard/settings" },
+  ];
 
   return (
     <>

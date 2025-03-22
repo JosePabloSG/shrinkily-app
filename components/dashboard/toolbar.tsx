@@ -1,46 +1,48 @@
-'use client'
+'use client';
 
-import { useState, useEffect } from 'react'
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { CreateUrl } from "@/components/urls/create-url"
-import { PlusIcon, SearchIcon, FilterIcon, XIcon } from 'lucide-react'
-import { Tags } from '@prisma/client'
-import { TagFilter } from '../tags/tag-filter'
-import { useDebounce } from '@/hooks/useDebounce'
-import { useUrlParams } from '@/hooks/useUrlParams'
+import { useState, useEffect } from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { CreateUrl } from '@/components/urls/create-url';
+import { PlusIcon, SearchIcon, FilterIcon, XIcon } from 'lucide-react';
+import { Tags } from '@prisma/client';
+import { TagFilter } from '../tags/tag-filter';
+import { useDebounce } from '@/hooks/useDebounce';
+import { useUrlParams } from '@/hooks/useUrlParams';
+import { useTranslations } from 'next-intl';
 
 interface ToolbarProps {
-  tags: Tags[]
+  tags: Tags[];
 }
 
 export function Toolbar({ tags }: ToolbarProps) {
-  const { setParam, getParam } = useUrlParams()
-  const [shortUrl, setShortUrl] = useState(getParam('shortUrl'))
-  const [selectedTag, setSelectedTag] = useState(getParam('tag'))
+  const t = useTranslations('toolbar');
+  const { setParam, getParam } = useUrlParams();
+  const [shortUrl, setShortUrl] = useState(getParam('shortUrl'));
+  const [selectedTag, setSelectedTag] = useState(getParam('tag'));
 
-  const debouncedShortUrl = useDebounce(shortUrl, 300)
-  const debouncedTag = useDebounce(selectedTag, 300)
+  const debouncedShortUrl = useDebounce(shortUrl, 300);
+  const debouncedTag = useDebounce(selectedTag, 300);
 
   useEffect(() => {
     if (debouncedShortUrl !== getParam('shortUrl')) {
-      setParam('shortUrl', debouncedShortUrl)
+      setParam('shortUrl', debouncedShortUrl);
     }
-  }, [debouncedShortUrl, getParam, setParam])
+  }, [debouncedShortUrl, getParam, setParam]);
 
   useEffect(() => {
     if (debouncedTag !== getParam('tag')) {
-      setParam('tag', debouncedTag)
+      setParam('tag', debouncedTag);
     }
-  }, [debouncedTag, getParam, setParam])
+  }, [debouncedTag, getParam, setParam]);
 
   const handleTagSelect = (tag: string) => {
-    setSelectedTag(tag)
-  }
+    setSelectedTag(tag);
+  };
 
   const handleTagClear = () => {
-    setSelectedTag('')
-  }
+    setSelectedTag('');
+  };
 
   return (
     <div className="flex flex-col gap-4 mb-6">
@@ -49,14 +51,14 @@ export function Toolbar({ tags }: ToolbarProps) {
           <CreateUrl tags={tags}>
             <Button variant={'primary'} className="w-full md:w-auto">
               <PlusIcon size={16} className="mr-2" />
-              <span>Create URL</span>
+              <span>{t('createUrl')}</span>
             </Button>
           </CreateUrl>
         </div>
         <div className="relative flex-grow">
           <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
           <Input
-            placeholder="Search by Short URL"
+            placeholder={t('searchPlaceholder')}
             value={shortUrl}
             onChange={(e) => setShortUrl(e.target.value)}
             className="pl-10 w-full"
@@ -65,18 +67,16 @@ export function Toolbar({ tags }: ToolbarProps) {
         <TagFilter tags={tags} onSelect={handleTagSelect} selectedTag={selectedTag} onTagClear={handleTagClear}>
           <Button variant="outline" className="flex items-center gap-2">
             <FilterIcon size={16} />
-            <span className="hidden sm:inline">Filter Tags</span>
+            <span className="hidden sm:inline">{t('filterTags')}</span>
           </Button>
         </TagFilter>
         {selectedTag && (
           <Button variant="outline" onClick={handleTagClear} className="flex items-center gap-2">
             <XIcon size={16} />
-            <span className="hidden sm:inline">Clear Filter</span>
+            <span className="hidden sm:inline">{t('clearFilter')}</span>
           </Button>
         )}
       </div>
-
     </div>
-  )
+  );
 }
-

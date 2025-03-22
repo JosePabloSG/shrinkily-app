@@ -1,0 +1,8 @@
+{
+  "deleteTagTitle": "Delete this tag?",
+  "deleteTagDescription": "This action cannot be undone. The tag will be permanently deleted, but any associated URLs will remain intact.",
+  "cancel": "Cancel",
+  "deleteTagButton": "Delete Tag",
+  "deleteSuccess": "Tag deleted successfully",
+  "deleteError": "An error occurred while deleting the tag"
+}

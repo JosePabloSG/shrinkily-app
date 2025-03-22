@@ -1,0 +1,8 @@
+{
+  "cardTitle": "Account",
+  "cardSubtitle": "Update your account information",
+  "yourName": "Your name",
+  "yourEmail": "Your email",
+  "nameManaged": "Name is managed by your OAuth provider.",
+  "emailManaged": "Email address is managed by your OAuth provider."
+}

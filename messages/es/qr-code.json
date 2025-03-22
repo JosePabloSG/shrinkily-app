@@ -1,0 +1,18 @@
+{
+  "qrTitle": "Código QR de Shrinkily",
+  "qrDescription": "Escanea este código QR para acceder a tu URL acortada",
+  "yourShortenedUrl": "Tu URL acortada",
+  "close": "Cerrar",
+  "downloadPng": "Descargar PNG",
+  "downloadSuccess": "¡Código QR descargado con éxito!",
+  "downloadError": "Error al descargar el código QR",
+  "fullScreen": "Pantalla Completa",
+  "exitFullScreen": "Salir de Pantalla Completa",
+  "scanToVisit": "Escanea para visitar",
+  "designBy": "Diseñado por José Pablo",
+  "fullScreenError": "Error al cambiar a modo de pantalla completa",
+  "share": "Compartir",
+  "copySuccess": "¡URL copiada al portapapeles!",
+  "copyError": "Error al copiar la URL",
+  "shareSuccess": "¡URL compartida con éxito!"
+}

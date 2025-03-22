@@ -4,7 +4,7 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import { db } from "./server/data-source";
 import { getAccountByUserId } from "./server/utils/account";
 import { getUserById } from "./server/utils/user";
-import authConfig from "./auth.config";
+import authConfig from "./config/auth.config";
 
 export const {
   handlers: { GET, POST },

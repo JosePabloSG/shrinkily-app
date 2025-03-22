@@ -20,6 +20,7 @@ import { CreateLinkProps, UrlFormData } from "@/types/urls/url.types";
 import { generateRandomShortUrl, validateUrlDifference } from "@/server/utils/url-utilis";
 import SelectTagsLink from "./select-tags";
 import { isShortUrlAvailable } from "@/server/queries";
+import { useTranslations } from "next-intl";
 
 export function CreateUrl({ children, shortUrl: initialShortUrl, tags }: CreateLinkProps) {
   const [isPending, startTransition] = useTransition();
@@ -27,6 +28,7 @@ export function CreateUrl({ children, shortUrl: initialShortUrl, tags }: CreateL
   const [error, setError] = useState<string | null>(null);
   const [isRandomizing, setIsRandomizing] = useState(false);
   const { selectedTags, toggleTag, removeTag, clearTags } = useTagSelection();
+  const t = useTranslations('create-url');
 
   const form = useForm<UrlFormData>({
     resolver: zodResolver(CreateUrlSchema),
@@ -38,7 +40,7 @@ export function CreateUrl({ children, shortUrl: initialShortUrl, tags }: CreateL
 
   const handleSubmit = async (values: UrlFormData) => {
     if (!validateUrlDifference(values.shortUrl, values.url)) {
-      setError("The URL and the shortUrl cannot be the same");
+      setError(t('UrlErrorMessage'));
       return;
     }
 
@@ -46,13 +48,13 @@ export function CreateUrl({ children, shortUrl: initialShortUrl, tags }: CreateL
       try {
         const shortUrlExists = await isShortUrlAvailable(values.shortUrl);
         if (!shortUrlExists) {
-          toast.error("The shortUrl already exists. Write another or generate a random shortUrl.");
+          toast.error(t('ShortUrlExistsError'));
           return;
         }
 
         const result = await createUrl(values);
         if (result.isError && result.isLimit) {
-          toast.error("You have reached the limit of links you can create. Please delete some links to create new ones.");
+          toast.error(t('LimitReachedError'));
           return;
         }
 
@@ -62,11 +64,11 @@ export function CreateUrl({ children, shortUrl: initialShortUrl, tags }: CreateL
           );
         }
 
-        toast.success("Link created successfully");
+        toast.success(t('SuccessMessage'));
         handleReset();
       } catch (error) {
         console.error("Error creating URL:", error);
-        toast.error("An unexpected error has occurred. Please try again later.");
+        toast.error(t('UnexpectedError'));
       } finally {
         setError(null);
       }
@@ -88,7 +90,6 @@ export function CreateUrl({ children, shortUrl: initialShortUrl, tags }: CreateL
     setIsRandomizing(true);
     form.setValue("shortUrl", generateRandomShortUrl());
 
-    // Remover la clase de animación después de 500ms
     setTimeout(() => {
       setIsRandomizing(false);
     }, 500);
@@ -99,9 +100,9 @@ export function CreateUrl({ children, shortUrl: initialShortUrl, tags }: CreateL
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader className="mb-4">
-          <DialogTitle className="text-2xl font-semibold">Create New Link</DialogTitle>
+          <DialogTitle className="text-2xl font-semibold">{t('DialogTitle')}</DialogTitle>
           <DialogDescription>
-            Fill in the form below to create a new link.
+            {t('DialogDescription')}
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -112,7 +113,7 @@ export function CreateUrl({ children, shortUrl: initialShortUrl, tags }: CreateL
                 name="url"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-sm font-medium">Destination URL</FormLabel>
+                    <FormLabel className="text-sm font-medium">{t('DestinationUrlLabel')}</FormLabel>
                     <FormControl>
                       <div className="relative">
                         <LinkIcon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
@@ -120,7 +121,7 @@ export function CreateUrl({ children, shortUrl: initialShortUrl, tags }: CreateL
                           {...field}
                           value={field.value || ""}
                           autoComplete="off"
-                          placeholder="https://"
+                          placeholder={t('DestinationUrlPlaceholder')}
                           disabled={isPending}
                           className="pl-10"
                         />
@@ -135,13 +136,13 @@ export function CreateUrl({ children, shortUrl: initialShortUrl, tags }: CreateL
                 name="shortUrl"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-sm font-medium">Short Link</FormLabel>
+                    <FormLabel className="text-sm font-medium">{t('ShortLinkLabel')}</FormLabel>
                     <FormControl>
                       <div className="relative flex items-center">
                         <Input
                           {...field}
                           value={field.value || ""}
-                          placeholder="mylink"
+                          placeholder={t('ShortLinkPlaceholder')}
                           disabled={isPending}
                           className="pr-24"
                         />
@@ -154,7 +155,7 @@ export function CreateUrl({ children, shortUrl: initialShortUrl, tags }: CreateL
                             size={16}
                             className={`mr-2 transition-transform duration-500 ${isRandomizing ? 'rotate-180' : ''}`}
                           />
-                          <span className="text-xs">Randomize</span>
+                          <span className="text-xs">{t('RandomizeButton')}</span>
                         </Button>
                       </div>
                     </FormControl>
@@ -173,7 +174,7 @@ export function CreateUrl({ children, shortUrl: initialShortUrl, tags }: CreateL
               ) : (
                 <div className="flex items-center justify-center space-x-2 rounded-md border border-neutral-200 py-3 text-sm dark:border-neutral-800">
                   <TagIcon size={16} />
-                  <p className="font-medium">You don't have any tags created.</p>
+                  <p className="font-medium">{t('NoTagsMessage')}</p>
                 </div>
               )}
             </div>
@@ -184,7 +185,7 @@ export function CreateUrl({ children, shortUrl: initialShortUrl, tags }: CreateL
                   disabled={isPending}
                   className="mt-2 sm:mt-0"
                 >
-                  Cancel
+                  {t('CancelButton')}
                 </Button>
               </DialogClose>
 
@@ -196,12 +197,12 @@ export function CreateUrl({ children, shortUrl: initialShortUrl, tags }: CreateL
                 {isPending ? (
                   <>
                     <Loader2Icon size={16} className="mr-2 animate-spin" />
-                    <span>Creating...</span>
+                    <span>{t('CreatingButton')}</span>
                   </>
                 ) : (
                   <>
                     <LinkIcon size={16} className="mr-2" />
-                    <span>Create Link</span>
+                    <span>{t('CreateButton')}</span>
                   </>
                 )}
               </Button>

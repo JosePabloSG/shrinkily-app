@@ -1,0 +1,20 @@
+{
+  "title": "Eliminar cuenta",
+  "description": "Elimina permanentemente tu cuenta",
+  "dialog": {
+    "title": "¿Estás seguro de que deseas eliminar tu cuenta?",
+    "description": "Esta acción no se puede deshacer. Esto eliminará permanentemente tu cuenta y eliminará tus datos de nuestros servidores."
+  },
+  "input": {
+    "label": "Por favor, escribe tu correo electrónico para confirmar:",
+    "placeholder": "Ingresa tu correo"
+  },
+  "buttons": {
+    "cancel": "Cancelar",
+    "delete": "Eliminar cuenta",
+    "deleting": "Eliminando cuenta..."
+  },
+  "toast": {
+    "error": "Ocurrió un error al eliminar tu cuenta"
+  }
+}

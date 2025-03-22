@@ -1,0 +1,8 @@
+{
+  "deleteConfirmationTitle": "¿Estás completamente seguro?",
+  "deleteConfirmationDescription": "Esta acción no se puede deshacer. Esto eliminará permanentemente la URL.",
+  "cancel": "Cancelar",
+  "delete": "Eliminar",
+  "deleteSuccess": "URL eliminada con éxito",
+  "deleteError": "Ocurrió un error al eliminar la URL"
+}

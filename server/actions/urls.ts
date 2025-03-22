@@ -4,7 +4,10 @@ import { auth } from "@/auth";
 import { CreateUrlSchema, EditUrlSchema } from "@/schemas/url.schema";
 import { z } from "zod";
 import { db } from "../data-source";
-import { revalidateDashboardUrls, UNAUTHETICATION_ERROR } from "./actions.config";
+import {
+  revalidateDashboardUrls,
+  UNAUTHETICATION_ERROR,
+} from "@/config/actions.config";
 
 /**
  * Response for URL actions.

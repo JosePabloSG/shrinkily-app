@@ -1,0 +1,10 @@
+{
+  "editUrlTitle": "Edit URL",
+  "editUrlDescription": "Make changes to your URL here. Click save when you're done.",
+  "destinationUrl": "Destination URL",
+  "shortUrl": "Short URL",
+  "cancel": "Cancel",
+  "saveChanges": "Save changes",
+  "updateSuccess": "URL updated successfully!",
+  "updateError": "Something went wrong"
+}
