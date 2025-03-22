@@ -216,11 +216,6 @@ const QRCodeDialog = ({ urlInfo, children }: QRCodeDialogProps) => {
               <Maximize2 className="mr-2 h-4 w-4" />
               {t("fullScreen") || "Full Screen"}
             </Button>
-            <DialogClose asChild>
-              <Button variant="outline" className="border-2 border-gravel-200 text-gravel-700 hover:bg-gravel-50">
-                {t("close")}
-              </Button>
-            </DialogClose>
             <Button
               onClick={handleDownloadQR}
               disabled={isDownloading}
@@ -296,7 +291,7 @@ const QRCodeDialog = ({ urlInfo, children }: QRCodeDialogProps) => {
             <Button
               onClick={handleDownloadQR}
               disabled={isDownloading}
-              className="bg-blue-violet-600 text-white hover:bg-blue-violet-700 transition-colors"
+              className="bg-blue-violet-600 text-white hover:bg-blue-violet-700 transition-colors rounded-full px-6 py-3 shadow-md cursor-pointer"
             >
               {isDownloading ? (
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
