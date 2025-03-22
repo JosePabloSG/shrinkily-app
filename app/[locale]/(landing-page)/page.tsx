@@ -50,10 +50,11 @@ export default function Home() {
       </div>
 
       <main className="flex-grow flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Cabecera con animación optimizada */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.2, ease: [0.2, 0, 0.3, 1] }}
           className="text-center"
         >
           <h1 className="text-4xl md:text-5xl font-bold text-gravel-900 mb-4">
@@ -67,10 +68,11 @@ export default function Home() {
           </p>
         </motion.div>
 
+        {/* Formulario con animación coordinada */}
         <motion.form
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          transition={{ duration: 0.2, delay: 0.1, ease: [0.2, 0, 0.3, 1] }}
           className="w-full max-w-md md:max-w-lg"
           onSubmit={handleSubmit}
         >
