@@ -267,7 +267,7 @@ const QRCodeDialog = ({ urlInfo, children }: QRCodeDialogProps) => {
           <div className="rounded-xl border-4 border-blue-violet-100 bg-white p-10 shadow-xl dark:bg-gravel-950 transition-all duration-500 hover:shadow-2xl relative group">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-violet-200/20 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <QRCode
-              size={400}
+              size={560}
               style={{ height: "auto", maxWidth: "100%", width: "100%" }}
               value={fullUrl}
               viewBox={`0 0 256 256`}
