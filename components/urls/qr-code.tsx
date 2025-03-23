@@ -79,14 +79,9 @@ const QRCodeEditor = ({ url, shortId = "custom", urlInfo, children }: QRCodeEdit
           }
         }
 
-        // Fall back to last used style if no URL-specific style is found
-        const lastStyleStr = localStorage.getItem("qrCodeLastStyle")
-        if (lastStyleStr) {
-          const lastStyle = JSON.parse(lastStyleStr)
-          setQrStyles(lastStyle)
-          setPreviousQrStyles(lastStyle)
-        }
-
+        // If no URL-specific style, use default
+        setQrStyles(DEFAULT_QR_STYLES)
+        setPreviousQrStyles(DEFAULT_QR_STYLES)
         setStylesLoaded(true)
       } catch (error) {
         console.error("Error loading saved QR styles:", error)
@@ -100,14 +95,9 @@ const QRCodeEditor = ({ url, shortId = "custom", urlInfo, children }: QRCodeEdit
 
   // Save current style to localStorage when it changes
   useEffect(() => {
-    if (stylesLoaded) {
-      // Always save as the last used style
-      localStorage.setItem("qrCodeLastStyle", JSON.stringify(qrStyles))
-
-      // If we have a specific shortId, also save as URL-specific style
-      if (shortId && shortId !== "custom") {
-        localStorage.setItem(`qrCode_${shortId}`, JSON.stringify(qrStyles))
-      }
+    if (stylesLoaded && shortId && shortId !== "custom") {
+      // Save URL-specific style
+      localStorage.setItem(`qrCode_${shortId}`, JSON.stringify(qrStyles))
     }
   }, [qrStyles, stylesLoaded, shortId])
 
@@ -262,6 +252,7 @@ const QRCodeEditor = ({ url, shortId = "custom", urlInfo, children }: QRCodeEdit
     }
   }
 
+  // Update saveCurrentStyle to only handle global styles
   const saveCurrentStyle = () => {
     if (!currentStyleName.trim()) {
       return
@@ -277,11 +268,17 @@ const QRCodeEditor = ({ url, shortId = "custom", urlInfo, children }: QRCodeEdit
     setCurrentStyleName("")
   }
 
+  // Update loadSavedStyle to handle applying global styles to current QR
   const loadSavedStyle = (styleName: string) => {
     const style = savedStyles[styleName]
     if (style) {
       setPreviousQrStyles(qrStyles)
       setQrStyles(style)
+
+      // Save as URL-specific style if we have a shortId
+      if (shortId && shortId !== "custom") {
+        localStorage.setItem(`qrCode_${shortId}`, JSON.stringify(style))
+      }
     }
   }
 
@@ -332,6 +329,14 @@ const QRCodeEditor = ({ url, shortId = "custom", urlInfo, children }: QRCodeEdit
     })
   }
 
+  // Add function to remove URL-specific style
+  const resetUrlStyle = () => {
+    if (shortId && shortId !== "custom") {
+      localStorage.removeItem(`qrCode_${shortId}`)
+      setQrStyles(DEFAULT_QR_STYLES)
+      setPreviousQrStyles(DEFAULT_QR_STYLES)
+    }
+  }
 
   return (
     <>
