@@ -1,0 +1,35 @@
+{
+  "title": "Configuración de Logo",
+  "showLogo": {
+    "label": "Mostrar Logo"
+  },
+  "warning": {
+    "title": "Agregar un logo puede afectar el escaneo del código QR. Para mejores resultados:",
+    "points": [
+      "Mantén el logo pequeño (menos del 25% del tamaño del QR)",
+      "Usa el nivel de corrección de errores \"Alto\"",
+      "Prueba el escaneo con diferentes dispositivos"
+    ]
+  },
+  "logoUpload": {
+    "uploadButton": "Subir Logo",
+    "changeButton": "Cambiar Logo"
+  },
+  "logoSize": {
+    "label": "Tamaño del Logo",
+    "unit": "px",
+    "warningText": "puede afectar el escaneo",
+    "status": {
+      "optimal": "Tamaño de logo óptimo para escaneo confiable",
+      "acceptable": "Tamaño de logo aceptable pero cerca del límite",
+      "tooLarge": "El logo puede ser demasiado grande para un escaneo confiable"
+    }
+  },
+  "logoCornerRounding": {
+    "label": "Redondeo de Esquinas del Logo",
+    "unit": "px"
+  },
+  "logoBackground": {
+    "label": "Fondo del Logo"
+  }
+}

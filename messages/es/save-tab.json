@@ -1,0 +1,18 @@
+{
+  "title": "Guardar y Cargar Estilos",
+  "styleName": {
+    "placeholder": "Nombre del estilo"
+  },
+  "saveButtons": {
+    "saveGlobally": "Guardar Globalmente",
+    "saveForThisUrl": "Guardar para Esta URL"
+  },
+  "savedStyles": {
+    "label": "Estilos Guardados",
+    "emptyState": "Aún no hay estilos guardados. ¡Personaliza tu código QR y guarda un estilo!",
+    "actions": {
+      "apply": "Aplicar",
+      "delete": "Eliminar"
+    }
+  }
+}

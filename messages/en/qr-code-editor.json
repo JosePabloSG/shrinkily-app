@@ -1,0 +1,34 @@
+{
+  "title": "QR Code Editor",
+  "subtitle": "Personalize your QR code",
+  "yourUrl": "Your URL",
+  "tabs": {
+    "colors": "Colors",
+    "sizeShape": "Size & Shape",
+    "logo": "Logo",
+    "savedStyles": "Saved Styles"
+  },
+  "buttons": {
+    "fullscreenMode": "Fullscreen Mode",
+    "copyUrl": "Copy URL",
+    "shareUrl": "Share URL",
+    "downloadPng": "Download PNG",
+    "undo": "Undo",
+    "undoTooltip": "Undo Last Change",
+    "reset": "Reset",
+    "resetTooltip": "Reset to Default",
+    "downloadQr": "Download QR",
+    "exitFullscreen": "Exit Fullscreen",
+    "scanToVisit": "Scan to Visit",
+    "saveGlobally": "Save Globally",
+    "saveForThisUrl": "Save for This URL",
+    "apply": "Apply",
+    "delete": "Delete",
+    "noStyles": "No saved styles yet. Customize your QR code and save a style!"
+  },
+  "actions": {
+    "copied": "Copied!",
+    "saved": "Style saved!",
+    "savedForUrl": "Style saved for this URL"
+  }
+}
