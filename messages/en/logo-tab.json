@@ -1,0 +1,35 @@
+{
+  "title": "Logo Settings",
+  "showLogo": {
+    "label": "Show Logo"
+  },
+  "warning": {
+    "title": "Adding a logo may affect QR code scanning. For best results:",
+    "points": [
+      "Keep the logo small (under 25% of QR size)",
+      "Use \"High\" error correction level",
+      "Test scanning with different devices"
+    ]
+  },
+  "logoUpload": {
+    "uploadButton": "Upload Logo",
+    "changeButton": "Change Logo"
+  },
+  "logoSize": {
+    "label": "Logo Size",
+    "unit": "px",
+    "warningText": "may affect scanning",
+    "status": {
+      "optimal": "Optimal logo size for reliable scanning",
+      "acceptable": "Logo size is acceptable but near the limit",
+      "tooLarge": "Logo may be too large for reliable scanning"
+    }
+  },
+  "logoCornerRounding": {
+    "label": "Logo Corner Rounding",
+    "unit": "px"
+  },
+  "logoBackground": {
+    "label": "Logo Background"
+  }
+}

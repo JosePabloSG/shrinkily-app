@@ -1,0 +1,34 @@
+{
+  "title": "Editor de Código QR",
+  "subtitle": "Personaliza tu código QR",
+  "yourUrl": "Tu URL",
+  "tabs": {
+    "colors": "Colores",
+    "sizeShape": "Tamaño y Forma",
+    "logo": "Logo",
+    "savedStyles": "Estilos Guardados"
+  },
+  "buttons": {
+    "fullscreenMode": "Modo Pantalla Completa",
+    "copyUrl": "Copiar URL",
+    "shareUrl": "Compartir URL",
+    "downloadPng": "Descargar PNG",
+    "undo": "Deshacer",
+    "undoTooltip": "Deshacer Último Cambio",
+    "reset": "Restablecer",
+    "resetTooltip": "Restablecer por Defecto",
+    "downloadQr": "Descargar QR",
+    "exitFullscreen": "Salir de Pantalla Completa",
+    "scanToVisit": "Escanea para visitar",
+    "saveGlobally": "Guardar Globalmente",
+    "saveForThisUrl": "Guardar para esta URL",
+    "apply": "Aplicar",
+    "delete": "Eliminar",
+    "noStyles": "No hay estilos guardados aún. ¡Personaliza tu código QR y guarda un estilo!"
+  },
+  "actions": {
+    "copied": "¡Copiado!",
+    "saved": "¡Estilo guardado!",
+    "savedForUrl": "Estilo guardado para esta URL"
+  }
+}

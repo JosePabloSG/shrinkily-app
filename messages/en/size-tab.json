@@ -1,0 +1,15 @@
+{
+  "title": "Size & Shape",
+  "qrCodeSize": {
+    "label": "QR Code Size",
+    "unit": "px"
+  },
+  "margin": {
+    "label": "Margin",
+    "unit": "px"
+  },
+  "cornerRounding": {
+    "label": "Corner Rounding",
+    "unit": "px"
+  }
+}

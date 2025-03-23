@@ -19,6 +19,11 @@ export const sections = [
   "delete-url-alert",
   "card-url",
   "popover-content-mobile",
+  "qr-code-editor",
+  "color-tab",
+  "size-tab",
+  "logo-tab",
+  "save-tab",
 ] as const;
 
 export type MessageSection = (typeof sections)[number];

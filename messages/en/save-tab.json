@@ -1,0 +1,18 @@
+{
+  "title": "Save & Load Styles",
+  "styleName": {
+    "placeholder": "Style name"
+  },
+  "saveButtons": {
+    "saveGlobally": "Save Globally",
+    "saveForThisUrl": "Save for This URL"
+  },
+  "savedStyles": {
+    "label": "Saved Styles",
+    "emptyState": "No saved styles yet. Customize your QR code and save a style!",
+    "actions": {
+      "apply": "Apply",
+      "delete": "Delete"
+    }
+  }
+}

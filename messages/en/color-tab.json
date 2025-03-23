@@ -1,0 +1,21 @@
+{
+  "title": "Color Settings",
+  "colorPresets": {
+    "label": "Color Presets"
+  },
+  "qrCodeColor": {
+    "label": "QR Code Color"
+  },
+  "backgroundColor": {
+    "label": "Background Color"
+  },
+  "errorCorrectionLevel": {
+    "label": "Error Correction Level",
+    "recommendWithLogo": "Recommend \"High\" with logo",
+    "description": "Higher correction allows the QR code to be readable even when partially covered or damaged.",
+    "logoWarning": "Using a logo requires higher correction levels."
+  },
+  "selectLevel": {
+    "placeholder": "Select a level"
+  }
+}
