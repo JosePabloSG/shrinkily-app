@@ -1,0 +1,15 @@
+{
+  "title": "Tamaño y Forma",
+  "qrCodeSize": {
+    "label": "Tamaño del Código QR",
+    "unit": "px"
+  },
+  "margin": {
+    "label": "Margen",
+    "unit": "px"
+  },
+  "cornerRounding": {
+    "label": "Redondeo de Esquinas",
+    "unit": "px"
+  }
+}
