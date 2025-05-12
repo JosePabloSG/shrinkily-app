@@ -8,14 +8,14 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { DialogClose, DialogTitle } from "@radix-ui/react-dialog";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import { Button } from "../ui/button";
-import { Loader2Icon, LinkIcon, RefreshCwIcon, TagIcon } from 'lucide-react';
+import { Loader2Icon, LinkIcon, RefreshCwIcon, TagIcon, Sparkles } from 'lucide-react';
 import { Input } from "../ui/input";
 import { Alert } from "../ui/alert";
 import { createUrl } from "@/server/actions/urls";
 import { AddTagToUrl } from "@/server/actions/tags";
 import { CreateUrlSchema } from "@/schemas/url.schema";
 import { useTagSelection } from "@/hooks/useTagSelection";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { CreateLinkProps, UrlFormData } from "@/types/urls/url.types";
 import { generateRandomShortUrl, validateUrlDifference } from "@/server/utils/url-utilis";
 import SelectTagsLink from "./select-tags";
@@ -27,6 +27,8 @@ export function CreateUrl({ children, shortUrl: initialShortUrl, tags }: CreateL
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isRandomizing, setIsRandomizing] = useState(false);
+  const [isSuggesting, setIsSuggesting] = useState(false);
+  const userEditedShortUrl = useRef(false);
   const { selectedTags, toggleTag, removeTag, clearTags } = useTagSelection();
   const t = useTranslations('create-url');
 
@@ -37,6 +39,36 @@ export function CreateUrl({ children, shortUrl: initialShortUrl, tags }: CreateL
       shortUrl: initialShortUrl || ""
     }
   });
+
+  // Detecta si el usuario edita manualmente el shortUrl
+  useEffect(() => {
+    const subscription = form.watch((value, { name }) => {
+      if (name === "shortUrl") {
+        userEditedShortUrl.current = true;
+      }
+    });
+    return () => subscription.unsubscribe();
+  }, [form]);
+
+  // Sugiere shortUrl automáticamente al ingresar una URL
+  const watchedUrl = form.watch("url");
+  useEffect(() => {
+    if (!watchedUrl || userEditedShortUrl.current) return;
+    setIsSuggesting(true);
+    fetch("/api/shorturl-suggestion", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ url: watchedUrl }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.suggestion) {
+          form.setValue("shortUrl", data.suggestion, { shouldDirty: true });
+        }
+      })
+      .catch(() => { })
+      .finally(() => setIsSuggesting(false));
+  }, [watchedUrl, form]);
 
   const handleSubmit = async (values: UrlFormData) => {
     if (!validateUrlDifference(values.shortUrl, values.url)) {
@@ -136,7 +168,15 @@ export function CreateUrl({ children, shortUrl: initialShortUrl, tags }: CreateL
                 name="shortUrl"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-sm font-medium">{t('ShortLinkLabel')}</FormLabel>
+                    <FormLabel className="text-sm font-medium flex items-center">
+                      {t('ShortLinkLabel')}
+                      {!isSuggesting && !userEditedShortUrl.current && field.value && (
+                        <span className="ml-2 text-xs text-blue-500 flex items-center">
+                          <Sparkles size={16} className="mr-1 animate-pulse" />
+                          Sugerido por IA (puedes editarlo)
+                        </span>
+                      )}
+                    </FormLabel>
                     <FormControl>
                       <div className="relative flex items-center">
                         <Input
@@ -146,6 +186,12 @@ export function CreateUrl({ children, shortUrl: initialShortUrl, tags }: CreateL
                           disabled={isPending}
                           className="pr-24"
                         />
+                        {isSuggesting && (
+                          <span className="absolute right-20 flex items-center animate-pulse">
+                            <Sparkles size={18} className="text-blue-400" />
+                            <span className="ml-1 text-xs text-blue-400 font-semibold">IA</span>
+                          </span>
+                        )}
                         <Button
                           onClick={handleGenerateRandomShortUrl}
                           variant="outline"
