@@ -1,10 +1,9 @@
 "use client"
 
 import type React from "react"
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, useCallback } from "react"
 import {
   DownloadIcon,
-  Loader2,
   Maximize2,
   Share2,
   Copy,
@@ -21,6 +20,7 @@ import { Dialog, DialogContent, DialogTitle, DialogClose, DialogTrigger } from "
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import toast, { Toaster } from 'react-hot-toast'
 
 import { DEFAULT_QR_STYLES, type COLOR_PRESETS, calculateMaxLogoSize, type QRStylesType } from "./constants"
 import { QRPreview } from "./qr-preview"
@@ -31,6 +31,7 @@ import { LogoTab } from "./logo-tab"
 import { SaveTab } from "./save-tab"
 import { Urls } from "@prisma/client"
 import { useTranslations } from "next-intl"
+import { createQRStyle, getUserQRStyles, deleteQRStyle } from "@/server/actions/qrstyle";
 
 interface QRCodeEditorDialogProps {
   children: React.ReactNode
@@ -45,7 +46,7 @@ const QRCodeEditor = ({ url, shortId = "custom", urlInfo, children }: QRCodeEdit
   const [isCopied, setIsCopied] = useState(false)
   const [qrStyles, setQrStyles] = useState<QRStylesType>(DEFAULT_QR_STYLES)
   const [previousQrStyles, setPreviousQrStyles] = useState<QRStylesType>(DEFAULT_QR_STYLES)
-  const [savedStyles, setSavedStyles] = useState<Record<string, QRStylesType>>({})
+  const [savedStyles, setSavedStyles] = useState<Record<string, QRStylesType & { id: string; name?: string | null }>>({})
   const [currentStyleName, setCurrentStyleName] = useState("")
   const [stylesLoaded, setStylesLoaded] = useState(false)
   const [activeTab, setActiveTab] = useState("colors")
@@ -56,50 +57,83 @@ const QRCodeEditor = ({ url, shortId = "custom", urlInfo, children }: QRCodeEdit
 
   const fullUrl = url || (urlInfo?.url || "")
 
-  // Load saved styles from localStorage
+  // Hook para cargar estilos del usuario desde la base de datos
   useEffect(() => {
-    const loadStyles = () => {
+    async function fetchStyles() {
       try {
-        // Load global saved styles first
-        const savedStylesStr = localStorage.getItem("qrCodeSavedStyles")
-        if (savedStylesStr) {
-          const styles = JSON.parse(savedStylesStr)
-          setSavedStyles(styles || {})
+        const stylesArr = await getUserQRStyles();
+        // Convierte el array a un objeto { name: QRStylesType }
+        const stylesObj: Record<string, QRStylesType & { id: string; name?: string | null }> = {};
+        for (const style of stylesArr) {
+          if (style.name) stylesObj[style.name] = { ...style, logoUrl: style.logoUrl || "" };
         }
-
-        // Then try to load URL-specific style if available
-        if (shortId && shortId !== "custom") {
-          const urlSpecificStyleStr = localStorage.getItem(`qrCode_${shortId}`)
-          if (urlSpecificStyleStr) {
-            const urlSpecificStyle = JSON.parse(urlSpecificStyleStr)
-            setQrStyles(urlSpecificStyle)
-            setPreviousQrStyles(urlSpecificStyle)
-            setStylesLoaded(true)
-            return
-          }
-        }
-
-        // If no URL-specific style, use default
-        setQrStyles(DEFAULT_QR_STYLES)
-        setPreviousQrStyles(DEFAULT_QR_STYLES)
-        setStylesLoaded(true)
-      } catch (error) {
-        console.error("Error loading saved QR styles:", error)
-        setSavedStyles({})
-        setStylesLoaded(true)
+        setSavedStyles(stylesObj);
+        setStylesLoaded(true);
+      } catch {
+        setSavedStyles({});
+        setStylesLoaded(true);
       }
     }
+    fetchStyles();
+  }, []);
 
-    loadStyles()
-  }, [shortId])
-
-  // Save current style to localStorage when it changes
-  useEffect(() => {
-    if (stylesLoaded && shortId && shortId !== "custom") {
-      // Save URL-specific style
-      localStorage.setItem(`qrCode_${shortId}`, JSON.stringify(qrStyles))
+  // Save current style to database
+  const saveCurrentStyle = useCallback(async () => {
+    if (!currentStyleName.trim()) {
+      toast.error(t("messages.nameRequired"));
+      return;
     }
-  }, [qrStyles, stylesLoaded, shortId])
+
+    await toast.promise(
+      (async () => {
+        await createQRStyle({ ...qrStyles, name: currentStyleName });
+        const stylesArr = await getUserQRStyles();
+        const stylesObj: Record<string, QRStylesType & { id: string; name?: string | null }> = {};
+        for (const style of stylesArr) {
+          if (style.name) stylesObj[style.name] = { ...style, logoUrl: style.logoUrl || "" };
+        }
+        setSavedStyles(stylesObj);
+        setCurrentStyleName("");
+      })(),
+      {
+        loading: t("messages.saving"),
+        success: t("messages.saved"),
+        error: t("messages.savingError"),
+      }
+    );
+  }, [currentStyleName, qrStyles, t]);
+
+  // Load saved style
+  const loadSavedStyle = (styleName: string) => {
+    const style = savedStyles[styleName];
+    if (style) {
+      setPreviousQrStyles(qrStyles);
+      setQrStyles(style);
+    }
+  };
+
+  // Delete saved style
+  const deleteSavedStyle = useCallback(async (styleName: string) => {
+    const style = savedStyles[styleName];
+    if (style && style.id) {
+      await toast.promise(
+        (async () => {
+          await deleteQRStyle(style.id);
+          const stylesArr = await getUserQRStyles();
+          const stylesObj: Record<string, QRStylesType & { id: string; name?: string | null }> = {};
+          for (const s of stylesArr) {
+            if (s.name) stylesObj[s.name] = { ...s, logoUrl: s.logoUrl || "" };
+          }
+          setSavedStyles(stylesObj);
+        })(),
+        {
+          loading: t("messages.deleting"),
+          success: t("messages.deleted"),
+          error: t("messages.deletingError"),
+        }
+      );
+    }
+  }, [savedStyles, t]);
 
   // Handle fullscreen change events
   useEffect(() => {
@@ -252,42 +286,6 @@ const QRCodeEditor = ({ url, shortId = "custom", urlInfo, children }: QRCodeEdit
     }
   }
 
-  // Update saveCurrentStyle to only handle global styles
-  const saveCurrentStyle = () => {
-    if (!currentStyleName.trim()) {
-      return
-    }
-
-    const newSavedStyles = {
-      ...savedStyles,
-      [currentStyleName]: { ...qrStyles },
-    }
-
-    setSavedStyles(newSavedStyles)
-    localStorage.setItem("qrCodeSavedStyles", JSON.stringify(newSavedStyles))
-    setCurrentStyleName("")
-  }
-
-  // Update loadSavedStyle to handle applying global styles to current QR
-  const loadSavedStyle = (styleName: string) => {
-    const style = savedStyles[styleName]
-    if (style) {
-      setPreviousQrStyles(qrStyles)
-      setQrStyles(style)
-
-      // Save as URL-specific style if we have a shortId
-      if (shortId && shortId !== "custom") {
-        localStorage.setItem(`qrCode_${shortId}`, JSON.stringify(style))
-      }
-    }
-  }
-
-  const deleteSavedStyle = (styleName: string) => {
-    const { [styleName]: _, ...restStyles } = savedStyles
-    setSavedStyles(restStyles)
-    localStorage.setItem("qrCodeSavedStyles", JSON.stringify(restStyles))
-  }
-
   const resetToDefault = () => {
     setPreviousQrStyles(qrStyles)
     setQrStyles(DEFAULT_QR_STYLES)
@@ -327,15 +325,6 @@ const QRCodeEditor = ({ url, shortId = "custom", urlInfo, children }: QRCodeEdit
       fgColor: preset.fg,
       bgColor: preset.bg,
     })
-  }
-
-  // Add function to remove URL-specific style
-  const resetUrlStyle = () => {
-    if (shortId && shortId !== "custom") {
-      localStorage.removeItem(`qrCode_${shortId}`)
-      setQrStyles(DEFAULT_QR_STYLES)
-      setPreviousQrStyles(DEFAULT_QR_STYLES)
-    }
   }
 
   return (
@@ -623,6 +612,8 @@ const QRCodeEditor = ({ url, shortId = "custom", urlInfo, children }: QRCodeEdit
           fullUrl={fullUrl} // Pasar la URL completa
         />
       )}
+
+      <Toaster />
     </>
   )
 }
