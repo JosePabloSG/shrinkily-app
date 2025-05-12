@@ -14,5 +14,14 @@
       "apply": "Aplicar",
       "delete": "Eliminar"
     }
+  },
+  "messages": {
+    "nameRequired": "Por favor ingresa un nombre para el estilo",
+    "saving": "Guardando estilo...",
+    "saved": "¡Estilo guardado correctamente!",
+    "savingError": "Error al guardar el estilo",
+    "deleting": "Eliminando estilo...",
+    "deleted": "¡Estilo eliminado correctamente!",
+    "deletingError": "Error al eliminar el estilo"
   }
 }
