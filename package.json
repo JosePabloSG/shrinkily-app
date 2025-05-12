@@ -8,8 +8,12 @@
     "dev": "next dev",
     "start": "next start",
     "lint": "next lint",
+    "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev --name init",
     "db:studio": "prisma studio",
+    "db:push": "turso db shell quickshrink < ./prisma/migrations/20250512205827_add_qrstyle_model/migration.sql --location=aws-eu-west-1",
+    "db:pscale:dump": "pscale database dump databasename databasebranch",
+    "db:turso:dump": "turso db shell <database> .dump > dump.sql --location=<location>",
     "vercel-build": "prisma generate && next build"
   },
   "builds": [
