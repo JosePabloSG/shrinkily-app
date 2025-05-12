@@ -82,13 +82,13 @@ model User {
   password      String?
   limitUrl      Int       @default(30)
   accounts      Account[]
-  qrStyles      QRStyle[]
+  qrCustomStyles QrCustomStyle[]
   sessions      Session[]
   tags          Tags[]
   urls          Urls[]
 }
 
-model QRStyle {
+model QrCustomStyle {
   id                  String   @id @default(cuid())
   name                String?
   fgColor             String

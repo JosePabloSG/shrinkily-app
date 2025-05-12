@@ -30,5 +30,14 @@
     "copied": "Copied!",
     "saved": "Style saved!",
     "savedForUrl": "Style saved for this URL"
+  },
+  "messages": {
+    "nameRequired": "Please enter a name for the style",
+    "saving": "Saving style...",
+    "saved": "Style saved successfully!",
+    "savingError": "Error saving style",
+    "deleting": "Deleting style...",
+    "deleted": "Style deleted successfully!",
+    "deletingError": "Error deleting style"
   }
 }
