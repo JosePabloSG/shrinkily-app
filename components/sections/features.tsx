@@ -4,7 +4,7 @@ import { Link, ArrowRightLeft, BarChart2, QrCode, Eye, Pencil } from "lucide-rea
 import { motion } from 'framer-motion';
 import { useTranslations } from "next-intl";
 
-export default function Page() {
+export default function Features() {
   const t = useTranslations('feature-page');
 
   const features = [

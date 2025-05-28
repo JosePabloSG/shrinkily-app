@@ -4,7 +4,7 @@ import { Send } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 
-export default function Page() {
+export default function Docs() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [email, setEmail] = useState("");
 
@@ -67,4 +67,3 @@ export default function Page() {
     </div>
   );
 };
-
