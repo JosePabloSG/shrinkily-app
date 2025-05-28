@@ -32,7 +32,7 @@ export function Navbar() {
     if (user) {
       return (
         <Link href="/dashboard/urls">
-          <Button size="sm" variant={"primary"} className="w-full sm:w-auto">
+          <Button size="sm" variant={"primary"} className="rounded-full w-full sm:w-auto">
             {t('goDashboard')}
           </Button>
         </Link>
@@ -41,7 +41,7 @@ export function Navbar() {
 
     return (
       <Link href="/auth/signin">
-        <Button size="sm" variant={"primary"} className="w-full sm:w-auto">
+        <Button size="sm" variant={"primary"} className="rounded-full w-full sm:w-auto">
           {t('signIn')}
         </Button>
       </Link>
@@ -51,44 +51,56 @@ export function Navbar() {
   const navItems = getNavItems(t)
 
   return (
-    <nav className="sticky top-0 z-50 bg-dull-lavender-50 backdrop-blur-sm shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <div className="flex-shrink-0 flex items-center">
-            <Link href="/" className="text-2xl font-bold text-blue-violet-500">
-              Shrinkily
-            </Link>
-          </div>
+    <div className="sticky top-0 z-50 w-full px-4 sm:px-6 lg:px-8 pt-4">
+      {/* Glassmorphism Container */}
+      <div className="max-w-5xl mx-auto relative">
+        <div className="relative bg-white/20 backdrop-blur-2xl rounded-full border border-white/30 shadow-2xl shadow-blue-violet-500/10">
+          {/* Glass effect overlay with subtle gradient */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-transparent to-white/10 rounded-full"></div>
 
-          {/* Desktop menu */}
-          <DesktopMenu navItems={navItems} AuthButton={AuthButton} />
+          {/* Subtle crystal highlight */}
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent rounded-full"></div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
-            <button
-              type="button"
-              className="text-gravel-700 hover:text-blue-violet-600"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              <span className="sr-only">{t('openMainMenu')}</span>
-              {mobileMenuOpen ? (
-                <X className="block h-6 w-6" aria-hidden="true" />
-              ) : (
-                <Menu className="block h-6 w-6" aria-hidden="true" />
-              )}
-            </button>
+          {/* Inner content */}
+          <div className="relative px-6 py-4">
+            <div className="flex justify-between items-center">
+              {/* Logo */}
+              <div className="flex-shrink-0 flex items-center">
+                <Link href="/" className="text-2xl font-bold text-blue-violet-700 drop-shadow-sm">
+                  Shrinkily
+                </Link>
+              </div>
+
+              {/* Desktop menu */}
+              <DesktopMenu navItems={navItems} AuthButton={AuthButton} />
+
+              {/* Mobile menu button */}
+              <div className="md:hidden flex items-center">
+                <button
+                  type="button"
+                  className="text-gravel-700 hover:text-blue-violet-600 p-2 rounded-xl hover:bg-white/20 transition-all duration-200 backdrop-blur-sm"
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                >
+                  <span className="sr-only">{t('openMainMenu')}</span>
+                  {mobileMenuOpen ? (
+                    <X className="block h-6 w-6" aria-hidden="true" />
+                  ) : (
+                    <Menu className="block h-6 w-6" aria-hidden="true" />
+                  )}
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Mobile menu */}
-      <MobileMenu
-        navItems={navItems}
-        mobileMenuOpen={mobileMenuOpen}
-        setMobileMenuOpen={setMobileMenuOpen}
-        AuthButton={AuthButton}
-      />
-    </nav>
+        {/* Mobile menu */}
+        <MobileMenu
+          navItems={navItems}
+          mobileMenuOpen={mobileMenuOpen}
+          setMobileMenuOpen={setMobileMenuOpen}
+          AuthButton={AuthButton}
+        />
+      </div>
+    </div>
   )
 }
