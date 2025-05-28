@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
 import { useTranslations } from "next-intl";
 
-export default function Page() {
+export default function About() {
   const t = useTranslations('about-page');
 
   return (

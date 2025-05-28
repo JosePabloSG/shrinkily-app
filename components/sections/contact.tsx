@@ -11,7 +11,7 @@ const socialLinks = [
   { name: "LinkedIn", icon: FaLinkedinIn, url: "https://www.linkedin.com/in/JosePabloSG", hoverColor: "hover:text-[#0077B5]" },
 ];
 
-export default function Page() {
+export default function Contact() {
   const t = useTranslations("contact-page");
   return (
     <div className="min-h-screen bg-dull-lavender-50 text-dull-lavender-900">
