@@ -3,6 +3,7 @@
 import { Send } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
+import SectionTitle from "@/components/ui/section-title";
 
 export default function Docs() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -20,23 +21,21 @@ export default function Docs() {
   };
 
   return (
-    <div className="min-h-screen bg-dull-lavender-50 text-[#6B6B8D] flex flex-col items-center justify-center p-4">
+    <div className="py-24 bg-dull-lavender-50 text-[#6B6B8D] flex flex-col items-center justify-center p-4">
       {/* Loading Progress Indicator */}
       <div className="fixed top-0 left-0 w-full h-1">
         <div className="h-full bg-water-leaf-400 animate-[progress_3s_ease-in-out_infinite] w-full opacity-80" />
       </div>
 
-      <main className={`max-w-4xl mx-auto text-center transition-all duration-1000 transform ${isLoaded ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}>
-        {/* Title Section */}
-        <h1 className="text-5xl md:text-7xl font-bold text-blue-violet-700 mb-8 animate-fade-in">
-          {t('pageTitle')}
-        </h1>
-        {/* Description */}
-        <p className="text-dull-lavender-900 text-xl md:text-2xl mb-12 animate-fade-in delay-200">
-          {t('description')}
-        </p>
+      <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 transform ${isLoaded ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}>
+        <SectionTitle
+          title={t('pageTitle')}
+          subtitle={t('description')}
+          className="mb-16"
+          titleClassName="text-blue-violet-700 text-5xl md:text-7xl"
+          subtitleClassName="text-dull-lavender-900 text-xl md:text-2xl"
+        />
 
-        {/* Email Subscription Form */}
         <form onSubmit={handleSubmit} className="max-w-md mx-auto mb-12">
           <div className="flex flex-col md:flex-row gap-4">
             <input
@@ -63,7 +62,8 @@ export default function Docs() {
           <div className="w-2 h-2 rounded-full bg-dull-lavender-500 animate-pulse delay-300" />
           <div className="w-2 h-2 rounded-full bg-dull-lavender-500 animate-pulse delay-600" />
         </div>
-      </main>
+      </div>
     </div>
   );
 };
+

@@ -1,5 +1,6 @@
 "use client";
 import FeatureCard from "@/components/landing-page/features/feature-card";
+import SectionTitle from "@/components/ui/section-title";
 import { Link, ArrowRightLeft, BarChart2, QrCode, Eye, Pencil } from "lucide-react";
 import { motion } from 'framer-motion';
 import { useTranslations } from "next-intl";
@@ -40,17 +41,15 @@ export default function Features() {
     },
   ];
 
-  const tPage = useTranslations('feature-page');
-
   return (
-    <div className="min-h-screen bg-dull-lavender-50">
-      <main className="container mx-auto px-4 py-12">
-        <h1 className="text-4xl md:text-5xl font-bold text-blue-violet-800 text-center mb-4">
-          {tPage('pageTitle')}
-        </h1>
-        <p className="text-xl text-gravel-600 text-center mb-12">
-          {tPage('pageSubtitle')}
-        </p>
+    <div className="py-24 bg-dull-lavender-50">
+      <div className="container mx-auto px-4">
+        <SectionTitle
+          title={t('pageTitle')}
+          subtitle={t('pageSubtitle')}
+          className="mb-16"
+        />
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <motion.div
@@ -67,7 +66,7 @@ export default function Features() {
             </motion.div>
           ))}
         </div>
-      </main>
+      </div>
     </div>
   );
 }

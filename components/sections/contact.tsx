@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { FaGithub, FaInstagram, FaDiscord, FaLinkedinIn } from "react-icons/fa";
+import SectionTitle from "@/components/ui/section-title";
 
 const socialLinks = [
   { name: "GitHub", icon: FaGithub, url: "https://github.com/JosePabloSG", hoverColor: "hover:text-[#181717]" },
@@ -13,26 +14,15 @@ const socialLinks = [
 
 export default function Contact() {
   const t = useTranslations("contact-page");
-  return (
-    <div className="min-h-screen bg-dull-lavender-50 text-dull-lavender-900">
-      <main className="container mx-auto px-4 py-8">
-        <motion.h1
-          className="text-4xl md:text-5xl font-bold text-center text-blue-violet-800 mb-8"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          {t("title")}
-        </motion.h1>
 
-        <motion.p
-          className="text-lg text-center mb-12 max-w-2xl mx-auto"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-        >
-          {t("description")}
-        </motion.p>
+  return (
+    <div className="py-24 bg-dull-lavender-50 text-dull-lavender-900">
+      <div className="container mx-auto px-4">
+        <SectionTitle
+          title={t("title")}
+          subtitle={t("description")}
+          className="mb-16"
+        />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {socialLinks.map((link, index) => (
@@ -54,7 +44,7 @@ export default function Contact() {
             </motion.a>
           ))}
         </div>
-      </main>
+      </div>
     </div>
   );
 }
