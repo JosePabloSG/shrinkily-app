@@ -21,7 +21,7 @@ export default function Docs() {
   };
 
   return (
-    <div className="py-24 bg-dull-lavender-50 text-[#6B6B8D] flex flex-col items-center justify-center p-4">
+    <div className="py-24  text-[#6B6B8D] flex flex-col items-center justify-center p-4">
       {/* Loading Progress Indicator */}
       <div className="fixed top-0 left-0 w-full h-1">
         <div className="h-full bg-water-leaf-400 animate-[progress_3s_ease-in-out_infinite] w-full opacity-80" />

@@ -42,7 +42,7 @@ export default function Features() {
   ];
 
   return (
-    <div className="py-24 bg-dull-lavender-50">
+    <div className="py-24 ">
       <div className="container mx-auto px-4">
         <SectionTitle
           title={t('pageTitle')}

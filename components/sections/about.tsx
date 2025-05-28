@@ -8,7 +8,7 @@ export default function About() {
   const t = useTranslations('about-page');
 
   return (
-    <div className="py-24 bg-dull-lavender-50 text-[#6B6B8D]">
+    <div className="py-24  text-[#6B6B8D]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle
           title={t('pageTitle')}

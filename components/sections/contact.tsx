@@ -16,7 +16,7 @@ export default function Contact() {
   const t = useTranslations("contact-page");
 
   return (
-    <div className="py-24 bg-dull-lavender-50 text-dull-lavender-900">
+    <div className="py-24  text-dull-lavender-900">
       <div className="container mx-auto px-4">
         <SectionTitle
           title={t("title")}
