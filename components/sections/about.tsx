@@ -120,22 +120,22 @@ export default function About() {
 
           {/* Open Source Section */}
           <motion.div variants={itemVariants}>
-            <Card className="overflow-hidden bg-white/70 backdrop-blur-sm border-dull-lavender-200 shadow-md hover:shadow-lg transition-all duration-300">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-violet-50/50 to-water-leaf-50/50 opacity-50" />
+            <Card className="overflow-hidden bg-white/70 backdrop-blur-sm border-gray-200 shadow-md hover:shadow-lg transition-all duration-300">
+              <div className="absolute inset-0 bg-gray-50 opacity-50" />
               <CardContent className="relative z-10 p-8">
                 <div className="flex items-center mb-6 space-x-3">
-                  <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-beauty-bush-100 text-beauty-bush-700">
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-gray-900 text-white">
                     <FaGithub className="w-6 h-6" />
                   </div>
-                  <h3 className="text-2xl font-bold text-blue-violet-800">{t("openSource.title")}</h3>
+                  <h3 className="text-2xl font-bold text-gray-900">{t("openSource.title")}</h3>
                 </div>
 
-                <p className="text-dull-lavender-700 leading-relaxed mb-6">{t("openSource.description")}</p>
+                <p className="text-gray-700 leading-relaxed mb-6">{t("openSource.description")}</p>
 
                 <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
                   <Link
                     href="https://github.com/JosePabloSG/Shrinkily-app"
-                    className="inline-flex items-center px-6 py-3 bg-beauty-bush-500 hover:bg-beauty-bush-600 text-white rounded-lg transition-all duration-300 shadow-md hover:shadow-lg font-medium group"
+                    className="inline-flex items-center px-6 py-3 bg-gray-900 hover:bg-gray-800 text-white rounded-lg transition-all duration-300 shadow-md hover:shadow-lg font-medium group"
                   >
                     <FaGithub className="mr-2 w-5 h-5" />
                     <span>{t("openSource.repositoryButton")}</span>
