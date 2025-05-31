@@ -1,0 +1,39 @@
+# Robots.txt for Shrinkily
+User-agent: *
+Allow: /
+
+# Disallow admin and private areas
+Disallow: /dashboard/
+Disallow: /auth/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+
+# Allow specific public pages
+Allow: /
+Allow: /about
+Allow: /contact
+Allow: /features
+Allow: /docs
+Allow: /privacy
+Allow: /terms
+
+# Sitemap location
+Sitemap: https://shrinkily.com/sitemap.xml
+Sitemap: https://shrinkily.com/sitemap-pages.xml
+
+# Crawl delay (optional)
+Crawl-delay: 1
+
+# Specific rules for different bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
