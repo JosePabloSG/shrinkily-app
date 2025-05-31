@@ -27,12 +27,16 @@ export default function SectionTitle({
       transition={{ duration: 0.6, ease: [0.2, 0, 0.3, 1] }}
       className={cn("space-y-4", center && "text-center", className)}
     >
-      <h2 className={cn(
-        "text-4xl md:text-5xl font-bold text-blue-violet-800",
-        titleClassName
-      )}>
-        {title}
-      </h2>
+      <div className="relative inline-block">
+        <h2 className={cn(
+          "text-4xl md:text-5xl font-bold text-blue-violet-800 relative z-10",
+          titleClassName
+        )}>
+          {title}
+        </h2>
+        {/* Marcador highlight */}
+        <div className="absolute -bottom-2 left-0 w-full h-6 bg-blue-violet-200/70 -z-10 transform -rotate-1"></div>
+      </div>
       {subtitle && (
         <p className={cn(
           "text-xl text-gravel-600 max-w-3xl",

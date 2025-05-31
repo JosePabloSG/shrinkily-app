@@ -60,12 +60,15 @@ export default function Contact() {
         >
           {/* Header */}
           <motion.header variants={itemVariants} className="space-y-4">
-            <h2
-              id="contact-heading"
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-gravel-900 leading-tight"
-            >
-              Ponte en <span className={`${calistoga.className} text-blue-violet-500`}>Contacto</span>
-            </h2>
+            <div className="relative inline-block">
+              <h2
+                id="contact-heading"
+                className="text-4xl md:text-5xl lg:text-6xl font-bold text-gravel-900 leading-tight relative z-10"
+              >
+                Ponte en <span className={`${calistoga.className} text-blue-violet-500`}>Contacto</span>
+              </h2>
+  
+            </div>
             <p className="text-lg md:text-xl text-gravel-700 leading-relaxed">
               Contacta al equipo de soporte de nuestro startup.
             </p>
