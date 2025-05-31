@@ -16,7 +16,7 @@
     },
     "customAliases": {
       "title": "Alias Personalizados",
-      "description": "Crea alias personalizados para tus enlaces cortos, haciéndolos más memorables y amigables con tu marca."
+      "description": "Crea alias personalizados para tus enlaces cortos o deja que la IA los genere por ti, haciéndolos más memorables y amigables con tu marca."
     },
     "qrCodeGeneration": {
       "title": "Generación de Códigos QR",
