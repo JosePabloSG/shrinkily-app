@@ -1,50 +1,107 @@
-"use client";
+"use client"
 
-import { motion } from "framer-motion";
-import { useTranslations } from "next-intl";
-import { FaGithub, FaInstagram, FaDiscord, FaLinkedinIn } from "react-icons/fa";
-import SectionTitle from "@/components/ui/section-title";
+import { motion } from "framer-motion"
+import { Mail, Phone } from "lucide-react"
+import { calistoga } from "@/lib/fonts"
 
-const socialLinks = [
-  { name: "GitHub", icon: FaGithub, url: "https://github.com/JosePabloSG", hoverColor: "hover:text-[#181717]" },
-  { name: "Instagram", icon: FaInstagram, url: "https://www.instagram.com/josepablo.sg", hoverColor: "group-hover:from-[#F58529] group-hover:to-[#D6008C] hover:text-transparent bg-gradient-to-r" },
-  { name: "Discord", icon: FaDiscord, url: "https://discordapp.com/users/797265640335343616", hoverColor: "hover:text-[#7289DA]" },
-  { name: "LinkedIn", icon: FaLinkedinIn, url: "https://www.linkedin.com/in/JosePabloSG", hoverColor: "hover:text-[#0077B5]" },
-];
+const contactMethods = [
+  {
+    icon: Mail,
+    title: "Email",
+    description: "Respondemos todos los emails en 24 horas.",
+    contact: "suarezgomezjosepablo03@gmail.com",
+    href: "mailto:suarezgomezjosepablo03@gmail.com",
+    ariaLabel: "Enviar email a suarezgomezjosepablo03@gmail.com",
+  },
+  {
+    icon: Phone,
+    title: "Teléfono",
+    description: "Estamos disponibles Lun-Vie, 9am-6pm.",
+    contact: "+506 6525 1906",
+    href: "tel:+50665251906",
+    ariaLabel: "Llamar al +506 6525 1906",
+  },
+]
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      duration: 0.6,
+      ease: [0.2, 0, 0.3, 1],
+    },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.2, 0, 0.3, 1],
+    },
+  },
+}
 
 export default function Contact() {
-  const t = useTranslations("contact-page");
-
   return (
-    <div className="py-24  text-dull-lavender-900">
-      <div className="container mx-auto px-4">
-        <SectionTitle
-          title={t("title")}
-          subtitle={t("description")}
-          className="mb-16"
-        />
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {socialLinks.map((link, index) => (
-            <motion.a
-              key={link.name}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex flex-col items-center justify-center p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 group"
-              whileHover={{ scale: 1.05 }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
+    <section className="py-16 md:py-24 bg-white" aria-labelledby="contact-heading">
+      <div className="container mx-auto px-4 md:px-6 max-w-6xl">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={containerVariants}
+          className="space-y-16"
+        >
+          {/* Header */}
+          <motion.header variants={itemVariants} className="space-y-4">
+            <h2
+              id="contact-heading"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-gravel-900 leading-tight"
             >
-              <link.icon
-                className={`text-4xl mb-2 ${link.hoverColor} transition-colors duration-300`}
-              />
-              <span className="text-sm font-medium">{link.name}</span>
-            </motion.a>
-          ))}
-        </div>
+              Ponte en <span className={`${calistoga.className} text-blue-violet-500`}>Contacto</span>
+            </h2>
+            <p className="text-lg md:text-xl text-gravel-700 leading-relaxed">
+              Contacta al equipo de soporte de nuestro startup.
+            </p>
+          </motion.header>
+
+          {/* Contact Methods */}
+          <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 lg:gap-24">
+            {contactMethods.map((method) => {
+              const IconComponent = method.icon
+              return (
+                <motion.div key={method.title} variants={itemVariants} className="space-y-6">
+                  {/* Icon */}
+                  <div className="w-12 h-12 flex items-center justify-center">
+                    <IconComponent className="w-8 h-8 text-gravel-900" aria-hidden="true" strokeWidth={1.5} />
+                  </div>
+
+                  {/* Content */}
+                  <div className="space-y-4">
+                    <h3 className="text-xl md:text-2xl font-semibold text-gravel-900">{method.title}</h3>
+
+                    <p className="text-gravel-700 leading-relaxed">{method.description}</p>
+
+                    <a
+                      href={method.href}
+                      className="inline-block text-gravel-900 font-medium hover:text-blue-violet-500 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-violet-500 focus:ring-offset-2 rounded-md px-1 py-1"
+                      aria-label={method.ariaLabel}
+                    >
+                      {method.contact}
+                    </a>
+                  </div>
+                </motion.div>
+              )
+            })}
+          </motion.div>
+        </motion.div>
       </div>
-    </div>
-  );
+    </section>
+  )
 }
