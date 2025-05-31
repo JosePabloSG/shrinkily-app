@@ -20,7 +20,7 @@ import { Dialog, DialogContent, DialogTitle, DialogClose, DialogTrigger } from "
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import toast, { Toaster } from 'react-hot-toast'
+import toast from 'react-hot-toast'
 
 import { DEFAULT_QR_STYLES, type COLOR_PRESETS, calculateMaxLogoSize, type QRStylesType } from "./constants"
 import { QRPreview } from "./qr-preview"
@@ -331,7 +331,7 @@ const QRCodeEditor = ({ url, shortId = "custom", urlInfo, children }: QRCodeEdit
     <>
       <Dialog>
         <DialogTrigger asChild>{children}</DialogTrigger>
-        <DialogContent className="sm:max-w-4xl p-0 gap-0 overflow-hidden">
+        <DialogContent className="sm:max-w-4xl p-0 gap-0 overflow-hidden" hideCloseButton>
           <DialogTitle className="sr-only">QR Code Editor</DialogTitle>
           <div className="flex flex-col md:flex-row h-[85vh] md:h-[650px] max-h-[85vh]">
             {/* Preview Panel - Always visible */}
@@ -612,8 +612,6 @@ const QRCodeEditor = ({ url, shortId = "custom", urlInfo, children }: QRCodeEdit
           fullUrl={fullUrl} // Pasar la URL completa
         />
       )}
-
-      <Toaster />
     </>
   )
 }
