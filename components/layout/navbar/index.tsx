@@ -84,19 +84,19 @@ export function Navbar() {
       {/* Glassmorphism Container */}
       <div className="max-w-5xl mx-auto relative">
         <div className={`relative backdrop-blur-2xl rounded-2xl border shadow-2xl transition-all duration-500 ${activeSection === 'docs'
-          ? 'bg-dull-lavender-500/30 border-dull-lavender-300/50 shadow-dull-lavender-500/20'
-          : 'bg-white/20 border-white/30 shadow-blue-violet-500/10'
+            ? 'bg-dull-lavender-500/30 border-dull-lavender-300/50 shadow-dull-lavender-500/20'
+            : 'bg-white/20 border-white/30 shadow-blue-violet-500/10'
           }`}>
           {/* Glass effect overlay with subtle gradient */}
           <div className={`absolute inset-0 rounded-2xl transition-all duration-500 ${activeSection === 'docs'
-            ? 'bg-gradient-to-r from-dull-lavender-200/20 via-transparent to-dull-lavender-200/20'
-            : 'bg-gradient-to-r from-white/10 via-transparent to-white/10'
+              ? 'bg-gradient-to-r from-dull-lavender-200/20 via-transparent to-dull-lavender-200/20'
+              : 'bg-gradient-to-r from-white/10 via-transparent to-white/10'
             }`}></div>
 
           {/* Subtle crystal highlight */}
           <div className={`absolute inset-x-0 top-0 h-px rounded-2xl transition-all duration-500 ${activeSection === 'docs'
-            ? 'bg-gradient-to-r from-transparent via-dull-lavender-200/60 to-transparent'
-            : 'bg-gradient-to-r from-transparent via-white/40 to-transparent'
+              ? 'bg-gradient-to-r from-transparent via-dull-lavender-200/60 to-transparent'
+              : 'bg-gradient-to-r from-transparent via-white/40 to-transparent'
             }`}></div>
 
           {/* Inner content */}
@@ -105,8 +105,8 @@ export function Navbar() {
               {/* Logo */}
               <div className="flex-shrink-0 flex items-center">
                 <Link href="/" className={`text-2xl font-bold drop-shadow-sm transition-colors duration-500 ${activeSection === 'docs'
-                  ? 'text-dull-lavender-800'
-                  : 'text-blue-violet-700'
+                    ? 'text-dull-lavender-800'
+                    : 'text-blue-violet-700'
                   }`}>
                   Shrinkily
                 </Link>

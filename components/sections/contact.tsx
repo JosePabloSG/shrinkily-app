@@ -67,8 +67,7 @@ export default function Contact() {
               >
                 Ponte en <span className={`${calistoga.className} text-blue-violet-500`}>Contacto</span>
               </h2>
-              {/* Marcador highlight */}
-              <div className="absolute -bottom-2 left-0 w-full h-6 bg-blue-violet-200/70 -z-10 transform -rotate-1"></div>
+  
             </div>
             <p className="text-lg md:text-xl text-gravel-700 leading-relaxed">
               Contacta al equipo de soporte de nuestro startup.
