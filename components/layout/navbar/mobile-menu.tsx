@@ -26,27 +26,27 @@ export function MobileMenu({ navItems, mobileMenuOpen, setMobileMenuOpen, AuthBu
     const isDocsSection = activeSection === 'docs'
 
     if (isDocsSection) {
-      return "relative bg-dull-lavender-500/30 backdrop-blur-2xl rounded-full border border-dull-lavender-300/50 shadow-2xl shadow-dull-lavender-500/20 overflow-hidden mx-4"
+      return "relative bg-dull-lavender-500/30 backdrop-blur-2xl rounded-2xl border border-dull-lavender-300/50 shadow-2xl shadow-dull-lavender-500/20 overflow-hidden mx-4"
     }
-    return "relative bg-white/20 backdrop-blur-2xl rounded-full border border-white/30 shadow-2xl shadow-blue-violet-500/10 overflow-hidden mx-4"
+    return "relative bg-white/20 backdrop-blur-2xl rounded-2xl border border-white/30 shadow-2xl shadow-blue-violet-500/10 overflow-hidden mx-4"
   }
 
   const getGlassEffectStyles = () => {
     const isDocsSection = activeSection === 'docs'
 
     if (isDocsSection) {
-      return "absolute inset-0 bg-gradient-to-b from-dull-lavender-200/20 via-transparent to-dull-lavender-200/20"
+      return "absolute inset-0 rounded-2xl bg-gradient-to-b from-dull-lavender-200/20 via-transparent to-dull-lavender-200/20"
     }
-    return "absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-white/10"
+    return "absolute inset-0 rounded-2xl bg-gradient-to-b from-white/10 via-transparent to-white/10"
   }
 
   const getCrystalHighlightStyles = () => {
     const isDocsSection = activeSection === 'docs'
 
     if (isDocsSection) {
-      return "absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-dull-lavender-200/60 to-transparent"
+      return "absolute inset-x-0 top-0 h-px rounded-2xl bg-gradient-to-r from-transparent via-dull-lavender-200/60 to-transparent"
     }
-    return "absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent"
+    return "absolute inset-x-0 top-0 h-px rounded-2xl bg-gradient-to-r from-transparent via-white/40 to-transparent"
   }
 
   const getItemStyles = (item: { name: string; href: string }) => {
