@@ -1,6 +1,5 @@
 "use client";
 import FeatureCard from "@/components/landing-page/features/feature-card";
-import SectionTitle from "@/components/ui/section-title";
 import { Link, ArrowRightLeft, BarChart2, QrCode, Eye, Pencil } from "lucide-react";
 import { motion } from 'framer-motion';
 import { useTranslations } from "next-intl";
@@ -41,32 +40,64 @@ export default function Features() {
     },
   ];
 
-  return (
-    <div className="py-24 ">
-      <div className="container mx-auto px-4">
-        <SectionTitle
-          title={t('pageTitle')}
-          subtitle={t('pageSubtitle')}
-          className="mb-16"
-        />
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  };
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  const titleVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.25, 0.25, 0.25, 0.75]
+      }
+    }
+  };
+
+  return (
+    <section className="py-24 " >
+      <div className="container mx-auto px-4 max-w-7xl">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="text-center mb-20"
+        >
+          <motion.h2 
+            variants={titleVariants}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6"
+          >
+            {t('pageTitle')}
+          </motion.h2>
+          <motion.p 
+            variants={titleVariants}
+            className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+          >
+            {t('pageSubtitle')}
+          </motion.p>
+        </motion.div>
+
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12"
+        >
           {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: 20, y: 20 }}
-              animate={{ opacity: 1, x: 0, y: 0 }}
-              transition={{
-                duration: 0.25,
-                delay: index * 0.03,
-                ease: [0.2, 0, 0.3, 1]
-              }}
-            >
-              <FeatureCard {...feature} />
-            </motion.div>
+            <FeatureCard key={index} {...feature} index={index} />
           ))}
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </section>
   );
 }
