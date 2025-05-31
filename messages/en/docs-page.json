@@ -2,5 +2,12 @@
   "pageTitle": "Coming Soon",
   "description": "We're working hard on something amazing. Stay tuned!",
   "emailPlaceholder": "Enter your email for updates",
-  "notifyButton": "Notify Me"
+  "notifyButton": "Notify Me",
+  "sending": "Sending...",
+  "stayUpdatedTitle": "Stay Updated",
+  "stayUpdatedDescription": "Get notified when documentation is available.",
+  "stayUpdatedDescriptionSpanish": "Recibe una notificación cuando la documentación esté disponible.",
+  "thankYouTitle": "Thank You!",
+  "thankYouText1": "We'll notify you when documentation is available!",
+  "subscribeAnother": "Subscribe another email"
 }

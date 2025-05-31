@@ -16,7 +16,7 @@
     },
     "customAliases": {
       "title": "Custom Aliases",
-      "description": "Create custom aliases for your short links, making them more memorable and brand-friendly."
+      "description": "Create custom aliases for your short links or let AI generate them for you, making them more memorable and brand-friendly."
     },
     "qrCodeGeneration": {
       "title": "QR Code Generation",
