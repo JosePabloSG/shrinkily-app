@@ -7,7 +7,12 @@
     "contact": "Contact",
     "goDashboard": "Go to Dashboard",
     "signIn": "Sign In",
-    "openMainMenu": "Open main menu"
+    "openMainMenu": "Open main menu",
+    "language": {
+      "switchLanguage": "Switch language",
+      "en": "English",
+      "es": "Spanish"
+    }
   },
   "footer": {
     "description": "Simplify your links, amplify your reach. Shrinkily makes sharing easy with instant, reliable, and customized short URLs.",

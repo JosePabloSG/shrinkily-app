@@ -1,0 +1,15 @@
+{
+  "email": {
+    "title": "Email",
+    "description": "We respond to all emails within 24 hours.",
+    "ariaLabel": "Send email to suarezgomezjosepablo03@gmail.com"
+  },
+  "phone": {
+    "title": "Phone",
+    "description": "Available Monday through Friday from 9am to 5pm.",
+    "ariaLabel": "Call +506 6525 1906"
+  },
+  "sectionTitle": "Get in ",
+  "seccondarySectionTitle": "Touch",
+  "sectionSubtitle": "Contact our startup support team."
+}

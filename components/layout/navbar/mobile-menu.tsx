@@ -7,10 +7,11 @@ interface MobileMenuProps {
   mobileMenuOpen: boolean
   setMobileMenuOpen: (open: boolean) => void
   AuthButton: React.FC
+  LanguageSwitch: React.FC
   activeSection?: string
 }
 
-export function MobileMenu({ navItems, mobileMenuOpen, setMobileMenuOpen, AuthButton, activeSection }: MobileMenuProps) {
+export function MobileMenu({ navItems, mobileMenuOpen, setMobileMenuOpen, AuthButton, LanguageSwitch, activeSection }: MobileMenuProps) {
   const pathname = usePathname()
 
   const isActive = (item: { name: string; href: string }) => {
@@ -57,13 +58,15 @@ export function MobileMenu({ navItems, mobileMenuOpen, setMobileMenuOpen, AuthBu
       return cn(
         "block px-4 py-3 rounded-2xl text-base font-medium transition-all duration-500 backdrop-blur-sm",
         isItemActive
-          ? "text-dull-lavender-800 bg-dull-lavender-200/40 shadow-sm"
-          : "text-dull-lavender-700 hover:text-dull-lavender-800 hover:bg-dull-lavender-100/30"
+          ? "text-blue-violet-600 bg-dull-lavender-200/40 shadow-sm"
+          : "text-dull-lavender-700 hover:text-blue-violet-600 hover:bg-dull-lavender-100/30"
       )
     } else {
       return cn(
-        "block px-4 py-3 rounded-2xl text-base font-medium text-gravel-700 hover:text-blue-violet-600 hover:bg-white/30 transition-all duration-200 backdrop-blur-sm",
-        isItemActive && "text-blue-violet-600 bg-white/30 shadow-sm",
+        "block px-4 py-3 rounded-2xl text-base font-medium transition-all duration-200 backdrop-blur-sm",
+        isItemActive
+          ? "text-blue-violet-600 bg-white/30 shadow-sm"
+          : "text-gravel-700 hover:text-blue-violet-600 hover:bg-white/30"
       )
     }
   }
@@ -89,7 +92,10 @@ export function MobileMenu({ navItems, mobileMenuOpen, setMobileMenuOpen, AuthBu
               {item.name}
             </Link>
           ))}
-          <div className="mt-8 px-4">
+          <div className="mt-8 flex flex-col gap-4 px-4">
+            <div className="flex justify-center">
+              <LanguageSwitch />
+            </div>
             <AuthButton />
           </div>
         </div>

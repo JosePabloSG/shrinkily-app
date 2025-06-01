@@ -3,6 +3,7 @@ import Contact from "@/components/sections/contact";
 import Docs from "@/components/sections/docs";
 import Features from "@/components/sections/features";
 import Hero from "@/components/sections/hero";
+import Testimonials from "@/components/sections/testimonials";
 
 export default function Page() {
   return (
@@ -23,9 +24,15 @@ export default function Page() {
         <About />
       </section>
 
+      <section id="testimonials" className="scroll-mt-20">
+        <Testimonials />
+      </section>
+
       <section id="contact" className="scroll-mt-20">
         <Contact />
       </section>
+
+
     </div>
   )
 }
