@@ -30,14 +30,16 @@ export function DesktopMenu({ navItems, AuthButton, LanguageSwitch, activeSectio
       return cn(
         "px-4 py-2 rounded-2xl text-sm font-medium transition-all duration-500 backdrop-blur-sm hover:shadow-sm",
         isItemActive
-          ? "text-dull-lavender-800 bg-dull-lavender-200/40 shadow-sm"
-          : "text-dull-lavender-700 hover:text-dull-lavender-800 hover:bg-dull-lavender-100/30"
+          ? "text-blue-violet-600 bg-dull-lavender-200/40 shadow-sm"
+          : "text-dull-lavender-700 hover:text-blue-violet-600 hover:bg-dull-lavender-100/30"
       )
     } else {
       // Estilos por defecto
       return cn(
-        "text-gravel-700 hover:text-blue-violet-600 hover:bg-white/30 px-4 py-2 rounded-2xl text-sm font-medium transition-all duration-200 backdrop-blur-sm hover:shadow-sm",
-        isItemActive && "text-blue-violet-600 bg-white/30 shadow-sm",
+        "px-4 py-2 rounded-2xl text-sm font-medium transition-all duration-200 backdrop-blur-sm hover:shadow-sm",
+        isItemActive
+          ? "text-blue-violet-600 bg-white/30 shadow-sm"
+          : "text-gravel-700 hover:text-blue-violet-600 hover:bg-white/30",
       )
     }
   }
