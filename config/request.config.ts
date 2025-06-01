@@ -24,7 +24,8 @@ export const sections = [
   "size-tab",
   "logo-tab",
   "save-tab",
-  "testimonials"
+  "testimonials",
+  "contact"
 ] as const;
 
 export type MessageSection = (typeof sections)[number];

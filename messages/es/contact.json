@@ -1,0 +1,15 @@
+{
+  "email": {
+    "title": "Email",
+    "description": "Respondemos todos los emails en 24 horas.",
+    "ariaLabel": "Enviar email a suarezgomezjosepablo03@gmail.com"
+  },
+  "phone": {
+    "title": "Teléfono",
+    "description": "Disponible de lunes a viernes de 9am a 5pm.",
+    "ariaLabel": "Llamar al +506 6525 1906"
+  },
+  "sectionTitle": "Ponte en ",
+  "seccondarySectionTitle": "Contacto",
+  "sectionSubtitle": "Contacta al equipo de soporte de nuestro startup."
+}

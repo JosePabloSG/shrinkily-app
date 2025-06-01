@@ -3,25 +3,7 @@
 import { motion } from "framer-motion"
 import { Mail, Phone } from "lucide-react"
 import { calistoga } from "@/lib/fonts"
-
-const contactMethods = [
-  {
-    icon: Mail,
-    title: "Email",
-    description: "Respondemos todos los emails en 24 horas.",
-    contact: "suarezgomezjosepablo03@gmail.com",
-    href: "mailto:suarezgomezjosepablo03@gmail.com",
-    ariaLabel: "Enviar email a suarezgomezjosepablo03@gmail.com",
-  },
-  {
-    icon: Phone,
-    title: "Teléfono",
-    description: "Estamos disponibles Lun-Vie, 9am-6pm.",
-    contact: "+506 6525 1906",
-    href: "tel:+50665251906",
-    ariaLabel: "Llamar al +506 6525 1906",
-  },
-]
+import { useTranslations } from "next-intl"
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -48,6 +30,31 @@ const itemVariants = {
 }
 
 export default function Contact() {
+
+  const t = useTranslations("contact")
+
+
+  const contactMethods = [
+    {
+      id: 'email',
+      icon: Mail,
+      title: t("email.title"),
+      description: t("email.description"),
+      contact: "suarezgomezjosepablo03@gmail.com",
+      href: "mailto:suarezgomezjosepablo03@gmail.com",
+      ariaLabel: t("email.ariaLabel"),
+    },
+    {
+      id: 'phone',
+      icon: Phone,
+      title: t("phone.title"),
+      description: t("phone.description"),
+      contact: "+506 6525 1906",
+      href: "tel:+50665251906",
+      ariaLabel: t("phone.ariaLabel"),
+    },
+  ]
+
   return (
     <section className="py-16 md:py-24 bg-white" aria-labelledby="contact-heading">
       <div className="container mx-auto px-4 md:px-6 max-w-6xl">
@@ -65,12 +72,15 @@ export default function Contact() {
                 id="contact-heading"
                 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gravel-900 leading-tight relative z-10"
               >
-                Ponte en <span className={`${calistoga.className} text-blue-violet-500`}>Contacto</span>
+                {t("sectionTitle")}
+                <span className={`${calistoga.className} text-blue-violet-500`}>
+                  {t("seccondarySectionTitle")}
+                </span>
               </h2>
-  
+
             </div>
             <p className="text-lg md:text-xl text-gravel-700 leading-relaxed">
-              Contacta al equipo de soporte de nuestro startup.
+              {t("sectionSubtitle")}
             </p>
           </motion.header>
 
@@ -79,7 +89,7 @@ export default function Contact() {
             {contactMethods.map((method) => {
               const IconComponent = method.icon
               return (
-                <motion.div key={method.title} variants={itemVariants} className="space-y-6">
+                <motion.div key={method.id} variants={itemVariants} className="space-y-6">
                   {/* Icon */}
                   <div className="w-12 h-12 flex items-center justify-center">
                     <IconComponent className="w-8 h-8 text-gravel-900" aria-hidden="true" strokeWidth={1.5} />
