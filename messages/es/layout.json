@@ -7,7 +7,12 @@
     "contact": "Contacto",
     "goDashboard": "Ir al Panel",
     "signIn": "Iniciar Sesión",
-    "openMainMenu": "Abrir menú principal"
+    "openMainMenu": "Abrir menú principal",
+    "language": {
+      "switchLanguage": "Cambiar idioma",
+      "en": "Inglés",
+      "es": "Español"
+    }
   },
   "footer": {
     "description": "Simplifica tus enlaces, amplifica tu alcance. Shrinkily hace compartir fácil con URLs cortas instantáneas, confiables y personalizadas.",

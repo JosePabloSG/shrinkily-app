@@ -7,10 +7,11 @@ interface MobileMenuProps {
   mobileMenuOpen: boolean
   setMobileMenuOpen: (open: boolean) => void
   AuthButton: React.FC
+  LanguageSwitch: React.FC
   activeSection?: string
 }
 
-export function MobileMenu({ navItems, mobileMenuOpen, setMobileMenuOpen, AuthButton, activeSection }: MobileMenuProps) {
+export function MobileMenu({ navItems, mobileMenuOpen, setMobileMenuOpen, AuthButton, LanguageSwitch, activeSection }: MobileMenuProps) {
   const pathname = usePathname()
 
   const isActive = (item: { name: string; href: string }) => {
@@ -89,7 +90,10 @@ export function MobileMenu({ navItems, mobileMenuOpen, setMobileMenuOpen, AuthBu
               {item.name}
             </Link>
           ))}
-          <div className="mt-8 px-4">
+          <div className="mt-8 flex flex-col gap-4 px-4">
+            <div className="flex justify-center">
+              <LanguageSwitch />
+            </div>
             <AuthButton />
           </div>
         </div>

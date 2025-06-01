@@ -5,10 +5,11 @@ import { cn } from "@/lib/utils"
 interface DesktopMenuProps {
   navItems: { name: string; href: string }[]
   AuthButton: React.FC
+  LanguageSwitch: React.FC
   activeSection?: string
 }
 
-export function DesktopMenu({ navItems, AuthButton, activeSection }: DesktopMenuProps) {
+export function DesktopMenu({ navItems, AuthButton, LanguageSwitch, activeSection }: DesktopMenuProps) {
   const pathname = usePathname()
 
   const isActive = (item: { name: string; href: string }) => {
@@ -52,7 +53,8 @@ export function DesktopMenu({ navItems, AuthButton, activeSection }: DesktopMenu
           {item.name}
         </Link>
       ))}
-      <div className="ml-4">
+      <div className="flex items-center space-x-2 ml-4">
+        <LanguageSwitch />
         <AuthButton />
       </div>
     </div>
