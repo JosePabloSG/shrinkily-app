@@ -1,0 +1,43 @@
+{
+  "badge": "Testimonials",
+  "title": "What Our Users Are Saying",
+  "subtitle": "Real feedback from our users",
+  "testimonials": [
+    {
+      "quote": "Shrinkily has allowed me to share my photo galleries with clients quickly and professionally. The short and customizable links improve presentation and help me track who views the content. It's an essential tool in my workflow.",
+      "name": "Emanuel Pineda",
+      "title": "Professional Photographer @ Pineda Photography",
+      "avatar": "/Pineda.svg"
+    },
+    {
+      "quote": "Shrinkily has been very helpful in my university projects. The option to generate QR codes for links makes it easy to share resources with classmates and professors. It's a modern, practical tool that's perfect for tech students.",
+      "name": "Sofía Jiménez",
+      "title": "Systems Engineering Student",
+      "avatar": "/Sofia.svg"
+    },
+    {
+      "quote": "As a Systems Engineering student and photography entrepreneur, Shrinkily helps me efficiently track the forms I share—both for university projects and for clients of Chaves Photography. The click stats and ease of sharing make everything more organized and professional.",
+      "name": "Aaron Chaves",
+      "title": "Photographer and Systems Engineering Student @ Chaves Photography",
+      "avatar": "/Chaves.svg"
+    },
+    {
+      "quote": "Since we started using Shrinkily, our email marketing campaigns have improved significantly. The short URLs look more professional and the conversion reports are very useful.",
+      "name": "Sofia Kim",
+      "title": "Digital Marketing Specialist",
+      "avatar": "/placeholder.svg?height=40&width=40"
+    },
+    {
+      "quote": "The tagging and link organization features are exactly what we needed. It has greatly improved our efficiency in managing multiple marketing campaigns.",
+      "name": "James Wilson",
+      "title": "Campaign Manager @ GrowthLabs",
+      "avatar": "/placeholder.svg?height=40&width=40"
+    },
+    {
+      "quote": "An amazing tool for managing URLs. The integration with our CMS was seamless, and the real-time analytics help us make more informed decisions.",
+      "name": "Laura Thompson",
+      "title": "Product Manager @ WebFlow",
+      "avatar": "/placeholder.svg?height=40&width=40"
+    }
+  ]
+}

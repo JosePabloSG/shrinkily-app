@@ -1,0 +1,43 @@
+{
+  "badge": "Testimonios",
+  "title": "La opinión de nuestros usuarios",
+  "subtitle": "Lo que dicen nuestros usuarios sobre nosotros",
+  "testimonials": [
+    {
+      "quote": "Shrinkily me ha permitido enviar enlaces de mis galerías a los clientes de forma rápida y profesional. Los links cortos y personalizables mejoran la presentación y me ayudan a hacer seguimiento de quién accede a las fotos. Es una herramienta esencial en mi flujo de trabajo.",
+      "name": "Emanuel Pineda",
+      "title": "Fotógrafo Profesional @ Pineda Photography",
+      "avatar": "/Pineda.svg"
+    },
+    {
+      "quote": "Shrinkily ha sido de gran ayuda en mis proyectos universitarios. La opción de generar códigos QR para los enlaces me permite compartir fácilmente recursos con compañeros y profesores. Es una herramienta moderna, práctica y perfecta para estudiantes de tecnología.",
+      "name": "Sofía Jiménez",
+      "title": "Estudiante de Ingeniería en Sistemas",
+      "avatar": "/Sofia.svg"
+    },
+    {
+      "quote": "Como estudiante de Ingeniería en Sistemas y emprendedor en fotografía, Shrinkily me permite hacer seguimiento eficiente a los formularios que comparto, tanto en mis proyectos universitarios como con los clientes de Chaves Photography. Las estadísticas de clics y la facilidad para compartir enlaces hacen que todo sea más organizado y profesional.",
+      "name": "Aaron Chaves",
+      "title": "Fotógrafo y Estudiante de Ingeniería en Sistemas @ Chaves Photography",
+      "avatar": "/Chaves.svg"
+    },
+    {
+      "quote": "Desde que empezamos a usar Shrinkily, nuestras campañas de email marketing han mejorado significativamente. Las URLs cortas se ven más profesionales y los reportes de conversión son muy útiles.",
+      "name": "Sofia Kim",
+      "title": "Digital Marketing Specialist",
+      "avatar": "/placeholder.svg?height=40&width=40"
+    },
+    {
+      "quote": "La funcionalidad de etiquetas y organización de enlaces es exactamente lo que necesitábamos. Ha mejorado mucho nuestra eficiencia en la gestión de múltiples campañas de marketing.",
+      "name": "James Wilson",
+      "title": "Campaign Manager @ GrowthLabs",
+      "avatar": "/placeholder.svg?height=40&width=40"
+    },
+    {
+      "quote": "Increíble herramienta para el manejo de URLs. La integración con nuestro CMS fue sencilla y las estadísticas en tiempo real nos permiten tomar decisiones más informadas.",
+      "name": "Laura Thompson",
+      "title": "Product Manager @ WebFlow",
+      "avatar": "/placeholder.svg?height=40&width=40"
+    }
+  ]
+}
