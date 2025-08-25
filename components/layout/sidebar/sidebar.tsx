@@ -9,6 +9,7 @@ import { SignOut } from "./signout";
 import MobileSidebar from "./mobile-sidebar";
 import MobileNavbar from "./mobile-navbar";
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 
 
 const Sidebar = () => {
@@ -48,6 +49,12 @@ const Sidebar = () => {
           <div className="hidden px-3 py-4 border-t border-blue-violet-200 sm:block">
             <SignOut />
           </div>
+          {/* Powered by Hikari lockup, discrete */}
+          <div className="mt-auto px-3 pb-4 flex justify-center opacity-60">
+            <a href="https://www.hikaricr.tech/" target="_blank" rel="noopener noreferrer">
+              <Image src="/images/powered_by_hikari.svg" alt="Powered by Hikari" width={110} height={28} style={{objectFit: 'contain'}} />
+            </a>
+          </div>
         </div>
       </aside>
 
@@ -59,6 +66,12 @@ const Sidebar = () => {
           onClose={() => setIsMobileMenuOpen(false)}
           navItems={navItems}
         />
+        {/* Powered by Hikari lockup, discrete for mobile */}
+        <div className="w-full flex justify-center py-2 opacity-60">
+          <a href="https://www.hikaricr.tech/" target="_blank" rel="noopener noreferrer">
+            <img src="/images/powered_by_hikari.svg" alt="Powered by Hikari" width={100} height={25} style={{objectFit: 'contain'}} />
+          </a>
+        </div>
       </div>
     </>
   );
